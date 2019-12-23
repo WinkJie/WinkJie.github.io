@@ -443,6 +443,7 @@ document.onmousewheel=mouse_wheel; if(window.addEventListener) window.addEventLi
 
 <style type="text/css">
 
+
 body{
 background-image: url("http://www.hanhande.com/upload/160624/1283568_165454_6324.jpg");
 }
@@ -452,61 +453,6 @@ background-image: url("http://www.hanhande.com/upload/160624/1283568_165454_6324
 
 
 
-
-.header1{
-
-	float: right;
-}
- 
- 
-
-
-.header1 ul{
-
-	list-style: none;/*去除前面的黑点*/
-
-	margin-top: 20px;
-}
- 
- 
-
-
-.header1 ul li{
-
-	display: inline-block;/*排列方式，排列到一行*/
-
-	font-size: 15px;
-
-	color: 
-
-black;/*写不写都可以*/
-
-	margin-right: 20px;/*外填充距离*/
-}
- 
- 
-
-
-.header1 ul li a{
-
-	color: white;
-	border:solid 1px white;/*白色的方框*/
-
-        border-radius: 
-
-6px;/*边角设置弧度*/
-   
-	padding: 4px;/*上下内填充*/
- 
-	padding-left: 14px;/*左内边距*/
-   
-
-	
-padding-right: 14px;/*右内边距*/margin-top:1px;
-}
- 
-
-/*外边框*/
 
 
 
@@ -522,7 +468,10 @@ float: left;
 .header ul{
 list-style: none;/*去除前面的黑点*/
 margin-top: 20px;
-}
+
+
+		
+	}
  
  
 
@@ -531,21 +480,25 @@ margin-top: 20px;
 
 	display: inline-block;/*排列方式，排列到一行*/
 
-	font-size: 15px;
+	font-size: 25px;
 
 	color: black;/*
 
 写不写都可以*/
 
 	margin-right: 50px;/*外填充距离*/
+	text-align:center;
+	
 }
  
  
 
 
+
 .header ul li a{
 
    color: yellow;/*字体颜色*/
+ 
    border:solid 1px blue;/*白色的方框*/
 
    border-radius: 
@@ -554,13 +507,15 @@ margin-top: 20px;
 
    padding: 4px;/*上下内填充*/
 
+
    padding-left: 24px;/*左内边距*/
 
    
 
-padding-right: 34px;/*右内边距*/margin-top:1px;
+padding-right: 24px;/*右内边距*/margin-top:1px;
 }
  
+
 
 a{
 color: grey;/*背景颜色*/
@@ -579,10 +534,13 @@ margin: auto;
 
 border-bottom: dotted 1px white; /*设置了白色的分界线*/
  
-margin-bottom: 10px;
+margin-bottom: 5px;
+
+margin-top:5px;
 }
  
  
+
 
 .logo_title{
     float: left;
@@ -623,12 +581,17 @@ margin-top: 75px;
 
 
 .navi ul li{
+
 display: inline-block;/*排列方式，排列到一行*/
+
 font-size: 15px;
+
 color: black;/*写
 
 不写都可以*/
-margin-right: 20px;/*外填充距离*/
+
+margin-right: 30px;/*外填充距离*/
+
 }
  
  
@@ -644,13 +607,13 @@ margin-right: 20px;/*外填充距离*/
 
 边角设置弧度*/
 
-   padding: 4px;/*上下内填充*/
+   padding: 3px;/*上下内填充*/
 
-   padding-left: 14px;/*左内边距*/
+   padding-left: 10px;/*左内边距*/
 
    padding-
 
-right: 14px;/*右内边距*/
+right: 40px;/*右内边距*/
 }
  
  
@@ -968,44 +931,8 @@ color: white;
 
 
 
-	<div class="header1">
-    
-	   
-	   <ul>
 
-
-               <li><a href = "">速度快</a></li>
-
-
-               <li><a href = "">斯的语</a></li>
-
-
-                       </ul>
-
-	</div>
-
-	<div class="header">
-    
-	   
-	   <ul>
-
-
-             
-   <li><a href = "">飞飞过谁</a></li>
-
-
-	       <li><a href = "">WinkJie</a></li>
-
-           </ul>
-
-	</div>
-        
-</div>
-
-
-
-
-</br></br></br>
+	
 	
 
 
@@ -1033,18 +960,16 @@ color: white;
 	   <ul>
 
 
-               <li><a href = "">首页</a></li>
+               <li><a href = "#">首页|Home</a></li>
 
 
-               <li><a href = "https://www.WinkJie.github.io">闲言碎语</a></li>
+               <li><a href = "https://www.WinkJie.github.io">兴趣爱好|Hobby</a></li>
 
 
-               <li><a href = "http://2014.artsy.net/">欣赏的网站</a></li>
+               <li><a href = "http://2014.artsy.net/">个人简介|Personal profile</a></li>
 
 
-	       <li><a href = "https://tympanus.net/Development/AudioVisualizers/">WinkJie</a></li>
-
-           </ul>
+	                </ul>
 
         
 </div>
@@ -1071,7 +996,7 @@ color: white;
                  <div class="item_img">
 
 
-                    <img src="cast.png" alt="Testing Demo Project pic">
+                    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3764194063,3965714929&fm=26&gp=0.jpg" alt="Testing Demo Project pic">
 
                  
 
@@ -1081,23 +1006,24 @@ color: white;
                  <div class="item_content">
 
 
-                    <h3>LinuxCast测试标题测试标题</h3>
+                      <a href="https://www.baidu.com"><h3>Read Me！</h3>
+
+</a>
+                    <p class="item_info">作者：WinkJie  发表于：201年12月15号</p>
 
 
-                    <p class="item_info">作者：XXX  发表于：2017年7月15号</p>
-
-
-                    <p class="item_desc">LinuxCast测试内容测试内容测试内容测试文字测<br>
+                    <p class="item_desc">个人网站介绍<br>
 
     
 
-                测试文字测试文字测试文字测试文字测试文字测试文字</p>
+                </p>
 
 
                  </div>
 
+		 
 
-              </div>
+               </div>
 
 
               <div class="item">
@@ -1215,7 +1141,7 @@ Demo Project pic">
                    <div class="author_img">
 
 
-                      <img src="author.jpg" alt="Testing Demo project pic">
+                      <img src="author.jpg" alt="Me at work">
                    </div>
 
 
@@ -1328,15 +1254,18 @@ Demo Project pic">
 
 <div></div>
 
- <!--     <div class="clear">
+    <div class="clear">
 </div>
 
---->
- 
- 
-    </div>
+
+
+        <div class="clear">
+</div>
+
 
  
+ 
+    
  
 
 
