@@ -1,41 +1,23 @@
 
 <!DOCTYPE html>
 
-
 <html>
-
 
 <head>
    
-
 <meta charset="UTF-8">
+   
+<title>WinkJie Persional Site</title>
 
-<title>WinkJie - Personal homepage</title>
 
 <meta name="description" content="This is a testing demo page">
     
-
 <meta name="keywords" content="testing,html,demo">
     
-
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 
 <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
-<script>
-    window.requestAnimFrame=
-        window.requestAnimationFrame||
-        window.webkitRequestAnimationFrame||
-        window.mozRequestAnimationFrame||
-        window.oRequestAnimationFrame||
-        window.msRequestAnimationFrame||
-        function(callback){window.setTimeout(callback, 1000/60);};
-    function work(timestamp){
-        timer=requestAnimationFrame(work);
-    }
-    timer=requestAnimationFrame(work);
-</script>
 <script>
 (function($){
 $.fn.snow = function(options){
@@ -46,7 +28,7 @@ defaults = {
 minSize : 10,
 maxSize : 20,
 newOn : 1000,
-flakeColor : "#F8F8FF" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
+flakeColor : "#FFCFFC" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
 },
 options = $.extend({}, defaults, options);
 var interval= setInterval( function(){
@@ -438,177 +420,210 @@ document.onmousewheel=mouse_wheel; if(window.addEventListener) window.addEventLi
 </script>
 
 
-
-
-
 <style type="text/css">
+
 body{
-background-image: url("http://hbimg.b0.upaiyun.com/125c1aa02ad94869ef055b870a54af560ad1574e144e03-qL6oaN_fw658");
+background-image: url(" ");
 }
  
-#head{
-
-width: 960px;
-
-margin: auto;
-
-border-bottom: dotted 1px white; /*设置了白色的分界线*/
  
-margin-bottom: 5px;
 
-margin-top:5px;
-}
 
-.header{
+.header1{
 float: left;
 }
  
+ 
+
+.header1 ul{
+list-style: none;/*去除前面的黑点*/
+margin-top: 20px;
+}
+ 
+ 
+
+.header1 ul li{
+display: inline-block;/*排列方式，排列到一行*/
+font-size: 15px;
+color: black;/*写不写都可以*/
+margin-right: 20px;/*外填充距离*/
+}
+ 
+ 
+
+.header1 ul li a{
+color: white;
+   border:solid 1px white;/*白色的方框*/
+   border-radius: 6px;/*边角设置弧度*/
+   padding: 4px;/*上下内填充*/
+   padding-left: 14px;/*左内边距*/
+   padding-right: 14px;/*右内边距*/margin-top:1px;
+}
+ 
+
+/*外边框*/
+
+.header{
+float: right;
+}
+ 
+ 
+
 .header ul{
 list-style: none;/*去除前面的黑点*/
 margin-top: 20px;
-	
-	}
- 
-.header ul li{
-
-	display: inline-block;/*排列方式，排列到一行*/
-
-	font-size: 25px;
-
-	color: black;/*
-
-写不写都可以*/
-
-	margin-right: 50px;/*外填充距离*/
-	text-align:center;
-	
 }
+ 
+ 
+
+.header ul li{
+display: inline-block;/*排列方式，排列到一行*/
+font-size: 15px;
+color: black;/*写不写都可以*/
+margin-right: 20px;/*外填充距离*/
+}
+ 
+ 
 
 .header ul li a{
-
-   color: yellow;/*字体颜色*/
- 
-   border:solid 1px blue;/*白色的方框*/
-
-   border-radius: 
-
-6px;/*边角设置弧度*/
-
+color: white;
+   border:solid 1px white;/*白色的方框*/
+   border-radius: 6px;/*边角设置弧度*/
    padding: 4px;/*上下内填充*/
-
-
-   padding-left: 24px;/*左内边距*/
-
-padding-right: 24px;/*右内边距*/margin-top:1px;
+   padding-left: 14px;/*左内边距*/
+   padding-right: 14px;/*右内边距*/margin-top:1px;
 }
+ 
 
 a{
-color: grey;/*背景颜色*/
+color: yellow;/*背景颜色*/
 text-decoration: none;/*去除文字的下划线*/
 }
  
+ 
+
+#head{
+width: 960px;
+margin: auto;
+border-bottom: dotted 1px white; /*设置了白色的分界线*/ 
+margin-bottom: 10px;
+}
+ 
+ 
+
 .logo_title{
     float: left;
 }
  
+ 
+
 .logo_title h1{
 font-size: 30px;
 color: white;
 }
  
+ 
+
 .logo_title h2{
 font-size: 20px;
 color: white;
 }
+ 
+ 
 
 .navi{
 float: right;
 }
  
+ 
+
 .navi ul{
 list-style: none;/*去除前面的黑点*/
-margin-top: 85px;
+margin-top: 75px;
 }
  
+ 
+
 .navi ul li{
-
 display: inline-block;/*排列方式，排列到一行*/
-
 font-size: 15px;
-
-color: black;/*写
-
-不写都可以*/
-
-margin-right: 30px;/*外填充距离*/
-
+color: black;/*写不写都可以*/
+margin-right: 20px;/*外填充距离*/
 }
  
+ 
+
 .navi ul li a{
-
-	color: white;
-
-	border:solid 1px white;/*白色的方框*/
-
-   border-radius: 6px;/*
-
-边角设置弧度*/
-
-   padding: 3px;/*上下内填充*/
-
-   padding-left: 10px;/*左内边距*/
-
-   padding-
-
-right: 40px;/*右内边距*/
+color: white;
+   border:solid 1px white;/*白色的方框*/
+   border-radius: 6px;/*边角设置弧度*/
+   padding: 4px;/*上下内填充*/
+   padding-left: 14px;/*左内边距*/
+   padding-right: 14px;/*右内边距*/
 }
  
+ 
+
 .clear{
 clear: both;
 }
-
 #wrapper{
 margin: auto;
 width: 960px;
 margin-top: 20px;
 }
  
+ 
+
 .main{
    width: 640px;
-   
+   background-color: pink;
    float: left;
    margin-right:10px;
-padding: 20px;
+   padding: 20px;
    border-radius: 4px;
 }
  
+ 
+
 .item{
 margin-top: 14px;
 padding-bottom: 20px;
 border-bottom: dotted 1px #999;
  
+ 
 }
  
+ 
+
 .item_img{
 float: left;
 width: 100px;
 }
  
+ 
 .item_img img{
 width: 80px;
 }
+ 
+ 
+
 .item_content{
     /*padding-left: 100px;*/
     /*float: right;*/
     margin-bottom: 10px;
 }
  
+ 
+
 .item_content h3{
 font-size: 14px;
 color: #FF6347;
 margin: 0;
 }
  
+ 
+
 .item_info{
 font-size: 12px;
 font-style: italic;
@@ -616,6 +631,8 @@ margin:0;
 color: #999;
 }
  
+ 
+
 .item_desc{
 font-size: 14px;
 margin: 0;
@@ -625,50 +642,55 @@ border-left: solid 1px #ccc;/*设置左边框*/
 padding-left: 10px;/*设置左填充*/
 }
  
+ 
+ 
+ 
+
 .side{
    width: 220px;
-  
+   background-color: pink ;
    float: right;
    padding: 20px;
-border-radius: 6px;
+   border-radius: 6px;
    margin-left: 10px;
   height: 450px;
 }
  
+ 
 .author_img{
-
-   margin-top: 120px;
-  width: 120px;
-
+   margin-top: 20px;
+   width: 120px;
    margin:auto;
 }
+ 
+ 
+
 .author_img img{
 width: 120px;
 border:solid 1px #ccc;
 border-radius: 4px;
 }
  
+ 
+
 .author_desc{
-
    text-align: center;
-
    border:solid 1px #ccc;
-
    border-radius: 4px;
-
+   background-color: #eee;
    padding-top:10px;
-
    padding-bottom: 10px;
-
    margin-top: 10px;
-
-	margin-bottom: 10px;
+   margin-bottom: 10px;
 }
  
+ 
+
 .author_desc h4{
 margin:0;
 margin-bottom: 10px;
 }
+ 
  
 .author_desc p{
 margin:0;
@@ -677,6 +699,7 @@ margin-bottom: 10px;
 }
  
  
+
 .top_article h4{
 font-size:14px;
 font-style: italic;
@@ -685,29 +708,31 @@ border-bottom: dotted 1px #999;
 border-top: 10px;
 }
  
+ 
+
 .top_article ul{
 margin-left:0;
 padding-left:10px;
 list-style: none;
-
+ 
+ 
 }
  
  
+
 .top_article ul li{
 margin:0;
 font-size: 14px;
 margin-top: 5px;
  
+ 
 }
  
  
 /*.site_info{
-margin-top: 
-
-30px;
+margin-top: 30px;
 border-top: solid 1px #ccc; 
 }
-
 
 .site_info p{
 font-size: 14px;
@@ -722,51 +747,46 @@ margin-top: 30px;
 border-top: solid 1px #ccc;/*分界线*/
 }
  
+ 
+
 .site-info p{
 font-size: 14px;
 color: gray;
 text-align: center;
-/*padding-left: 60px;/*左填充
-
-*/
+/*padding-left: 60px;/*左填充*/
 margin:0;
 margin-top: 10px;
 }
  
-#footer{width:960px;
+ 
+#footer{
 margin: auto;
-border-top: dotted 1px 
-
-#ccc;
-margin-top: 10px;background-color:black;display: inline;/*排列方式，排列到一行*/
-
+width: 960px;
+border-top: dotted 1px #ccc;
+margin-top: 20px;
 }
  
  
-
 
 .site_about{
 float: left;
 padding-top: 15px;
-margin-left:210px;}
+}
  
  
-
 
 .site_about p{
 font-size: 16px;
-color: yellow;
+color: white;
 }
  
  
-
 
 .site_link{
-float: right;margin-right:220px;
+float: right;
 }
  
  
-
 
 .site_link ul{
 list-style: none;
@@ -775,382 +795,229 @@ margin-top: 30px;
  
  
 
-
 .site_link ul li{
-display: inline;
+display: inline-block;
 font-size: 14px;
 margin-right: 10px;
-color: white;}
+color: white;
+}
  
  
-
 
 .site_link ul li a{
 border-radius: 6px;
 border:solid 1px white;
 padding: 4px;
-padding-left: 
-
-10px;
+padding-left: 10px;
 padding-right: 10px;
 color: white;
 }
-
-
 
 </style>
 </head>
 
 
-
-
-
 <body style="background-color:black;">
 
 
-
-
 <div id="head">
-
         
 <div class="logo_title">
-
                
-<h1><a style="color:gold;font-size:50px;" href="#">WinkJie</a> <a style="font-size:20px;color:white;">Personal Site</h1>
-
+<h1>WinkJie Persional Site</h1>
                
-<h2>做参天大树，让所有人依靠！</h2>
-
+<h2>Let me briefly introduce myself</h2>
         
 </div>
-
         
 
   
 <div class="navi">
-
            
-	  <ul>
+	   <ul>
 
+               <li><a href = "">首页</a></li>
 
-               <li><a href="">首页</a></li>
+               <li><a href = "">我是谁？</a></li>
 
+               <li><a href = "#wrap">学习网站</a></li>
 
-               <li><a href = "https://www.WinkJie.github.io">兴趣爱好</a></li>
-
-
-               <li><a href = "http://2014.artsy.net/">个人简介</a></li>
-
-	          <li><a href = "http://2014.artsy.net/">技术博客</a></li>
-
-
-                </ul>
-
+	       <li><a href = "">个人博客</a></li>
+           </ul>
         
 </div>
-
 
         <div class="clear">
 </div>
 
-
     </div>
-
  
  
     
 <div id="wrapper">
 
-
         <div class="main">
 
-
               <div class="item">
-
 
                  <div class="item_img">
 
-
-                    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3764194063,3965714929&fm=26&gp=0.jpg" alt="Testing Demo Project pic">
-
-                 
-
-</div>
-
+                    <img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg" alt="工作照">
+                 </div>
 
                  <div class="item_content">
 
+                    <h3>前端开发工程师   <i style="color:yellow;">(大四实习期)</i></h3>
 
-                      <a href="..\Reader.html"><h3>Read Me！</h3>
+                    <p class="item_info">太原维信科技有限公司 就职期间：2018年01月 --2018年07月</p>
 
-</a>
-                    <p class="item_info">作者：WinkJie  发表于：201年12月15号</p>
-
-
-                    <p class="item_desc">网站浏览介绍<br>
-
-    
-
-                </p>
-
-
+                    <p class="item_desc">网页编写 <br><table-cell> 使用工具：Webstrom <i style="font-size:3px;">HTML、CSS、javaScript简单网页制作。</i>
+					</p>
+						
+				
                  </div>
-
-		 
-
-               </div>
-
-
-              <div class="item">
-
-
-                 <div class="item_img">
-
-                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577108965679&di=5c31222c6cbd3743054ddb2af00213a8&imgtype=0&src=http%3A%2F%2Fphotocdn.sohu.com%2F20150928%2Fmp33601151_1443407565582_3.jpeg" alt="Testing 
-
-Demo Project pic">
-
-
-                 </div>
-
-
-                 <div class="item_content">
-
-
-                    <h3>About Computers</h3>
-
-
-                    <p class="item_info">作者：WinkJie 发表于：2019年7月15号</p>
-
-
-                    <p class="item_desc">我的计算机世界<br>
-
-
-                    充满着渴望与自由</p>
-
-
-                 </div>
-
 
               </div>
 
-
- 
- 
               <div class="item">
 
-
                  <div class="item_img">
-
-
-                    <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3780989064,2413309113&fm=15&gp=0.jpg" alt="Testing Demo Project pic">
-
+                    <img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg" alt="Testing Demo Project pic">
 
                  </div>
 
                  <div class="item_content">
 
+                    <h3>技术支持</h3>
 
-                    <h3>LinuxCast测试标题测试标题</h3>
+                    <p class="item_info">恒基文化实业（深圳）有限公司 就职期间：2018年06月 --2019年03月</p>
 
-
-                    <p class="item_info">作者：WinkJie 发表于：2019年7月15号</p>
-
-
-                    <p class="item_desc">LinuxCast测试内容测试内容测试内容测试文字测<br>测
-
-试文字测试文字测试文字测试文字测试文字测试文字</p>
-
-
+                    <p class="item_desc">项目监工 <br><table-cell> 项目：App制作（恒基商学院）、网站设计（恒基文化实业（深圳）有限公司）、H5页面。
+					<br><i style="color:gray;font-size:6px;">涉及IT：Java、HTML、CSS、数据库、Nginx等。</i></p>
+					
                  </div>
 
-
               </div>
-
 
  
  
               <div class="item">
 
-
                  <div class="item_img">
 
-
-                    <img src="https://images.cnblogs.com/cnblogs_com/WinkJie/1613852/o_191215033059psb.jpg" alt="Testing Demo Project pic">
-
+                    <img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg" alt="Testing Demo Project pic">
 
                  </div>
+                 <div class="item_content">
 
-                 
-<div class="item_content">
+                    <h3>Linux 服务器</h3>
 
+                    <p class="item_info">华勤通讯技术有限公司 就职期间：2019年04月  --至今</p>
 
-                    <h3>LinuxCast测试标题测试标题</h3>
-
-
-                    <p class="item_info">作者：XXX 发表于：2017年7月15号</p>
-
-
-                    <p class="item_desc">LinuxCast测试内容测试内容测试内容测试文字测<br>
-
-    
-
-                测试文字测试文字测试文字测试文字测试文字测试文字</p>
-
-
+                    <p class="item_desc">Linux、Windows、Unix<br> <table-cell> 工作相关：1.各类Linux、Unix安装（CentOS、SUSE、Oracle、Ubuntu、Debian等等）
+					<br>
+						2.Linux文件、目录、磁盘格式管理等
+					<br>	3.Shell以及Shell script的使用
+					<br> 4.交换机、路由器涉及
                  </div>
-
 
               </div>
 
+ 
+ 
+         
 
         </div>
 
-
         <div class="side">
-
 
               <div class="author_info">
 
-			<div class="author_desc">
+                   <div class="author_img">
 
-
-                      <h4 style="color:gold;">This is me and myself</h4>
-
-                      <p style="color:white">emmm..<br>
-
-              
-
-          What do you think of me...</p>
-
+                      <img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg" alt="Testing Demo project pic">
 
                    </div>
 
+                   <div class="author_desc">
 
-	
-              <div class="author_img">
+                      <h4>WinkJie</h4>
+                      <p>emmm..<br>
+                        emmmmmmmm...</p>
 
-
-                      <img src="https://images.cnblogs.com/cnblogs_com/WinkJie/1613852/o_191223111434100.png" alt="Me at work">
                    </div>
 
-
-                   
               </div>
-
 
               <div class="top_article">
 
-
-                   <h4 style="color:white;">Pleasantly Surprised</h4>
-
+                   <h4>大学经历</h4>
 
                    <ul>
 
+                   <li>大一</li>
+                 
+				    <li>大二</li>
 
-                   <li>好文要顶-1</li>
+                   <li>大三</li>
 
-                   <li>好文要顶-2</li>
+                   <li>大四</li>
 
-
-                   <li>好文要顶-3</li>
-
-
-                   <li>好文要顶-4</li>
-
-
-                   <li>好文要顶-5</li>
 
 
                    </ul>
 
-
               </div>
-
 
               <div class="site-info">
+                   <p>座右铭：</p>
 
-                   <p>访客：412103</p>
-
-
-                   <p>文章：886篇</p>
-
+                   <p>只相信技术</p>
 
               </div>
-
 
         </div>
 
-
         <div class="clear"></div>
-
 
  
  
     </div>
 
-
  
  
     <div id="footer">
 
+      <div class="site_about">
 
-     
+           <p>Copyright ? WinkJie 2019. All rights reserved</p>
+
+      </div>
+
       <div class="site_link">
-
 
            <ul>
 
-
-              <li><a href = "">About Myself</a></li>
-
+              <li><a href = "">About Me</a></li>
 
               <li><a href = "">Contact Me</a></li>
 
+              <li><a href = "">Feedback</a></li>
 
-              <li><a href = "">Introduction</a></li>
-
-
-              <li><a href = "">Leaving a message.</a></li>
-
+              <li><a href = "">Terms of use</a></li>
       
 
      </ul>
 
+      </div>
 
-      		</div>
+<div></div>
+ <!--     <div class="clear"></div>
 
-
-
-	<div class="site_about">
-
-
-           <p>有事儿您Q我</p>
-
-
-    	  </div>
-
-
-		<div>
-	</div>
-
-    <div class="clear">
-</div>
-
-
-
-        <div class="clear">
-</div>
-
-
-
-
- <div style="background-color:black;height:50px;margin-top:15px;text-align:center;">
-	<a style="margin-top:100px;">Copy Right @ By WinkJie  </a>
-</div> 
+---> 
  
+    </div>
  
-    
  
 
 
@@ -1159,9 +1026,6 @@ Demo Project pic">
     
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-
-
 </body>
-
 
 </html>
