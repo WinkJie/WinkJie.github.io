@@ -1,0 +1,125 @@
+$(document).ready(function($) {
+	if($('.choiceinput').length>0){//是/否选择
+		checkChoiceInput();
+		choiceInputClick();
+	}
+	if($('.multiplechoice').length>0){//多项选择
+		checkMultiplechoice();
+	}
+});
+function checkMultiplechoice(){
+	$('.multiplechoice').each(function(){
+		var div=$(this).find('div').eq(0);
+		var mIput=$(this).find('input');
+		var missage=div.attr('data-alt');
+		var value=div.attr('data-value');
+		var def=div.attr('data-defalut');
+		var msgArr=missage.split('/'),valArr=[];
+		var mVal=mIput.val();
+		if(value){
+			valArr=value.split('/');
+		}
+		if(valArr.length!=msgArr.length){
+			valArr=msgArr;
+		}
+		if(!mVal){
+			mVal=def;
+		}
+		if(!mVal){
+			mVal=valArr[0];
+		}
+		var html='';
+		var className='';
+		var ico='';
+		for(var i=0;i<msgArr.length;i++){
+			if(mVal!=valArr[i]){
+				className='btn btn-dark';
+				ico='';
+			}
+			else{
+				className='btn btn-primary';
+				ico='<i class="fa fa-check"></i>';
+			}
+			html+='<button type="button" data-value="'+valArr[i]+'" class="'+className+'">'+ico+msgArr[i]+'</button>';
+		}
+		div.html(html);
+		div.addClass('btn-group');
+		div.find('button').click(function(){
+			div.find('button').attr('class','btn btn-dark');
+			div.find('button').find('i').remove();
+			$(this).attr('class','btn btn-primary');
+			$(this).prepend('<i class="fa fa-check"></i>');
+			mIput.val($(this).attr('data-value'));
+		});
+	});
+}
+function choiceInputClick(){
+	$('.choiceinput').click(function(index) {
+		var value = $(this).find('div').attr('data-value');
+		var valueArr = ['1', '0'];
+		if(value) {
+			valueArr = value.split('/');
+		}
+		var inputVal = $(this).find('input');
+		if(inputVal.val() != valueArr[1]) {
+			inputVal.val(valueArr[1]);
+		} else {
+			inputVal.val(valueArr[0]);
+		}
+		checkChoiceInput();
+	});
+}
+function checkChoiceInput(){
+	$('.choiceinput').each(function(index){
+		$(this).find('div').css({
+			//'width':'90px',
+			'height':'30px',
+			'line-height':'26px',
+			'border-radius':'5px',
+			'overflow':'hidden',
+			'cursor':'pointer',
+			'margin-top':'5px'
+		})
+		var val=$(this).find('input').val();
+		var missage=$(this).find('div').attr('data-alt').split('/');
+		var color=$(this).find('div').attr('data-bgcolor');
+		var leftColor='#1b9af7',rightColor='#D4D4D4';
+		var colorFFF='#656565';
+		if(color){
+			var colorArr=color.split('/');
+			leftColor=colorArr[0];
+			rightColor=colorArr[1];
+			colorFFF='#FFF';
+		}
+		var cssHeight=$(this).find('div').attr('data-height');
+		if(cssHeight){
+			$(this).find('div').css({
+				'height':cssHeight+'px',
+				'line-height':(cssHeight-4)+'px'
+			})
+		}
+		else{
+			cssHeight=30;
+		}
+		var value=$(this).find('div').attr('data-value');
+		var valueArr=['1','0'];
+		if(value){
+			valueArr=value.split('/');
+		}
+		if(val!=valueArr[1]){
+			$(this).find('div').css({
+				'border':'1px solid #FFFFFF',
+				'color':'#FFFFFF'
+			});
+			$(this).find('div').html('<div style="width:80%;height:'+cssHeight+'px;float:left;background-color: '+leftColor+';text-align:center">'+missage[0]+'</div><div style="width:20%;height:'+cssHeight+'px;float:left;background-color: '+rightColor+';"></div>');
+		}
+		else{
+			//$(this).find('input').val(valueArr[0]);
+			$(this).find('div').css({
+				'border':'1px solid #FFFFFF',
+				'color':colorFFF
+			});
+			$(this).find('div').html('<div style="width:20%;height:'+cssHeight+'px;float:left;background-color: '+leftColor+';"></div><div style="width:80%;height:'+cssHeight+'px;float:left;background-color: '+rightColor+';text-align:center;">'+missage[1]+'</div>');
+		}
+	});
+}

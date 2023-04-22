@@ -1,0 +1,9 @@
+使用编辑器打开zhufu文件夹下的index.html文件，
+
+把baidu.com修改成你自己的域名，
+
+然后把zhufu文件夹上传到你网站根目录下即可，然后通过浏览器访问
+
+http://你的域名/zhufu/index.html
+
+来源 lanyes.org

@@ -1,0 +1,70 @@
+<!-- 资源PRO - ZiYuanPro.Com - 免费分享精品资源网站 -->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>小姨的舔狗日记</title>
+		<meta name="keywords" content="舔狗日记,青山绿水,">
+        <meta name="description" content="这是一个舔狗日记集合网站">
+        <link rel="shortcut icon" href="favicon.ico">
+		<!-- 引用百度cdn公共库网站托管的Jquery，不成功则使用本地Jquery。
+		 ----鼠标特效----
+		 -->
+		<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+		<script>!window.jQuery && document.write('<script src=".././bwgjgdmb_v1.8/js/jquery-1.11.1.min.js"><\/script >');</script>
+		<link href="../bwgjgdmb_v1.8/main.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="static/images/bg.jpg">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="./static/css/main.css" />
+		<noscript><link rel="stylesheet" href="./static/css/noscript.css" /></noscript>
+
+
+	</head>
+	<body onselectstart="return false" oncontextmenu=self.event.returnValue=false> 
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span>舔狗日记</span>						</div>
+						<div class="content">
+							<div class="inner">
+								<h2><span id="ymd"></span> 晴</h2>
+								<h3 id="sentence" style="color: white;font-size: 22px"></h3>
+							</div>
+						</div>
+                   <button class="btn btn-primary btn-filled btn-xs" onclick="randomSentence()"><a>再来一段</a></button>
+						<!--<a onclick="randomSentence()">再来一段</a>-->
+						<nav>
+					</header>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">© <a href="#" target="_blank" title="5656" style="color: white;">由 °DeliZzz° 修改发布</a></p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+		    <script>
+		        var date = new Date()
+		        var y = date.getFullYear();
+		        var m = date.getMonth()+1;
+		        var d = date.getDate();
+		        document.getElementById("ymd").innerHTML=y+"年"+m+"月"+d+"日";
+		    </script>
+			<script src="./static/js/jquery.min.js"></script>
+			<script src="./static/js/skel.min.js"></script>
+			<script src="./static/js/util.js"></script>
+			<script src="./static/js/main.js"></script>
+            <script src="./static/js/index.js"></script>
+
+		<iframe src = "./static/bgm.mp3" allow = "autoplay" hidden /> //自己修改音乐位置
+
+	</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://www.ckplayer.com/demo.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>演示-ckplayer</title>
+		<meta name="keywords" content="flv,f4v,mp4,hlv,rtmp,html5,m3u8,播放器,视频流,网页视频播放器,ckplayer,ckplayer官网">
+		<meta name="description" content="ckplayer,支持http协议下的flv,f4v,mp4,支持rtmp视频流和rtmp视频回放，支持m3u8格式，是你做视频直播，视频点播的理想播放器">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+	<script type="text/javascript" src="./kplayer_files/jquery-3.5.0.min.js.下载"></script>
+	<script type="text/javascript" src="./kplayer_files/config.js.下载"></script>
+	<script type="text/javascript" src="./kplayer_files/mayiui.js.下载"></script><link rel="stylesheet" href="./kplayer_files/mayiui.css">
+	<script type="text/javascript" src="./kplayer_files/choiceinput.js.下载"></script>
+	<link rel="stylesheet" type="text/css" href="./kplayer_files/ckplayer.css">
+	<script type="text/javascript" src="./kplayer_files/ckplayer.js.下载"></script>
+	<script type="text/javascript" src="./kplayer_files/demo.js.下载"></script>
+	<script type="text/javascript" src="./kplayer_files/index.js.下载"></script>
+	<link rel="stylesheet" type="text/css" href="./kplayer_files/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./kplayer_files/button.css">
+	<link href="./kplayer_files/index.css" rel="stylesheet" type="text/css">
+
+	</head>
+	<body>
+				<div class="container-fluid header">
+			<div class="row">
+				<div class="col-auto  align-self-start logo">
+					<a href="https://www.ckplayer.com/"><img src="./kplayer_files/logo.png"></a>
+				</div>
+				<div class="col">
+					<div class="row justify-content-between">
+						<div class="col-auto nav-top">
+							<ul>
+																<li>
+									<a href="https://www.ckplayer.com/" class="btn btn-whitegrey">首页</a>								</li>
+																<li>
+									<a href="https://www.ckplayer.com/down/" class="btn btn-whitegrey">下载</a>								</li>
+																<li>
+									<a href="https://www.ckplayer.com/demo.html" class="btn btn-primary">演示</a>								</li>
+																<li>
+									<a href="https://www.ckplayer.com/manual/13.html#m45.html" class="btn btn-whitegrey">示例</a>								</li>
+																<li>
+									<a href="https://www.ckplayer.com/manual/" class="btn btn-whitegrey">手册</a>								</li>
+																<li>
+									<a href="https://www.ckplayer.com/material/" class="btn btn-whitegrey">素材</a>								</li>
+																<li>
+									<a href="https://www.ckplayer.com/createstyle.html" class="btn btn-whitegrey">风格</a>								</li>
+																<li>
+									<a href="https://bbs.ckplayer.com/" class="btn btn-whitegrey">社区</a>								</li>
+															</ul>
+						</div>
+						<div class="col-auto search-top">
+							<form class="search" id="search" method="get" action="https://bbs.ckplayer.com/">
+								<div class="input-group">
+									<input type="text" class="form-control" name="word" placeholder="输入关键字搜索" value="">
+									<div class="input-group-append" onclick="document.getElementById(&#39;search&#39;).submit()">
+										<div class="input-group-text">
+											<svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
+											  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+											</svg>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-auto  align-self-end nav-mobile">
+					<svg class="bi bi-justify" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid mobile-nav-top" style="display: none;">
+			<div class="row">
+				<div class="col">
+					<ul>
+												<li>
+							<a href="https://www.ckplayer.com/" class="btn btn-whitegrey">首页</a>						</li>
+												<li>
+							<a href="https://www.ckplayer.com/down/" class="btn btn-whitegrey">下载</a>						</li>
+												<li>
+							<a href="https://www.ckplayer.com/demo.html" class="btn btn-primary">演示</a>						</li>
+												<li>
+							<a href="https://www.ckplayer.com/manual/13.html#m45.html" class="btn btn-whitegrey">示例</a>						</li>
+												<li>
+							<a href="https://www.ckplayer.com/manual/" class="btn btn-whitegrey">手册</a>						</li>
+												<li>
+							<a href="https://www.ckplayer.com/material/" class="btn btn-whitegrey">素材</a>						</li>
+												<li>
+							<a href="https://www.ckplayer.com/createstyle.html" class="btn btn-whitegrey">风格</a>						</li>
+												<li>
+							<a href="https://bbs.ckplayer.com/" class="btn btn-whitegrey">社区</a>						</li>
+											</ul>
+				</div>
+			</div>
+		</div>
+		
+	<div class="container-fluid demo-top">
+		<div class="row">
+			<div class="col-12">
+				<div class="video">
+					<div class="ckplayer-ckplayer">
+						<div class="ck-main">
+							<div class="ck-video" style="transform: rotate(0deg); width: 100%; height: 100%;">
+								<video width="100%" height="100%" preload="metadata" controlslist="nodownload"
+									   x-webkit-airplay="true" x5-video-orientation="portraint" playsinline="true"
+									   webkit-playsinline="true" x5-playsinline="true" crossorigin="Anonymous"
+									   poster="/video/poster.png"><source src="video/se.mp4" type="video/mp4">
+									<source src="https://ckplayer-video.oss-cn-shanghai.aliyuncs.com/mp4/1_1024x768.mp4"
+											type="video/mp4"><source src="https://ckplayer-video.oss-cn-shanghai.aliyuncs.com/mp4/1_640x480.mp4"
+																	 type="video/mp4">
+									<track src="/video/zh.vtt" srclang="zh" kind="subtitles" label="中文">
+									<track src="/video/en.vtt" srclang="en" kind="subtitles" label="English">
+								</video></div><div class="ck-loading" style="display: none;"></div><div class="ck-bar" style="display: block;">
+							<div class="ck-bar-progress"><div class="ck-bar-progress-bg">
+								<div class="ck-bar-progress-load" style="width: 10.478%;">
+								</div><div class="ck-bar-progress-play" style="width: 10.1751%;"></div>
+								<div class="ck-bar-progress-mouseline"></div>
+								<div class="ck-bar-progress-prompt" data-words="对战：精英怪•赤尻马猴" data-time="210" style="left: 27.2592%;"></div>
+								<div class="ck-bar-progress-prompt" data-words="对战：亢金龙" data-time="386" style="left: 50.2795%;"></div>
+							</div>
+								<div class="ck-bar-progress-slider" style="left: 9.67507%;"></div>
+							</div><div class="ck-bar-playandpause"><button type="button" class="ck-bar-btn ck-btn-play" style="display: block;"></button>
+							<button type="button" class="ck-bar-btn ck-btn-pause" style="display: none;"></button>
+							<button type="button" class="ck-bar-btn ck-btn-refresh" style="display: none;"></button></div>
+							<div class="ck-bar-btn ck-bar-next" style="display: block;"></div><div class="ck-bar-time">01:17/15:13</div>
+							<button type="button" class="ck-btn-backlive" style="display: none;">返回直播</button>
+							<div class="ck-bar-fullandexit"><button type="button" class="ck-bar-btn ck-btn-full" style="display: block;"></button><button type="button" class="ck-bar-btn ck-btn-exitfull" style="display: none;"></button></div><div class="ck-bar-webfullandexit" style="display: block;"><button type="button" class="ck-bar-btn ck-btn-webfull"></button><button type="button" class="ck-bar-btn ck-btn-exitwebfull"></button></div><div class="ck-bar-theatreandexit" style="display: block;"><button type="button" class="ck-bar-btn ck-btn-theatre"></button><button type="button" class="ck-bar-btn ck-btn-exittheatre"></button></div><div class="ck-bar-volumebox"><button type="button" class="ck-bar-btn ck-btn-muted"></button><button type="button" class="ck-bar-btn ck-btn-exitmuted" style="display: none;"></button><div class="ck-bar-volume" style=""><div class="ck-bar-volumex"><div class="ck-bar-volume-txt">80</div><div class="ck-bar-volume-bg"><div class="ck-bar-volume-pp" style="margin-top: 28px;"></div></div><div class="ck-bar-volume-slider" style="top: 63px;"></div></div></div></div><div class="ck-bar-playbackrate-box" style="display: block;"><div class="ck-bar-playbackrate">倍速</div><div class="ck-bar-playbackrate-bg-box ck-list-bg-box" style="width: 84px; height: 255px; left: -16px;"><div class="ck-list-bg" style="width: 84px;"><button type="button" class="ck-list-p" data-i="5" data-val="4">4倍</button><button type="button" class="ck-list-p" data-i="4" data-val="2">2倍</button><button type="button" class="ck-list-p" data-i="3" data-val="1.5">1.5倍</button><button type="button" class="ck-list-p" data-i="2" data-val="1.25">1.25倍</button><button type="button" class="ck-list-p ck-list-p-focus" data-i="1" data-val="1">1倍</button><button type="button" class="ck-list-p" data-i="0" data-val="0.75">0.75倍</button></div></div></div><div class="ck-bar-track-box" style="display: block;"><div class="ck-bar-track">无字幕</div><div class="ck-bar-track-bg-box ck-list-bg-box" style="width: 90px; height: 144px; left: -19px;"><div class="ck-list-bg" style="width: 90px;"><button type="button" class="ck-list-p" data-i="1" data-title="English">English</button><button type="button" class="ck-list-p" data-i="0" data-title="中文">中文</button><button type="button" class="ck-list-p ck-list-p-focus" data-i="-1" data-title="无字幕">无字幕</button></div></div></div><div class="ck-bar-definition-box" style="display: block;"><div class="ck-bar-definition">清晰度</div><div class="ck-bar-definition-bg-box ck-list-bg-box" style="width: 78px; height: 144px; left: -5px;"><div class="ck-list-bg" style="width: 78px;"><button type="button" class="ck-list-p" data-i="2" data-video="https://ckplayer-video.oss-cn-shanghai.aliyuncs.com/mp4/1_640x480.mp4" data-type="video/mp4" data-title="流畅">流畅</button><button type="button" class="ck-list-p" data-i="1" data-video="https://ckplayer-video.oss-cn-shanghai.aliyuncs.com/mp4/1_1024x768.mp4" data-type="video/mp4" data-title="标清">标清</button><button type="button" class="ck-list-p ck-list-p-focus" data-i="0" data-video="https://ckplayer-video.oss-cn-shanghai.aliyuncs.com/mp4/1_1920x1080.mp4" data-type="video/mp4" data-title="高清">高清</button></div></div></div></div><div class="ck-right-bar" style="display: block;"><button type="button" class="ck-bar-btn ck-btn-screenshot"></button><div class="ck-right-bar-smallwindows"><button type="button" class="ck-bar-btn ck-btn-smallwindows-open"></button><button type="button" class="ck-bar-btn ck-btn-smallwindows-close"></button></div><div class="ck-right-bar-loop"><button type="button" class="ck-bar-btn ck-btn-loop-open" style="display: none;"></button><button type="button" class="ck-bar-btn ck-btn-loop-close" style="display: block;"></button></div></div><div class="ck-top-bar" style="display: block;"><div class="ck-top-bar-zoom"><div class="ck-top-bar-zoom-container"><div class="ck-top-bar-zoom-left"><div class="ck-top-bar-zoom-button-50"></div></div><div class="ck-top-bar-zoom-right">50%</div></div><div class="ck-top-bar-zoom-container"><div class="ck-top-bar-zoom-left"><div class="ck-top-bar-zoom-button-75"></div></div><div class="ck-top-bar-zoom-right">75%</div></div><div class="ck-top-bar-zoom-container"><div class="ck-top-bar-zoom-left"><div class="ck-top-bar-zoom-button-100"></div></div><div class="ck-top-bar-zoom-right">100%</div></div></div><div class="ck-top-bar-title">黑神化 悟空-国产3A大作</div><div class="ck-top-bar-time">23:24:26</div></div><div class="ck-screenshot"><div class="ck-screenshot-img"></div><div class="ck-screenshot-bar"><a class="ck-screenshot-btn ck-screenshot-down">下载</a><button type="button" class="ck-screenshot-btn ck-screenshot-close">关闭</button></div></div><div class="ck-center-play" style="display: block;"></div><div class="ck-buffer" style="display: none;"></div><div class="ck-message" style="display: none;">缓冲</div><div class="ck-tip" style="display: none; left: 557px; top: -1px;"><div class="ck-content ck-content-float-auto"></div><div class="ck-triangle ck-triangle-auto"></div></div><div class="ck-yytf" style="display: none;"><div class="ck-yytf-front-link"></div><div class="ck-yytf-front-picture"></div><div class="ck-yytf-top"><div class="ck-yytf-countdown"></div><div class="ck-yytf-closetime"></div><div class="ck-yytf-closead">关闭广告</div></div><div class="ck-yytf-bottom"><div class="ck-yytf-fullandexit"><button type="button" class="ck-yytf-btn ck-yytf-fullandexit-full" style="display: block;"></button><button type="button" class="ck-yytf-btn ck-yytf-fullandexit-exitfull" style="display: none;"></button></div><div class="ck-yytf-mutedandexit"><button type="button" class="ck-yytf-btn ck-yytf-mutedandexit-muted"></button><button type="button" class="ck-yytf-btn ck-yytf-mutedandexit-exitmuted"></button></div><div class="ck-yytf-details">查看详情</div></div></div><div class="ck-pause-yytf" style="display: none;"></div><div class="ck-about"><div class="ck-about-bar"><button type="button" class="ck-bar-btn ck-btn-about-copy"></button><button type="button" class="ck-bar-btn ck-btn-about-close"></button></div><ul><li><div class="ck-about-title">ID：</div><div class="ck-about-content">1e0bdbe69e692383</div></li><li><div class="ck-about-title">已加载：</div><div class="ck-about-content">80.10000000000001秒</div></li><li><div class="ck-about-title">总时长：</div><div class="ck-about-content">764秒</div></li><li><div class="ck-about-title">视频尺寸：</div><div class="ck-about-content">1920x1080</div></li><li><div class="ck-about-title">音量：</div><div class="ck-about-content">80%</div></li><li><div class="ck-about-title">FPS：</div><div class="ck-about-content">61</div></li><li><div class="ck-about-title">音频解码：</div><div class="ck-about-content">1237055 Byte</div></li><li><div class="ck-about-title">视频解码：</div><div class="ck-about-content">10435771 Byte</div></li><li><div class="ck-about-title">TITLE：</div><div class="ck-about-content">演示视频</div></li><li><div class="ck-about-title">COPYRIGHT：</div><div class="ck-about-content">视频版权归《黑神化.悟空》所有</div></li></ul></div><div class="ck-tempTime" style="display: none;">01:17/12:44</div><textarea style="display: none;">ID：:1e0bdbe69e692383
+已加载：:80.10000000000001秒
+总时长：:764秒
+视频尺寸：:1920x1080
+音量：:80%
+FPS：:61
+音频解码：:1237055 Byte
+视频解码：:10435771 Byte
+TITLE：:演示视频
+COPYRIGHT：:视频版权归《黑神化.悟空》所有
+</textarea><div class="ck-logo" style="display: block;"><img src="./kplayer_files/logo(1).png"></div><div class="ck-preview"></div></div></div></div>
+			</div>
+		</div>
+			</div>
+	<div class="container-fluid padding-top-10">
+		<div class="row justify-content-center">
+			<div class="col-auto choiceinput-input">
+				<div class="width-190">
+					<div class="choiceinput">
+						<div data-alt="监听播放时间/禁止监听播放时间" style="height: 30px; line-height: 26px; border-radius: 5px; overflow: hidden; cursor: pointer; margin-top: 5px; border: 1px solid rgb(255, 255, 255); color: rgb(101, 101, 101);"><div style="width:20%;height:30px;float:left;background-color: #1b9af7;"></div><div style="width:80%;height:30px;float:left;background-color: #D4D4D4;text-align:center;">禁止监听播放时间</div></div>
+						<input type="hidden" id="addListenerTime" value="0">
+					</div>
+				</div>
+				<div class="width-190">
+					<div class="choiceinput">
+						<div data-alt="使用前贴片广告/禁用前贴片广告" style="height: 30px; line-height: 26px; border-radius: 5px; overflow: hidden; cursor: pointer; margin-top: 5px; border: 1px solid rgb(255, 255, 255); color: rgb(101, 101, 101);"><div style="width:20%;height:30px;float:left;background-color: #1b9af7;"></div><div style="width:80%;height:30px;float:left;background-color: #D4D4D4;text-align:center;">禁用前贴片广告</div></div>
+						<input type="hidden" id="adfrontshow" value="0">
+					</div>
+				</div>
+				<div class="width-190">
+					<div class="choiceinput">
+						<div data-alt="使用暂停广告/禁用暂停广告" style="height: 30px; line-height: 26px; border-radius: 5px; overflow: hidden; cursor: pointer; margin-top: 5px; border: 1px solid rgb(255, 255, 255); color: rgb(101, 101, 101);"><div style="width:20%;height:30px;float:left;background-color: #1b9af7;"></div><div style="width:80%;height:30px;float:left;background-color: #D4D4D4;text-align:center;">禁用暂停广告</div></div>
+						<input type="hidden" id="adpauseshow" value="0">
+					</div>
+				</div>
+				<div class="width-190">
+					<div class="choiceinput">
+						<div data-alt="使用cookie/禁用cookie" style="height: 30px; line-height: 26px; border-radius: 5px; overflow: hidden; cursor: pointer; margin-top: 5px; border: 1px solid rgb(255, 255, 255); color: rgb(101, 101, 101);"><div style="width:20%;height:30px;float:left;background-color: #1b9af7;"></div><div style="width:80%;height:30px;float:left;background-color: #D4D4D4;text-align:center;">禁用cookie</div></div>
+						<input type="hidden" id="cookieshow" value="0">
+					</div>
+				</div>
+				<div class="width-190">
+					<div class="choiceinput">
+						<div data-alt="切换标签页暂停/切换标签页失效" style="height: 30px; line-height: 26px; border-radius: 5px; overflow: hidden; cursor: pointer; margin-top: 5px; border: 1px solid rgb(255, 255, 255); color: rgb(101, 101, 101);"><div style="width:20%;height:30px;float:left;background-color: #1b9af7;"></div><div style="width:80%;height:30px;float:left;background-color: #D4D4D4;text-align:center;">切换标签页失效</div></div>
+						<input type="hidden" id="visibility" value="0">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid padding-top-10">
+		<div class="row justify-content-center">
+			<div class="col-md-6 col-12 text-right">
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-info" onclick="player.play()">播放</button>
+						<button type="button" class="btn btn-info" onclick="player.pause()">暂停</button>
+						<button type="button" class="btn btn-info" onclick="player.playOrPause()">播放/暂停</button>
+						<button type="button" class="btn btn-info" onclick="player.muted()">静音</button>
+						<button type="button" class="btn btn-info" onclick="player.exitMuted()">取消静音</button>
+					</div>
+				<p></p>
+				<p>
+					<button type="button" class="btn btn-dark" onclick="getMetaData()">获取元数据</button>
+				</p>
+				<p>
+					<button type="button" class="btn btn-violet" onclick="player.remove()">卸载播放器</button>
+				</p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-success" onclick="newElement()">添加元件</button>
+						<button type="button" class="btn btn-success" onclick="deleteElement()">删除元件</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-info" onclick="newDanmu()">添加弹幕</button>
+						<button type="button" class="btn btn-info" onclick="danmuHide()">隐藏所有弹幕</button>
+						<button type="button" class="btn btn-info" onclick="danmuShow()">显示所有弹幕</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-primary" onclick="screenshot()">视频截图(需要视频权限)</button>
+						<button type="button" class="btn btn-primary" onclick="player.closeScreenshot()">关闭截图显示框</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-violet" onclick="cookieThis()">获取记忆时间</button>
+						<button type="button" class="btn btn-violet" onclick="cookieAll()">获取全部Cookie</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-success">缩放：</button>
+						<button type="button" class="btn btn-success" onclick="player.zoom(50)">50%</button>
+						<button type="button" class="btn btn-success" onclick="player.zoom(75)">75%</button>
+						<button type="button" class="btn btn-success" onclick="player.zoom(100)">100%</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-orange">旋转：</button>
+						<button type="button" class="btn btn-orange" onclick="player.rotate(0)">0</button>
+						<button type="button" class="btn btn-orange" onclick="player.rotate(90)">90</button>
+						<button type="button" class="btn btn-orange" onclick="player.rotate(180)">180</button>
+						<button type="button" class="btn btn-orange" onclick="player.rotate(270)">270</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-dark" onclick="player.bar(true)">显示底部控制栏</button>
+						<button type="button" class="btn btn-dark" onclick="player.bar(false)">隐藏底部控制栏</button>
+						<button type="button" class="btn btn-dark" onclick="player.rightBar(true)">显示右侧控制栏</button>
+						<button type="button" class="btn btn-dark" onclick="player.rightBar(false)">隐藏右侧控制栏</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-cyan" onclick="player.vars({&#39;timeScheduleAdjust&#39;:1})">正常拖动</button>
+						<button type="button" class="btn btn-cyan" onclick="player.vars({&#39;timeScheduleAdjust&#39;:0})">禁止拖动</button>
+						<button type="button" class="btn btn-cyan" onclick="player.vars({&#39;timeScheduleAdjust&#39;:2})">只能前进</button>
+						<button type="button" class="btn btn-cyan" onclick="player.vars({&#39;timeScheduleAdjust&#39;:3})">只能后退</button>
+						<button type="button" class="btn btn-cyan" onclick="player.vars({&#39;timeScheduleAdjust&#39;:4})">能回到第一次拖动时的位置</button>
+						<button type="button" class="btn btn-cyan" onclick="player.vars({&#39;timeScheduleAdjust&#39;:5})">看过的地方随意拖动</button>
+					</div>
+				<p></p>
+				<p>
+					</p><div class="btn-group btn-group-toggle">
+						<button type="button" class="btn btn-orange" onclick="videoSize(true)">增加播放器尺寸</button>
+						<button type="button" class="btn btn-orange" onclick="videoSize(false)">减少播放器尺寸</button>
+					</div>
+				<p></p>
+				<!--
+                	作者：niandeng@sina.com
+                	时间：2021-12-29
+                	描述：下面定义一个元件，样式在外部css中定义
+                -->
+                <div class="row">
+                	<div class="elementtemp" onclick="mayiui.msg(&#39;感谢支持&#39;);player.closeLayer(this)">点个赞</div>
+                </div>
+                <div class="row">
+                	<div class="video-next">
+						<div class="poster"><img src="./kplayer_files/next.jpg"></div>
+						<div class="title">下一集视频标题以及文字说明</div>
+					</div>
+					<div class="adfront">
+						<div class="content">前置广告<br>这是一个普通的DIV层，可以放置任意内容</div>
+					</div>
+					<div class="adpause">
+						暂停广告<br>这是一个普通的DIV层，可以放置任意内容
+					</div>
+					<div class="video-ended">
+						<div class="content">
+							<div class="img">
+								<img src="./kplayer_files/next.jpg">
+							</div>
+							<div class="title">这里可以放置任意内容</div>
+						</div>
+					</div>
+                </div>
+			</div>
+			<div class="col-md-6 col-12 loglist"><div class="alert alert-primary"><p>23:23:16.821</p><p class="title">监听全屏,是否处于全屏：false</p></div><div class="alert alert-warning"><p>23:23:13.85</p><p class="title">当前页面标签的状态：show</p></div><div class="alert alert-success"><p>23:22:24.182</p><p class="title">当前页面标签的状态：hidden</p></div><div class="alert alert-secondary"><p>23:22:23.364</p><p class="title">监听到暂停</p></div><div class="alert alert-primary"><p>23:22:21.955</p><p class="title">鼠标是否活跃（控制栏等是否显示）true</p></div><div class="alert alert-warning"><p>23:22:20.639</p><p class="title">监听小窗口模式，是否处于小窗口：false</p></div><div class="alert alert-success"><p>23:22:19.8</p><p class="title">监听小窗口模式，是否处于小窗口：true</p></div><div class="alert alert-secondary"><p>23:22:17.743</p><p class="title">监听小窗口模式，是否处于小窗口：false</p></div><div class="alert alert-primary"><p>23:22:10.855</p><p class="title">鼠标是否活跃（控制栏等是否显示）false</p></div><div class="alert alert-warning"><p>23:22:10.413</p><p class="title">监听小窗口模式，是否处于小窗口：true</p></div><div class="alert alert-success"><p>23:22:10.34</p><p class="title">时间跳转(seek)，状态：seeked，跳转时间：64.522</p></div><div class="alert alert-secondary"><p>23:22:10.28</p><p class="title">监听到缓冲，缓冲状态：end</p></div><div class="alert alert-primary"><p>23:22:09.331</p><p class="title">鼠标是否活跃（控制栏等是否显示）false</p></div><div class="alert alert-warning"><p>23:22:07.830</p><p class="title">鼠标是否活跃（控制栏等是否显示）true</p></div><div class="alert alert-success"><p>23:22:06.986</p><p class="title">监听到缓冲，缓冲状态：start</p></div><div class="alert alert-secondary"><p>23:22:06.985</p><p class="title">时间跳转(seek)，状态：seeking，跳转时间：64.516386</p></div><div class="alert alert-primary"><p>23:22:06.867</p><p class="title">鼠标是否活跃（控制栏等是否显示）false</p></div><div class="alert alert-warning"><p>23:22:06.19</p><p class="title">时间跳转(seek)，状态：seeked，跳转时间：43.612734</p></div><div class="alert alert-success"><p>23:22:06.13</p><p class="title">监听到缓冲，缓冲状态：end</p></div><div class="alert alert-secondary"><p>23:22:05.365</p><p class="title">鼠标是否活跃（控制栏等是否显示）true</p></div><div class="alert alert-primary"><p>23:22:04.572</p><p class="title">监听到缓冲，缓冲状态：start</p></div><div class="alert alert-warning"><p>23:22:04.571</p><p class="title">时间跳转(seek)，状态：seeking，跳转时间：43.612734</p></div><div class="alert alert-success"><p>23:22:04.418</p><p class="title">鼠标是否活跃（控制栏等是否显示）false</p></div><div class="alert alert-secondary"><p>23:22:03.830</p><p class="title">时间跳转(seek)，状态：seeked，跳转时间：22.924348</p></div><div class="alert alert-primary"><p>23:22:03.824</p><p class="title">监听到缓冲，缓冲状态：end</p></div><div class="alert alert-warning"><p>23:22:03.673</p><p class="title">监听到缓冲，缓冲状态：start</p></div><div class="alert alert-success"><p>23:22:03.665</p><p class="title">时间跳转(seek)，状态：seeking，跳转时间：22.923089</p></div><div class="alert alert-secondary"><p>23:22:02.917</p><p class="title">鼠标是否活跃（控制栏等是否显示）true</p></div><div class="alert alert-primary"><p>23:22:02.209</p><p class="title">鼠标是否活跃（控制栏等是否显示）false</p></div><div class="alert alert-warning"><p>23:22:00.690</p><p class="title">监听到播放</p></div><div class="alert alert-success"><p>23:21:58.476</p><p class="title">元数据读取完成<br>元数据-分析如下：<br>播放器宽度（width）:1200px<br>播放器高度（height）:675px<br>视频宽度（videoWidth）:1920px<br>视频高度（videoHeight）:1080px<br>视频总时间（duration）:764.540227秒<br>视频音量（volume）:0.8<br></p></div><div class="alert alert-secondary"><p>23:21:58.327</p><p class="title">监听到音量改变：0.8</p></div><div class="alert alert-primary"><p>23:21:58.294</p><p class="title">播放器正在构建监听，监听视频总时间，已播放时间，播放状态，暂停状态，是否暂停，音量改变，缓冲，时间跳转状态，全屏状态，播放结束状态</p></div></div>
+			
+		</div>
+	</div>
+
+			<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 copy">
+				<p><a href="https://bbs.ckplayer.com/index/qa/view/id/1.html" target="_blank" class="btn btn-link">技术支持</a>|<a href="https://www.ckplayer.com/yytf/index.html" target="_blank" class="btn btn-link">广告服务</a></p><p>Powered by ckplayer.com&nbsp;&nbsp; Copyright©ckplayer，2011-2022，<a href="https://beian.miit.gov.cn/" target="_blank" style="color:#585858">苏ICP备17029514号-8</a><span class="hide"><script src="./kplayer_files/stat.php" language="JavaScript"></script></span></p>			</div>
+		</div>
+	</div>
+		
+
+	
+
+<div class="ckplayer-ckplayer-menu"><div class="ck-li"><a href="http://www.ckplayer.com/" target="_blank">ckplayer</a></div><div class="ck-li ck-underline">version:X3</div><div class="ck-li"><a href="javascript:;" data-click="aboutShow">关于视频</a></div></div></body></html>
