@@ -80,6 +80,11 @@ $.ajax({
             $('#music').css("display", "flex");
         });
 
+        $('#link-url-3').on('click', function () {
+            $('#hitokoto').css("display", "none");
+            $('#music').css("display", "flex");
+        });
+
         $("#hitokoto").hover(function () {
             $('#open-music').css("display", "flex");
         }, function () {
