@@ -42,3 +42,86 @@
 
 //https://89c8dfe.r8.cpolar.top/WinkJiePersonalWeb/resource/赵杰_C++北京.docx
 
+import QtQuick 2.12
+import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.12
+ApplicationWindow {
+    visible:true
+    width:600
+    height:400
+    title:"Image Browser"
+    ColumnLayout {
+        anchors.fill:parent
+        ToolBar {
+            id:topToolBar
+            width:parent.width
+
+            Label {
+                text:"Image Browser"
+                font.pixelSize:24
+                color:"white"
+            }
+
+            Button {
+                text:"Open"
+                onClicked: fileDialog.visible = true
+            }
+        }
+        Flow {
+            id:flow
+            width:parent.width
+            height:parent.height - topToolBar.height
+            spacing:10
+            Repeater {
+                model:imageList.length
+                Image {
+                    id:gridItem
+                    width:(flow.width - flow.spacing) / 3.0
+                    height:width*1.2
+                    source:imageList[index]
+                    fillMode:Image.PreserveAspectFit
+                    MouseArea {
+                        anchors.fill:parent
+                        hoverEnabled:true
+                        onEntered: {
+                            gridItem.scale=1.1
+                            gridItem.opacity=0.8
+                        }
+                        onExited: {
+                            gridItem.scale=1.0
+                            gridItem.opacity=1.0
+                        }
+                        onClicked: fullScreenImage.source=imageList[index]
+                    }
+                }
+            }
+        }
+        Dialog {
+            id:fileDialog
+            title:"Open Image"
+            folder:Shortcut.home
+            FileDialog {
+                id:fileDialogComponent
+                modal:true
+                nameFilters:["Images (*.png *.xpm *.jpg)", "All files (*)"]
+                selectMultiple:true
+                onAccepted: {
+                    imageList = []
+                    for (var i=0;i<fileUrl.length;i++) {
+                        imageList.push(fileUrl[i])
+                    }
+                }
+            }
+        }
+        Image {
+            id:fullScreenImage
+            visible:false
+            anchors.fill:parent
+            MouseArea {
+                anchors.fill:parent
+                onClicked: fullScreenImage.visible=false
+            }
+        }
+    }
+}
+
