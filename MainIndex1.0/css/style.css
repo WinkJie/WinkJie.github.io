@@ -164,7 +164,7 @@ main {
 
 .main-left {
     /*transform: translateY(240px);*/
-    transform: translateY(40px);
+    transform: translateY(10px);
 }
 
 .row.rightone {
