@@ -45,7 +45,7 @@ window.onload=function()
 
 	setInterval(function toggleSound(){
 		let music = document.getElementById("aud");
-		music.playbackRate=1.3;
+		music.playbackRate=2.1;
 		music.play();
 		// if (music.paused)
 		// {
