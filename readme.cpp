@@ -125,3 +125,200 @@ ApplicationWindow {
     }
 }
 
+/*博客园*/
+body {
+  background-color: rgb(141,136,247);
+  background: linear-gradient(to top right, #58b355 0%, #3d6e52 25%, #a3607c 100%) !important;
+  //background: radial-gradient(circle, #CDDC39, #8BC34A);
+  /*background:url(https://images.cnblogs.com/cnblogs_com/WinkJie/1613852/o_191215033059psb.jpg) no-repeat 0 0 transparent;
+  background-size:100% 100%;*/
+}
+
+_blank1
+{
+     background-color: rgb(255, 0, 0);
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#home {
+    margin: 0 auto;
+    width: 65%;
+    min-width: 950px;
+    background-color: rgb(154, 230, 119);
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 2px 6px rgb(100 100 100 / 30%);
+}
+#profile_block {
+    margin-top: 10px;
+    line-height: 5.0;
+    text-align: left;
+    background-color: rgb(154, 230, 119);
+}
+#sideBar {
+    margin-top: -15px;
+    width: 230px;
+    min-height: 200px;
+    padding: 0 0 0 5px;
+    float: right;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background-color: rgb(154, 230, 119);
+
+}
+.newsItem, .catListEssay, .catListLink, .catListNoteBook, .catListTag, .catListPostCategory, .catListPostArchive, .catListImageCategory, .catListArticleArchive, .catListView, .catListFeedback, .mySearch, .catListComment, .catListBlogRank, .catList, .catListArticleCategory {
+    background: rgb(205, 226, 87);
+    margin-bottom: 35px;
+    word-wrap: break-word;
+}
+.input_my_zzk {
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 25px;
+    padding-right: 30px;
+    padding-left: 5px;
+    outline: 0;
+    background: rgb(205, 226, 87);
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+    background: rgb(205, 226, 87);
+}
+.clear {
+    clear: both;
+    background: rgb(205, 226, 87);
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    background: rgb(205, 226, 87);
+}
+.CalTitle td {
+    background: rgb(205, 226, 87) !important;
+    background-image: initial !important;
+    background-position-x: initial !important;
+    background-position-y: initial !important;
+    background-size: initial !important;
+    background-repeat-x: initial !important;
+    background-repeat-y: initial !important;
+    background-attachment: initial !important;
+    background-origin: initial !important;
+    background-clip: initial !important;
+    background-color: rgb(248, 248, 248) !important;
+    border: 0 !important;
+    color: #5e5f63;
+    font-family: "Comic Sans MS";
+}
+#profile_block {
+    margin-top: 5px;
+    line-height: 1.5;
+    text-align: left;
+    background-color: rgb(154, 230, 119);
+    font-family: "Comic Sans MS";
+}
+#blog-calendar {
+    width: 228px;
+    padding-bottom: 5px;
+    margin-bottom: 35px;
+    box-shadow: 0 1px 3px #ccc;
+    border: 1px solid #ededed;
+    font-family: "Comic Sans MS";
+}
+#blog-calendar th {
+    font-size: 12px;
+    background: rgb(205, 226, 87) ;
+}
+#blog-calendar td {
+    font-size: 12px;
+    font-family: "Comic Sans MS";
+    background: rgb(205, 226, 87) !important;
+}
+#blogTitle h1 a {
+    color: rgb(13, 13, 219);
+    font-size: 24px;
+    transition:font-size 2s linear;
+    font-family: "Comic Sans MS";
+}
+#blogTitle h1 a::before {
+    content: attr(text);
+    position: absolute;
+    z-index: 10;
+    color:rgb(24, 23, 23);
+    -webkit-mask:linear-gradient(to left, rgb(43, 40, 40), transparent );
+    font-size: 100px;
+}
+#blogTitle h2 {
+    color: rgb(105, 109, 91);
+    font-family: "Comic Sans MS";
+}
+.c_b_p_desc {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    line-height: 1.5;
+    color: black;
+}
+.c_b_p_desc_readmore {
+    padding-left: 5px;
+    color: blue;
+}
+.postBody {
+    color: linear-gradient(90deg, yellow, pink);
+    line-height: 1.7;
+    font-size: 14px;
+}
+.day {
+    min-height: 10px;
+    _height: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    position: relative;
+}
+.postSeparator {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    clear: both;
+    float: right;
+    margin: 0 auto 15px auto;
+    background: white;
+}
+.clear {
+    clear: both;
+    background: white;
+}
+.syntaxhighlighter {
+    width: 100% !important;
+    margin: 1em 0 1em 0 !important;
+    position: relative !important;
+    overflow: auto !important;
+    font-size: 1em !important;
+    background-color: rgb(154, 230, 119) !important;
+}
+.postBody {
+    color: linear-gradient(90deg, yellow, pink);
+    line-height: 1.7;
+    font-size: 14px;
+    background-color: rgb(154, 230, 119) !important;
+}
+.syntaxhighlighter .line {
+    white-space: pre !important;
+    background-color: rgb(154, 230, 119) !important;
+}
+
+
+/*html侧边栏*/
+
+<div>
+    <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=mKqhraqpq6igrdjp6bb79-U" style="text-decoration:none;">
+<img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/></a>
+</div>
+<div>
+<a target="_blank1" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=mKqhraqpq6igrdjp6bb79-U" style="text-decoration:none;">快来找我聊天吧</a>
+</div>
