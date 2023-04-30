@@ -322,3 +322,7 @@ tr {
 <div>
 <a target="_blank1" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=mKqhraqpq6igrdjp6bb79-U" style="text-decoration:none;">快来找我聊天吧</a>
 </div>
+
+//https://www.cnblogs.com/enjoy233/p/10328361.html#%E5%9C%A8%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E6%B7%BB%E5%8A%A0fork-me-on-github%E5%9B%BE%E6%A0%87
+
+//https://github.blog/2008-12-19-github-ribbons/
