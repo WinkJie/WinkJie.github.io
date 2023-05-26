@@ -968,7 +968,7 @@ h1, h2, h3, h4, h5,
 
 .footer {
   padding: 4rem 0;
-  background: #183661;
+  background: #000006;
   font-size: 14px;
   color: #fff; }
   .footer .footer-heading {
@@ -982,8 +982,9 @@ h1, h2, h3, h4, h5,
     text-decoration: underline; }
   .footer .copyright {
     color: #fff;
-    padding-top: 7rem;
+    padding-top: 0;
     text-align: center; }
+
 
 .ftco-subscribe-1 {
   background-size: cover;
