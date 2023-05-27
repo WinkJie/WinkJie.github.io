@@ -1347,3 +1347,28 @@ h1, h2, h3, h4, h5,
   .custom-pagination a:hover {
     background: #5577B4;
     color: #fff; }
+
+/*二维码*/
+#erweima
+{
+  /*width: 50px;*/
+  /*height: 100px;*/
+  /*background-color: pink;   */
+  /*text-align: center;*/
+  /*line-height: 100px;*/
+  /*margin: 100px auto;*/
+  /*position: relative;*/
+}
+#erweima img
+{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  display: none;
+}
+#erweima:hover img
+{
+  display: block;
+}
