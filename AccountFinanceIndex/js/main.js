@@ -81,6 +81,7 @@ var gotoByScroll = function (){
 
 
 }
+
 const textElement = document.querySelector('.introText');
 const showMoreButton = document.querySelector('.getmore');
 
@@ -90,6 +91,7 @@ showMoreButton.addEventListener('click', () => {
     // 隐藏“显示更多”按钮
     showMoreButton.style.display = 'none';
 });
+
 
 
 
