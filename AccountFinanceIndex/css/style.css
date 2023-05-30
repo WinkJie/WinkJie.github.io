@@ -84,6 +84,19 @@ img {
     width: 100%;
 }
 /*-- //Reset-Code --*/
+
+.about{
+    /*background: url(../images/Company.jpg) no-repeat 0px 0px;*/
+    background-color: rgba(180,169,180,0.9);
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
 .about,.testimonials,.matter,.contact,.service,.service-two,.portfolio,.blog{
     padding: 5em 0;
 }

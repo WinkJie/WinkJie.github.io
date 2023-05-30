@@ -337,4 +337,57 @@ an X*/
     display: none; /* 初始状态下隐藏“显示更多”按钮 */
 }
 
+#erweima img
+{
+    width: 200px;
+    height: 200px;
+    /*position: absolute;*/
+    left: 0px;
+    top: 30px;
+    display: none;
+}
+#erweima:hover img
+{
+    display: block;
+}
+/* 定义样式 */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+/* 定义样式 */
+textarea:focus, input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 10px #719ECE;
+    border: solid 1px #166EBB;
+}
+input[type=text], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
 
