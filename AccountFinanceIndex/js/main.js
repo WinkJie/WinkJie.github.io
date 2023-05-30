@@ -81,6 +81,27 @@ var gotoByScroll = function (){
 
 
 }
+const textElement = document.querySelector('.introText');
+const showMoreButton = document.querySelector('.getmore');
+
+showMoreButton.addEventListener('click', () => {
+    // 显示全部文本
+    textElement.style.height = 'auto';
+    // 隐藏“显示更多”按钮
+    showMoreButton.style.display = 'none';
+});
+
+
+
+// 创建地图实例并设置初始位置和缩放级别
+var map = new BMap.Map("map-container");
+var point = new BMap.Point(116.404, 39.915); // 北京市中心
+map.centerAndZoom(point, 15);
+// 添加缩放和平移控件
+map.addControl(new BMap.NavigationControl());
+map.addControl(new BMap.ScaleControl());
+
+
 
 
 
