@@ -44,6 +44,19 @@
       <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
       <!--//stylesheets-->
       <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet">
+      <!--XSSa1jF8sblpLUAmMM4ECEMaGzWQppMl-->
+      <!--http://api.map.baidu.com/api?v=2.X&ak={您的密钥}&services=&t=20180620115256-->
+      <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.X&ak={XSSa1jF8sblpLUAmMM4ECEMaGzWQppMl}&services=&t=20180620115256"></script>
+      <script>
+          // 创建地图实例并设置初始位置和缩放级别
+          var map = new BMap.Map("map-container");
+          var point = new BMap.Point(116.404, 39.915); // 北京市中心
+          map.centerAndZoom(point, 15);
+          // 添加缩放和平移控件
+          map.addControl(new BMap.NavigationControl());
+          map.addControl(new BMap.ScaleControl());
+      </script>
+
    </head>
    <body>
       <div class="header-outs" id="home">
@@ -68,9 +81,9 @@
                            <li class="m_nav_item active" id="m_nav_item_1"> <a href="#home" class="scroll">主页</a></li>
                            <li class="m_nav_item" id="moble_nav_item_2"> <a href="#about" class="scroll">About</a></li>
                            <li class="m_nav_item" id="moble_nav_item_3"> <a href="#services" class="scroll">服务</a></li>
-                           <li class="m_nav_item" id="moble_nav_item_4"><a href="#gallery" class="scroll">Portfolio</a></li>
-                           <li class="m_nav_item" id="moble_nav_item_6"> <a href="#blog" class="scroll">Blog</a></li>
-                           <li class="m_nav_item" id="moble_nav_item_7"> <a href="#contact" class="scroll">Contact</a></li>
+                           <li class="m_nav_item" id="moble_nav_item_4"><a href="#gallery" class="scroll">展示</a></li>
+                           <li class="m_nav_item" id="moble_nav_item_6"> <a href="#blog" class="scroll">记录</a></li>
+                           <li class="m_nav_item" id="moble_nav_item_7"> <a href="#contact" class="scroll">联系我们</a></li>
   </ul>
 </div>
                </div>
@@ -192,8 +205,8 @@
                </div>
                <div id="small-dialog1" class="mfp-hide w3ls_small_dialog wthree_pop">
                   <div class="agileits_modal_body">
-                     <!--<iframe src="https://player.vimeo.com/video/2910294"></iframe>-->
-                     <iframe src="../bg.mp4"></iframe>
+                     <iframe src="https://player.vimeo.com/video/2910294"></iframe>
+                     <!--<iframe src="../bg.mp4"></iframe>-->
                   </div>
                </div>
                <h4>Aenean pulvinar diam vel felis <br>volutpat dictum</h4>
@@ -508,34 +521,34 @@
       <div class="contact" id="contact">
          <div class="container">
             <h3 class="title clr">Contact</h3>
-            <div class="contact-us">
-               <form action="#" method="post">
-                  <div class="row">
-                     <div class="col-lg-6 col-md-6 col-sm-6 styled-input">
-                        <input type="text" name="Name" placeholder="Name" required="">
-                     </div>
-                     <div class="col-lg-6 col-md-6 col-sm-6 styled-input">
-                        <input type="text" name="Last Name" placeholder="Last Name" required="">
-                     </div>
-                     <div class="col-lg-6 col-lg-6 col-md-6 col-sm-6 styled-input">
-                        <input type="email" name="Email" placeholder="Email" required=""> 
-                     </div>
-                     <div class="col-lg-6 col-md-6 col-sm-6 styled-input">
-                        <input type="text" name="Phone" placeholder="Phone" required="">
-                     </div>
-                  </div>
-                  <div class="clearfix"> </div>
-                  <div class="styled-input">
-                     <textarea name="Message" placeholder="Message" required=""></textarea>
-                  </div>
-                  <div>
-                     <div class="click">
-                        <input type="submit" value="Send">
-                     </div>
-                  </div>
-               </form>
-               <div class="clearfix"> </div>
-            </div>
+            <!--<div class="contact-us">-->
+               <!--<form action="#" method="post">-->
+                  <!--<div class="row">-->
+                     <!--<div class="col-lg-6 col-md-6 col-sm-6 styled-input">-->
+                        <!--<input type="text" name="Name" placeholder="Name" required="">-->
+                     <!--</div>-->
+                     <!--<div class="col-lg-6 col-md-6 col-sm-6 styled-input">-->
+                        <!--<input type="text" name="Last Name" placeholder="Last Name" required="">-->
+                     <!--</div>-->
+                     <!--<div class="col-lg-6 col-lg-6 col-md-6 col-sm-6 styled-input">-->
+                        <!--<input type="email" name="Email" placeholder="Email" required=""> -->
+                     <!--</div>-->
+                     <!--<div class="col-lg-6 col-md-6 col-sm-6 styled-input">-->
+                        <!--<input type="text" name="Phone" placeholder="Phone" required="">-->
+                     <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="clearfix"> </div>-->
+                  <!--<div class="styled-input">-->
+                     <!--<textarea name="Message" placeholder="Message" required=""></textarea>-->
+                  <!--</div>-->
+                  <!--<div>-->
+                     <!--<div class="click">-->
+                        <!--<input type="submit" value="Send">-->
+                     <!--</div>-->
+                  <!--</div>-->
+               <!--</form>-->
+               <!--<div class="clearfix"> </div>-->
+            <!--</div>-->
             <div class="contact-address-wthree row">
                <div class=" col-lg-4 col-md-5 col-sm-5 contact-icons">
                   <h5> Get In Touch </h5>
@@ -577,15 +590,7 @@
                   <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3150859.767904157!2d-96.62081048651531!3d39.536794757966845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1408111832978"> </iframe>-->
                </div>
 
-               <script>
-                   // 创建地图实例并设置初始位置和缩放级别
-                   var map = new BMap.Map("map-container");
-                   var point = new BMap.Point(116.404, 39.915); // 北京市中心
-                   map.centerAndZoom(point, 15);
-                   // 添加缩放和平移控件
-                   map.addControl(new BMap.NavigationControl());
-                   map.addControl(new BMap.ScaleControl());
-               </script>
+
             </div>
          </div>
       </div>
@@ -596,7 +601,8 @@
                <div class="top-gap">
                   <div class="header-side">
                      <p> 
-                        © 2018 Excess All Rights Reserved | Design by <a href="http://www.W3Layouts.com" target="_blank">W3Layouts</a>
+                        ©<script>document.write(new Date().getFullYear());</script>
+                         Excess All Rights Reserved | Design by <a href="#" target="_self">瑾瑜记账</a>
                      </p>
                   </div>
                </div>
