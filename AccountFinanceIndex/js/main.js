@@ -98,13 +98,12 @@ showMoreButton1.addEventListener('click', () => {
 });
 
 // 创建地图实例并设置初始位置和缩放级别
-// var map = new BMap.Map("map-container");
-// var point = new BMap.Point(116.404, 39.915); // 北京市中心
-// map.centerAndZoom(point, 15);
+var map = new BMap.Map("map-container");
+var point = new BMap.Point(116.404, 39.915); // 北京市中心
+map.centerAndZoom(point, 15);
 // 添加缩放和平移控件
-// map.addControl(new BMap.NavigationControl());
-// map.addControl(new BMap.ScaleControl());
-// 在页面加载完毕后执行该函数
+map.addControl(new BMap.NavigationControl());
+map.addControl(new BMap.ScaleControl());
 
 
 
