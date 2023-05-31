@@ -882,7 +882,7 @@ box-shadow: 14px -18px 40px -17px rgba(0,0,0,0.75);
     border: 0;
 }
 .contact-address-wthree {
-    background: #fff;
+    background: rgba(255,255,255,0.7);
     padding: 3em 2em;
     margin-top: 3em;
 }
