@@ -5,9 +5,6 @@ gotoByScroll();
 
 
 });
-
-
-
 var toggle_nav_container = function () {
 
 
@@ -84,7 +81,6 @@ var gotoByScroll = function (){
 
 const textElement = document.querySelector('.introText');
 const showMoreButton = document.querySelector('.getmore');
-
 showMoreButton.addEventListener('click', () => {
     // 显示全部文本
     textElement.style.height = 'auto';
@@ -92,8 +88,14 @@ showMoreButton.addEventListener('click', () => {
     showMoreButton.style.display = 'none';
 });
 
-
-
+const textElement1 = document.querySelector('.introText1');
+const showMoreButton1 = document.querySelector('.getmore1');
+showMoreButton1.addEventListener('click', () => {
+    // 显示全部文本
+    textElement1.style.height = 'auto';
+    // 隐藏“显示更多”按钮
+    showMoreButton1.style.display = 'none';
+});
 
 // 创建地图实例并设置初始位置和缩放级别
 var map = new BMap.Map("map-container");
