@@ -96,6 +96,25 @@ showMoreButton1.addEventListener('click', () => {
     // 隐藏“显示更多”按钮
     showMoreButton1.style.display = 'none';
 });
+function toggleContent(content) {
+    var paragraphs = content.querySelectorAll("p");
+    var button = content.querySelector("a");
+
+    // 判断当前展开状态
+    if (button.innerText === "折叠") {
+        // 展开全部文本
+            paragraphs.style.display = "auto";
+
+        // 修改按钮文本
+        button.innerText = "折叠";
+    } else {
+        // 折叠到前两行文本
+                paragraphs.style.display = "block";
+
+        // 修改按钮文本
+        button.innerText = "展开";
+    }
+}
 
 
 

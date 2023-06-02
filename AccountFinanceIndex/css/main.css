@@ -329,12 +329,14 @@ an X*/
 }
 /*--//responsive--*/
 
-.introText,.introText1 {
+.introText,.introText1,.introText2,.introText3 {
     height: 90px; /* 设置文本容器高度 */
     overflow: hidden; /* 超出部分隐藏 */
 }
 .introText:hover,
-.introText1:hover {
+.introText1:hover,
+.introText2:hover,
+.introText3:hover{
     max-height: none; /* 鼠标悬停时显示全部内容 */
 }
 .getmore,.getmore1 {
