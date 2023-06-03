@@ -74,6 +74,38 @@ var gotoByScroll = function ()
 }
 
 
+//
+// const textElement = document.querySelector('.introText');
+// const showMoreButton = document.querySelector('.getmore');
+// showMoreButton.addEventListener('click', () => {
+//     // 显示全部文本
+//     textElement.style.height = 'auto';
+//     // 隐藏“显示更多”按钮
+//     showMoreButton.style.display = 'none';
+// });
+//
+// const textElement1 = document.querySelector('.introText1');
+// const showMoreButton1 = document.querySelector('.getmore1');
+// showMoreButton1.addEventListener('click', () => {
+//     // 显示全部文本
+//     textElement1.style.height = 'auto';
+//     // 隐藏“显示更多”按钮
+//     showMoreButton1.style.display = 'none';
+// });
+function toggleContent(className,getmorename) {
+    var content = document.querySelector("." + className);
+    var button = document.querySelector("." + getmorename);
+    if (content.style.height === "90px") {
+        content.style.height = "auto";
+        button.innerText = "折叠";
+    } else {
+        content.style.height = "90px";
+        button.innerText = "展开";
+    }
+}
+
+
+
 // 初始化地图对象  这里的id必须对应页面中HTML元素的id
 var map = new BMap.Map("map-container");
 // 创建地理编码实例
@@ -104,39 +136,6 @@ myGeo.getPoint(address, function(point){
         alert("您选择地址没有解析到结果!");
     }
 }, "北京市");
-
-//
-// const textElement = document.querySelector('.introText');
-// const showMoreButton = document.querySelector('.getmore');
-// showMoreButton.addEventListener('click', () => {
-//     // 显示全部文本
-//     textElement.style.height = 'auto';
-//     // 隐藏“显示更多”按钮
-//     showMoreButton.style.display = 'none';
-// });
-//
-// const textElement1 = document.querySelector('.introText1');
-// const showMoreButton1 = document.querySelector('.getmore1');
-// showMoreButton1.addEventListener('click', () => {
-//     // 显示全部文本
-//     textElement1.style.height = 'auto';
-//     // 隐藏“显示更多”按钮
-//     showMoreButton1.style.display = 'none';
-// });
-function toggleContent(className,getmorename) {
-    var content = document.querySelector("." + className);
-    var button = document.querySelector("." + getmorename);
-
-    if (content.style.height === "90px") {
-        content.style.height = "auto";
-        button.innerText = "折叠";
-    } else {
-        content.style.height = "90px";
-        button.innerText = "展开";
-    }
-}
-
-
 
 
 
