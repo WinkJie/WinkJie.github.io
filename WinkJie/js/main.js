@@ -134,17 +134,17 @@ const add_id = "u19tmbpwkmcvmgnc"; // app_id
 const app_secret = "aUN6Z1RjRDBIdk9ETnV2SndjZUZWQT09"; // app_secret
 const key = "a2da85ef49d34ed9b070e351150df6b6" // key
 function getWeather() {
-    fetch("https://www.mxnzp.com/api/ip/self?app_id=" + add_id + "&app_secret=" + app_secret)
+    fetch("https://www.mxnzp.com/api/ip/self?app_id=" + add_id + "&app_secret=" + app_secret,{mode:'no-cors'})
         .then(response => response.json())
         .then(data => {
             let str = data.data.city
             let city = str.replace(/市/g, '')
             $('#city_text').html(city);
-            fetch("https://geoapi.qweather.com/v2/city/lookup?location=" + city + "&number=1&key=" + key)
+            fetch("https://geoapi.qweather.com/v2/city/lookup?location=" + city + "&number=1&key=" + key,{mode:'no-cors'})
                 .then(response => response.json())
                 .then(location => {
                     let id = location.location[0].id
-                    fetch("https://devapi.qweather.com/v7/weather/now?location=" + id + "&key=" + key)
+                    fetch("https://devapi.qweather.com/v7/weather/now?location=" + id + "&key=" + key,{mode:'no-cors'})
                         .then(response => response.json())
                         .then(weather => {
                             $('#wea_text').html(weather.now.text)
