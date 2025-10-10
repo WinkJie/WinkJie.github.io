@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七夕告白 - 我爱你</title>
+    <style>
+        :root {
+            --primary-color: #ff4d6d;
+            --secondary-color: #ff8fa3;
+            --text-color: #fff0f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, 
+                #2b0a3e 0%, 
+                #6a1b5e 30%, 
+                #c72c41 70%, 
+                #ff6b6b 100%);
+            min-height: 100vh;
+            font-family: 'Microsoft Yahei', '楷体', cursive;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 银河效果 */
+        .galaxy {
+            position: fixed;
+            width: 200vw;
+            height: 200vh;
+            background: 
+                radial-gradient(circle at 50% 50%, 
+                    rgba(255, 255, 255, 0.1) 0%, 
+                    transparent 70%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent 0px,
+                    transparent 20px,
+                    rgba(255, 255, 255, 0.05) 20px,
+                    rgba(255, 255, 255, 0.05) 40px
+                );
+            animation: rotate 300s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 输入区域 */
+        .input-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 100px auto;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            font-size: 18px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        /* 按钮样式 */
+        .magic-btn {
+            position: relative;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .magic-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 25%,
+                rgba(255,255,255,0.2) 50%,
+                transparent 75%
+            );
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* 表白内容 */
+        .love-box {
+            display: none;
+            position: relative;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px var(--primary-color);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            50% { text-shadow: 0 0 30px var(--secondary-color); }
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 30px;
+            line-height: 1.8;
+            font-size: 20px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        /* 喜鹊动画 */
+        .magpie {
+            position: fixed;
+            width: 100px;
+            animation: fly 15s linear infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateX(-100%) }
+            100% { transform: translateX(100vw) }
+        }
+    </style>
+</head>
+<body>
+    <div class="galaxy"></div>
+    
+    <!-- 喜鹊动画 -->
+    <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" 
+         class="magpie" 
+         style="top:20%; animation-delay: 0s">
+    <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" 
+         class="magpie" 
+         style="top:40%; animation-delay: 3s">
+
+    <div class="container">
+        <div class="input-card" id="inputSection">
+            <h2>🕊️ 七夕鹊桥计划 🕊️</h2>
+            <input type="text" id="nameInput" placeholder="输入你心爱的名字">
+            <button class="magic-btn" onclick="generateLoveLetter()">启动爱的魔法</button>
+        </div>
+
+        <div class="love-box" id="loveContent">
+            <h1 id="loveTitle"></h1>
+            <div class="love-letter">
+                <p>亲爱的<span class="name">你</span>：</p>
+                <p>银河再宽，宽不过我对你的思念<br>
+                时间再久，久不过我对你的眷恋<br>
+                今夜鹊桥相会时<br>
+                愿以星辰为证，天地为媒<br>
+                许你三生三世，不离不弃</p>
+                <p style="margin-top:30px;">❤️<span class="name">你</span>的专属爱人❤️</p>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.staticfile.net/jquery/3.5.1/jquery.min.js"></script>
+<script id="xplayer" src="https://y.cenguigui.cn/Static/player/player.js" key="6817df35dd0c2" api="https://y.cenguigui.cn/" m = "1"></script>  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d0e2ac3a81e1e739954194e91fb66468";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script>
+        // 动态设置标题
+        function setLoveTitle(name) {
+            const title = `${name}，我爱你！`;
+            document.title = title;
+            document.getElementById('loveTitle').innerHTML = `
+                ${name.split('').join('<span class="heart-char">❤</span>')}
+                <div style="font-size:0.6em; margin-top:10px;">七夕特别告白</div>
+            `;
+        }
+
+        // 生成告白信
+        function generateLoveLetter() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (!name) return alert('请输入你心爱的名字');
+
+            // 更新所有名字显示
+            document.querySelectorAll('.name').forEach(el => {
+                el.textContent = name;
+            });
+
+            // 设置动态标题
+            setLoveTitle(name);
+
+            // 界面切换
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('loveContent').style.display = 'block';
+
+            // 更新URL参数
+            const newUrl = `${location.origin}${location.pathname}?name=${encodeURIComponent(name)}`;
+            history.replaceState({}, '', newUrl);
+
+            // 添加背景音乐
+            const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/19/audio_24d7b5d781.mp3');
+            audio.loop = true;
+            audio.play();
+        }
+
+        // 初始化检查URL参数
+        function init() {
+            const params = new URLSearchParams(location.search);
+            const name = params.get('name');
+            
+            if (name) {
+                document.getElementById('nameInput').value = name;
+                generateLoveLetter();
+            }
+        }
+
+        // 页面加载初始化
+        window.onload = init;
+    </script>
+</body>
+</html>

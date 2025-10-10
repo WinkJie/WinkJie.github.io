@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致：我的星辰</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        /* 星空背景动画 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        /* 标题渐变与动画 */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        /* 消息卡片渐入 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .message-card {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+        }
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white flex items-center justify-center p-4">
+    <!-- 动态星空背景 -->
+    <div id="starsContainer" class="fixed inset-0 z-0"></div>
+    
+    <!-- 音乐控制 -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="musicToggle" class="bg-white/10 backdrop-blur-md p-3 rounded-full hover:bg-white/20 transition-all duration-300">
+            <i class="fas fa-music text-white"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <!-- 替换为你喜欢的轻柔纯音乐链接 -->
+            <source src="https://example.com/soft-music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="relative z-10 text-center max-w-4xl w-full">
+        <!-- 标题区 -->
+        <section class="mb-12">
+            <h1 class="text-5xl md:text-7xl font-light gradient-text floating mb-4">
+                致：我的星辰
+            </h1>
+            <p class="text-xl text-purple-200 opacity-90">Somewhere in the universe, there's a galaxy in your eyes.</p>
+        </section>
+
+        <!-- 消息卡片 -->
+        <div class="message-card bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-2xl border border-white/10 max-w-2xl mx-auto">
+            <div class="max-h-80 overflow-y-auto pr-2">
+                <p class="text-lg md:text-xl leading-relaxed text-purple-100 text-left">
+                    遇见你，像偶然捕捉到一颗划过夜空的流星，瞬间点亮了我的整个世界。<br><br>
+
+                    你的笑容有某种引力，让我这颗原本遵循着自己轨道运行的小行星，不由自主地改变了轨迹，心甘情愿地围绕着你旋转。<br><br>
+
+                    我不太会说那些惊天动地的誓言，但我知道，和你在一起的每一个平凡瞬间，都像是宇宙馈赠的礼物。我想和你一起，看更多的日出日落，数更多的星星。<br><br>
+
+                    也许我不是最亮的那颗星，但我会努力一直发光，照亮你走过的路。<br><br>
+
+                    <span class="block text-right mt-6 text-purple-300">—— 一颗为你偏离轨道的小行星</span>
+                </p>
+            </div>
+            
+            <!-- 交互按钮 -->
+            <div class="mt-8 flex justify-center space-x-4">
+                <button onclick="revealResponse('happy')" class="px-6 py-3 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-smile-wink mr-2"></i>我也喜欢你
+                </button>
+                <button onclick="revealResponse('shy')" class="px-6 py-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-flushed mr-2"></i>考虑一下
+                </button>
+            </div>
+        </div>
+
+        <!-- 响应区域 -->
+        <div id="responseArea" class="mt-8 hidden">
+            <!-- 响应内容由JavaScript动态生成 -->
+        </div>
+    </main>
+
+    <script>
+        // 生成随机星星
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                
+                container.appendChild(star);
+            }
+        }
+
+        // 音乐控制
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let musicPlaying = false;
+
+        musicToggle.addEventListener('click', function() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                bgMusic.play().catch(e => console.log("自动播放被阻止，请手动点击"));
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            musicPlaying = !musicPlaying;
+        });
+
+        // 响应按钮功能
+        function revealResponse(type) {
+            const responseArea = document.getElementById('responseArea');
+            let responseHTML = '';
+
+            if (type === 'happy') {
+                responseHTML = `
+                    <div class="bg-gradient-to-r from-green-400/20 to-cyan-400/20 backdrop-blur-md rounded-2xl p-8 border border-green-400/30">
+                        <i class="fas fa-star text-yellow-300 text-4xl mb-4"></i>
+                        <p class="text-2xl text-green-100">整个宇宙的星光，此刻都因你而更加璀璨！</p>
+                        <p class="text-green-200 mt-2">期待我们的故事，如星河般漫长而灿烂。</p>
+                    </div>
+                `;
+            } else if (type === 'shy') {
+                responseHTML = `
+                    <div class="bg-gradient-to-r from-purple-400/20 to-pink-400/20 backdrop-blur-md rounded-2xl p-8 border border-purple-400/30">
+                        <i class="fas fa-moon text-purple-300 text-4xl mb-4"></i>
+                        <p class="text-2xl text-purple-100">没关系，我会像守护月亮一样，静静等待。</p>
+                        <p class="text-purple-200 mt-2">每一个夜晚，我都会在这里为你点亮一颗星。</p>
+                    </div>
+                `;
+            }
+
+            responseArea.innerHTML = responseHTML;
+            responseArea.classList.remove('hidden');
+            responseArea.style.animation = 'fadeInUp 0.8s ease-out';
+
+            // 滚动到响应区域
+            responseArea.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+        });
+    </script>
+</body>
+</html>

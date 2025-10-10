@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="language" content="zh-CN">
+    <meta name="title" content="爱心代码">
+    <meta name="describe" content="欢迎点赞分享 ">
+
+    <title>吴萌萌萌萌萌萌~</title>
+
+    <link rel="stylesheet" href="./style/main.css">
+    <style type="text/css">
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: rgb(4, 4, 22);
+        }
+
+        #contents {
+            color: pink;
+            font-size: 1.5em;
+            text-align: center;
+            width: 100%;
+            height: 100px;
+            text-transform: none;
+        }
+        .type_words{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:180px;height:180px;color:#f1dadb;padding:20px;text-transform:lowercase;}
+    </style>
+</head>
+
+<body onclick="bodyPlayMusic()">
+<!-- <a href="https://mp.weixin.qq.com/s/HH_lkTCSsiWixvcBLz4Rpw" style="position: fixed; top: 5%; right: 10px; width: 100px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">支付宝红包</a>
+<a href="https://pan.quark.cn/s/ee4847bffd34" style="position: fixed; top: 10%; right: 10px; width: 100px; height: 40px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">tfboys回放</a>
+<a href="https://mp.weixin.qq.com/s/0_GSKq1HqEw9qLCIOV_FEg" style="position: fixed; top: 15%; right: 10px; width: 80px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">京东红包</a>
+<a href="https://mp.weixin.qq.com/s/TuUjGvr62RVz721_TeDRjA" style="position: fixed; top: 20%; right: 10px; width: 80px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">淘宝红包</a>
+<a href="https://shop1619956412.v.weidian.com/?userid=1619956412&spider_token=2720" style="position: fixed; top: 25%; right: 10px; width: 75px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">红包封面</a>
+<a href="https://mp.weixin.qq.com/s/YYbYUHNKEg_U3HTHEh2C5w" style="position: fixed; top: 30%; right: 10px; width: 50px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">爆款</a>
+<a href="https://pan.quark.cn/s/3344d23e48a8" style="position: fixed; top: 35%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">源码</a>
+<a href="https://drive.uc.cn/s/4819fdecb8a24" style="position: fixed; top: 40%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">代码</a>
+<a href="https://pan.xunlei.com/s/VNlDcB3ABz0oNSOEv5mpSE_tA1?pwd=97rw#" style="position: fixed; top: 45%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">合集</a>
+<a href="https://mp.weixin.qq.com/s/CImse_lRLCDjB3WzAqRp1Q" style="position: fixed; top: 50%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">支持</a>
+<a href="https://mp.weixin.qq.com/s/OU6sITGUC-sh34SWqxqpag" style="position: fixed; top: 55%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">爆款22</a>
+<a href="https://pan.quark.cn/s/96dc82d97328" style="position: fixed; top: 60%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">保存</a>
+<a href="https://mp.weixin.qq.com/s/CovVpUzHJEN8in50HO_jbQ" style="position: fixed; top: 65%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">教程</a>
+<a href="https://pan.xunlei.com/s/VO1dLN6rfBTIpMa_bYISLRcFA1?pwd=y2zh#" style="position: fixed; top: 70%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">文件</a>
+<a href="https://mp.weixin.qq.com/s/XyDrY4IPOfM8QZUFJGuBgQ" style="position: fixed; top: 75%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">更多</a>
+<a href="https://mp.weixin.qq.com/s/PiPEyMRTor70FWVdhw3BLw" style="position: fixed; top: 80%; right: 10px; width: 40px; height: 30px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">生日</a>
+<a href="https://mp.weixin.qq.com/s/DhSmCT7GyoQlXV0IUjLrsg" style="position: fixed; top: 85%; right: 10px; width: 40px; height: 60px; z-index: 999; background: #696969; border-radius: 50%; padding: 1.0px; text-align: center; color: #ddd; text-decoration: none; line-height: 30px; font-size: 18px;">公主殿下</a> -->
+
+
+
+    <div class="type_words" id="contents">给你的爱心</div>
+    <canvas id="pinkboard" width="1707" height="868"></canvas>
+    <canvas id="heart" width="1000" height="600"></canvas>
+
+    <audio id="audio" src="https://music.163.com/song/media/outer/url?id=27130317.mp3" preload="auto"
+        loop="loop"></audio>
+    <script>
+        var shouci = true;
+        console.log(shouci);
+        function bodyPlayMusic() {
+            if (shouci) {
+                shouci = false;
+                audio.play();
+                console.log(shouci);
+            }
+        };
+    </script>
+    <script src="./js/lxheart.js"></script>
+    <script src="./js/filltext.js"></script>
+    <script>
+        var texts = ['dear', '💗i love you💗', '❤️'];
+
+        var params = new URLSearchParams(window.location.search);
+        var text = params.get('text');
+        var word = params.get('word');
+        if (text) {
+            texts = text.split(',')
+        }
+        document.getElementById('contents').innerHTML = word || '你永远胜过别人！';
+
+        renderLxHeart(document.getElementById('heart'), '#ec9bad');
+        fillText(document.getElementById('pinkboard'), texts)
+    </script>
+</body>
+
+</html>
