@@ -1,0 +1,3272 @@
+/*
+ * mayiui.com
+ * niandeng
+ * v1.6
+ * 本软件遵守开源协议:MIT
+ * 使用本软件请保留本说明
+ */
+;!(function(root, factory) {
+    if (typeof module === 'object' && typeof module.exports === 'object') {
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        define(factory())
+    } else if (typeof define === 'function' && define.cmd) {
+        define(function(require, exports, module) {
+            module.exports = factory()
+        })
+    } else {
+        root.mayiui = factory();
+    }
+}(this, function() {
+	var path=getPath();
+	var ICO = { //保存svg图标
+		x: '<svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="m13.684806,2.315194a0.728062,0.728062 0 0 1 0,1.030936l-10.192874,10.192874a0.728062,0.728062 0 0 1 -1.030936,-1.030936l10.192874,-10.192874a0.728062,0.728062 0 0 1 1.030936,0z"/><path fill-rule="evenodd" d="m2.386848,2.386848a0.723505,0.723505 0 0 0 0,1.024483l10.129068,10.129068a0.723505,0.723505 0 0 0 1.024483,-1.024483l-10.129068,-10.129068a0.723505,0.723505 0 0 0 -1.024483,0z"/></svg>',
+		check:'<svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>',
+		exclamation: '<svg class="bi bi-exclamation" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path stroke="null" id="svg_1" d="m6.044586,13.895449a1.936601,1.936601 0 1 1 3.873201,0a1.936601,1.936601 0 0 1 -3.873201,0zm0.189787,-11.629286a1.752623,1.752623 0 1 1 3.485881,0l-0.67781,6.791658a1.069004,1.069004 0 0 1 -2.130261,0l-0.67781,-6.791658z"/></svg>',
+		question: '<svg class="bi bi-question" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path stroke="null" id="svg_1" d="m3.208927,4.652467l2.294327,0c0,-1.357477 0.796062,-2.405567 2.363852,-2.405567c1.190617,0 2.28216,0.596177 2.28216,2.030132c0,1.10371 -0.650059,1.611243 -1.677292,2.382971c-1.169759,0.849944 -2.096181,1.842414 -2.030132,3.453657l0.012167,0.804753l2.271731,0l0,-0.617035c0,-1.247975 0.474509,-1.611243 1.755508,-2.582856c1.058519,-0.804753 2.162229,-1.69815 2.162229,-3.573588c0,-2.626309 -2.217849,-3.895142 -4.646012,-3.895142c-2.304756,0 -4.842421,1.124568 -4.7868,4.402674l-0.001738,0zm2.716692,9.587506c0,0.926421 0.738704,1.611243 1.755508,1.611243c1.058519,0 1.786794,-0.684822 1.786794,-1.611243c0,-0.959446 -0.730013,-1.633839 -1.788532,-1.633839c-1.015066,0 -1.75377,0.674393 -1.75377,1.633839z"/></svg>',
+		emojismile: '<svg class="bi bi-emoji-smile" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z"/><path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/></svg>',
+		emojifrown: '<svg class="bi bi-emoji-frown" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path fill-rule="evenodd" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z"/><path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/></svg>',
+		maximize: '<svg class="bi bi-box-arrow-up-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h8a1.5 1.5 0 0 0 1.5-1.5V9a.5.5 0 0 0-1 0v4a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 5v8zm7-11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.5H9a.5.5 0 0 1-.5-.5z"/><path fill-rule="evenodd" d="M14.354 1.646a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708-.708l8-8a.5.5 0 0 1 .708 0z"/></svg>',
+		minimize: '<svg class="bi bi-dash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.5 8a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.5-.5z"/></svg>',
+		reduction: '<svg class="bi bi-box-arrow-in-down-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/><path fill-rule="evenodd" d="M11.5 10a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5V5a.5.5 0 0 1 1 0v4.5H11a.5.5 0 0 1 .5.5z"/><path fill-rule="evenodd" d="M5.646 10.354a.5.5 0 0 1 0-.708l8-8a.5.5 0 0 1 .708.708l-8 8a.5.5 0 0 1-.708 0z"/></svg>',
+		loading0: '<svg class="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/></svg>',
+		loading1: '<svg class="bi bi-arrow-loading-icon1" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M249.836 210.77c5.558-3.827 10.73-7.527 15.812-10.695 4.967-3.314 9.807-6.121 14.208-8.785 2.18-1.362 4.374-2.515 6.425-3.673l5.873-3.281c0.945-0.551 1.789-0.953 2.625-1.377l2.425-1.226 4.381-2.233 1.954-1.004 2.219-1.093 3.918-1.924 7.184-3.527c2.883-1.44 5.996-3.272 8.694-5.22 26.969-19.458 33.057-57.094 13.599-84.063-19.458-26.968-57.094-33.057-84.063-13.599l-6.49 4.682-3.54 2.554-2.071 1.499-2.62 1.947-5.824 4.351a7267.87 7267.87 0 0 0-3.193 2.399c-1.091 0.824-2.25 1.676-3.282 2.533a33346.62 33346.62 0 0 1-6.735 5.441c-2.343 1.915-4.833 3.859-7.308 6.046-4.991 4.313-10.423 8.905-15.952 14.121-5.645 5.071-11.353 10.792-17.394 16.739-5.886 6.125-12.079 12.515-18.185 19.505-12.303 13.875-24.827 29.53-36.839 46.835a494.61 494.61 0 0 0-33.896 56.497 491.342 491.342 0 0 0-27.329 64.159c-1.02 2.77-1.888 5.605-2.789 8.428l-2.688 8.477c-1.692 5.691-3.266 11.429-4.857 17.152l-2.135 8.669c-0.683 2.896-1.479 5.756-2.051 8.682l-1.84 8.729-0.914 4.358-0.785 4.387a479.254 479.254 0 0 0-7.583 69.967c-0.302 5.759-0.239 11.514-0.279 17.214l-0.017 4.267c-0.001 1.42 0.069 2.841 0.101 4.257l0.25 8.464 0.127 4.204 0.264 4.188 0.531 8.317 0.278 4.451 0.399 3.933 0.792 7.821c0.14 1.313 0.244 2.561 0.412 3.918l0.527 4.098 1.056 8.115c0.185 1.337 0.33 2.695 0.549 4.002l0.648 3.91 1.289 7.744c1.825 10.246 3.911 20.188 6.263 29.766a463.195 463.195 0 0 0 16.342 52.81l2.255 5.904 1.108 2.899 1.186 2.836 4.611 10.976c3.247 7.033 6.19 13.723 9.353 19.831 6.048 12.328 12.043 22.661 17.007 31.096 5.121 8.359 9.212 14.84 12.197 19.141l4.472 6.638-3.293-7.292c-2.209-4.713-5.148-11.776-8.748-20.761-3.443-9.059-7.545-20.055-11.346-32.919-2.041-6.376-3.771-13.301-5.726-20.516l-2.612-11.204-0.667-2.878-0.583-2.935-1.183-5.957c-3.105-16.055-5.568-33.549-6.889-52.052-0.668-9.251-1.027-18.753-1.1-28.437l0.03-7.3 0.014-3.67c0.002-1.227 0.084-2.416 0.122-3.629l0.284-7.263 0.139-3.644c0.053-1.229 0.166-2.577 0.247-3.863a35704.717 35704.717 0 0 1 0.798-11.787l0.017-0.247c0.013 0.588 0.018 0.028 0.027 0.098l0.05-0.472 0.101-0.945 0.2-1.891 0.8-7.581 0.4-3.801 0.535-3.801 1.069-7.62c0.187-1.271 0.335-2.545 0.555-3.815l0.67-3.811c0.909-5.082 1.708-10.185 2.859-15.253a424.734 424.734 0 0 1 17.057-60.03l1.316-3.663 1.437-3.623 2.859-7.225c0.907-2.417 2.03-4.761 3.033-7.135l3.079-7.082c2.208-4.653 4.37-9.295 6.624-13.867l3.508-6.783c1.167-2.252 2.294-4.513 3.565-6.702a414.503 414.503 0 0 1 31.89-49.502 407.116 407.116 0 0 1 35.476-41.25 406.598 406.598 0 0 1 35.793-32.288c5.751-4.687 11.515-8.857 16.918-12.861zM1023.966 510.486l-0.001-0.005-0.875-7.954-1.051-9.554-0.687-6.125-1.153-8.152c-0.828-5.729-1.741-12.089-2.813-18.907l-4.259-20.887c-0.691-3.726-1.738-7.517-2.729-11.425l-3.102-12.024c-0.558-2.048-1.019-4.142-1.677-6.221l-1.958-6.314-4.07-13.021-1.049-3.333-1.211-3.324c-0.814-2.223-1.638-4.467-2.469-6.732-1.673-4.522-3.34-9.131-5.115-13.781l-5.938-13.981-3.046-7.123c-1.037-2.384-2.247-4.72-3.375-7.102l-6.997-14.388c-0.569-1.22-1.222-2.408-1.877-3.598l-1.958-3.583-3.95-7.211-3.995-7.265c-1.354-2.422-2.881-4.773-4.324-7.175l-8.875-14.427c-12.567-18.998-26.533-37.793-42.018-55.643-15.662-17.71-32.638-34.534-50.581-50.045a527.617 527.617 0 0 0-56.726-41.602c-19.622-12.201-39.702-22.647-59.484-31.64l-14.925-6.188c-2.47-0.995-4.881-2.072-7.356-2.979l-7.402-2.651-7.306-2.609-3.615-1.289c-1.198-0.434-2.394-0.863-3.618-1.21l-14.37-4.353c-2.366-0.691-4.68-1.466-7.035-2.069l-7.02-1.754-13.669-3.402c-4.524-0.941-8.985-1.788-13.341-2.655l-6.47-1.271-3.184-0.621-3.186-0.465-12.373-1.797-5.96-0.862c-1.957-0.298-3.928-0.403-5.85-0.61l-11.239-1.057c-3.638-0.329-7.151-0.735-10.598-0.81l-19.18-0.823-16.258 0.11-6.935 0.057c-2.177 0.091-4.219 0.237-6.115 0.34l-9.619 0.566-7.982 0.472 7.959 0.875 9.529 1.05c1.872 0.215 3.884 0.411 6.023 0.683l6.797 1.101 15.801 2.578 18.393 3.951c3.283 0.628 6.614 1.603 10.051 2.514l10.571 2.838c1.801 0.509 3.644 0.92 5.469 1.526l5.542 1.793 11.432 3.697 2.927 0.946 2.914 1.104 5.902 2.242c3.965 1.517 8.007 3.017 12.084 4.613l12.243 5.366 6.241 2.733c2.088 0.929 4.128 2.029 6.212 3.044l12.59 6.277c1.068 0.506 2.106 1.094 3.145 1.685l3.131 1.761 6.302 3.542 6.353 3.568c2.118 1.209 4.165 2.586 6.263 3.878l12.601 7.922c16.565 11.247 32.949 23.681 48.48 37.44a473.639 473.639 0 0 1 43.435 44.87 467.917 467.917 0 0 1 35.892 50.115c10.476 17.304 19.389 34.971 27.062 52.322 1.761 4.404 3.506 8.772 5.234 13.098 0.843 2.166 1.771 4.273 2.532 6.444l2.224 6.49 2.201 6.396 1.093 3.162c0.368 1.047 0.734 2.092 1.019 3.166l3.633 12.572c0.578 2.068 1.242 4.086 1.738 6.146l1.441 6.137 2.829 11.931 2.152 11.645 1.045 5.64 0.514 2.772 0.362 2.779 1.423 10.784 0.697 5.188c0.245 1.704 0.3 3.423 0.458 5.098l0.794 9.786c0.249 3.167 0.584 6.22 0.595 9.223l0.516 16.686-0.346 13.152-0.109 5.579-0.343 6.014-0.567 9.595-0.472 7.988c-0.169 3.219-0.107 6.829 0.256 10.138 3.638 33.056 33.383 56.904 66.438 53.267 33.056-3.637 56.905-33.382 53.268-66.438zM885.176 762.451l-4.868 5.897c-1.711 2.052-3.44 4.238-5.4 6.399-3.858 4.365-7.946 9.128-12.608 13.957-4.517 4.944-9.632 9.919-14.922 15.205-5.467 5.131-11.147 10.547-17.374 15.864-12.349 10.726-26.262 21.624-41.613 32.046a434.435 434.435 0 0 1-50.026 29.303 431.157 431.157 0 0 1-56.59 23.39c-2.436 0.874-4.935 1.6-7.419 2.361l-7.455 2.279c-5.006 1.425-10.053 2.742-15.078 4.091-2.536 0.593-5.075 1.187-7.617 1.78-2.545 0.566-5.051 1.25-7.622 1.714l-7.663 1.523-3.822 0.763-3.851 0.64a419.278 419.278 0 0 1-61.304 5.938c-5.039 0.219-10.081 0.088-15.068 0.072l-3.733-0.022c-1.238-0.012-2.392-0.1-3.587-0.145l-7.067-0.313-3.505-0.146-3.997-0.27-7.961-0.537-1.981-0.133-0.989-0.067-0.494-0.033c0.221-0.008-0.844-0.005 0.433-0.022l-0.226-0.025-3.593-0.396-7.127-0.78a406.62 406.62 0 0 1-53.494-10.013 402.48 402.48 0 0 1-45.808-14.792l-5.111-2.022-2.511-0.99-2.452-1.066-9.494-4.124c-6.074-2.917-11.861-5.522-17.131-8.352-10.648-5.379-19.552-10.718-26.826-15.11l-1.338-0.807a1085.391 1085.391 0 0 0-3.457-2.276l-4.116-2.687c-0.638-0.414-1.252-0.813-1.842-1.194l-2.021-1.354-3.621-2.439-6.637-4.472c-2.685-1.782-5.825-3.567-8.857-4.938-30.307-13.689-65.973-0.218-79.662 30.089-13.689 30.308-0.218 65.974 30.089 79.663l7.293 3.294 3.979 1.797 2.369 1.063 2.994 1.302c2.073 0.896 4.3 1.857 6.676 2.885l3.672 1.574 1.917 0.819 1.9 0.745c10.22 4.014 22.646 8.772 37.189 13.242 7.215 2.375 15.042 4.443 23.216 6.727l12.687 3.1 3.261 0.787 3.325 0.701 6.75 1.415c18.195 3.715 38.044 6.719 59.054 8.439a494.284 494.284 0 0 0 65.863 0.997l8.535-0.519 4.285-0.266 0.268-0.017c1.44-0.02 0.541-0.02 0.927-0.03l0.492-0.051 0.986-0.1 1.977-0.201 7.938-0.807 3.991-0.406 4.502-0.554 9.015-1.133c1.492-0.2 3.034-0.365 4.486-0.598l4.344-0.709c5.795-0.965 11.61-1.832 17.399-3.066a485.178 485.178 0 0 0 68.692-18.701l4.2-1.463 4.157-1.588 8.292-3.176c2.771-1.016 5.468-2.251 8.194-3.37l8.134-3.434c5.351-2.451 10.685-4.869 15.941-7.39l7.805-3.918c2.591-1.307 5.188-2.576 7.712-3.991a474.344 474.344 0 0 0 57.071-35.83 467.174 467.174 0 0 0 47.72-40.068 466.596 466.596 0 0 0 37.51-40.586c5.455-6.542 10.335-13.082 14.998-19.24 4.483-6.313 8.789-12.218 12.512-18 3.868-5.667 7.179-11.177 10.297-16.204 1.589-2.492 2.957-4.989 4.318-7.332 1.349-2.348 2.635-4.586 3.854-6.711 4.686-8.611 8.271-15.384 10.509-20.116l3.527-7.185-4.682 6.489c-2.985 4.266-7.65 10.33-13.635 17.935z" p-id="3230"></path></svg>',
+		loading2: '<svg class="bi bi-arrow-loading-icon2" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M923.851581 338.007247c-20.012799-47.313585-47.717791-90.324168-82.448804-128.128169 6.875594-13.544481 10.753925-28.866445 10.753925-45.096081 0-55.099922-44.667316-99.767238-99.767238-99.767238-29.051663 0-55.19816 12.420891-73.431429 32.237215-53.058426-21.390169-109.183701-32.237215-166.958546-32.237215-60.334133 0-118.873388 11.821233-173.98866 35.134195-53.232388 22.51376-101.031021 54.741765-142.073786 95.78453-41.045835 41.043788-73.272817 88.844467-95.785553 142.073786C76.837504 393.126612 65.014224 451.665867 65.014224 512.001023c0 60.33311 11.82328 118.873388 35.134195 173.989683 22.51376 53.230342 54.741765 101.029998 95.785553 142.073786 41.041742 41.043788 88.841398 73.27077 142.073786 95.785553 55.116295 23.311939 113.65555 35.134195 173.989683 35.134195s118.873388-11.822257 173.992753-35.134195c53.229319-22.514783 101.029998-54.742788 142.072763-95.785553 41.045835-41.043788 73.272817-88.843444 95.785553-142.073786 23.309892-55.116295 35.134195-113.656573 35.134195-173.989683C958.985776 451.665867 947.161473 393.127635 923.851581 338.007247zM887.891578 670.783353c-20.545942 48.575322-49.960879 92.203982-87.430258 129.676431-37.473473 37.470403-81.100086 66.88841-129.679501 87.432305-50.28015 21.263279-103.702873 32.047904-158.783353 32.047904-55.07741 0-108.500133-10.782577-158.785399-32.047904-48.575322-20.545942-92.203982-49.961902-129.676431-87.432305-37.47245-37.47245-66.88841-81.101109-87.430258-129.676431-21.267373-50.28015-32.050973-103.703897-32.050973-158.784376s10.783601-108.503203 32.050973-158.783353c20.541849-48.575322 49.958832-92.206028 87.430258-129.676431 37.47245-37.470403 81.101109-66.887386 129.676431-87.433328 50.285267-21.266349 103.70799-32.04995 158.785399-32.04995 50.600445 0 99.797937 9.107425 146.447397 27.074635-3.767813 10.514471-5.824659 21.842471-5.824659 33.653471 0 55.099922 44.667316 99.767238 99.767238 99.767238 24.573675 0 47.065945-8.889461 64.452941-23.620977 29.737278 33.372062 53.603849 71.037916 71.050196 112.285343 21.266349 50.28015 32.04995 103.702873 32.04995 158.783353S909.15895 620.503203 887.891578 670.783353z" p-id="2389"></path></svg>',
+		loading3: '<svg class="bi bi-arrow-loading-icon3" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M955.733333 765.866667c0 0 0 2.133333 0 2.133333-12.8 21.333333-38.4 27.733333-57.6 14.933333-19.2-10.666667-27.733333-36.266667-17.066667-57.6l0 0c36.266667-64 57.6-136.533333 57.6-213.333333s-21.333333-151.466667-57.6-213.333333l0 0c-10.666667-19.2-4.266667-44.8 17.066667-57.6 21.333333-12.8 46.933333-4.266667 57.6 14.933333 0 0 0 2.133333 0 2.133333 42.666667 74.666667 68.266667 162.133333 68.266667 253.866667S998.4 691.2 955.733333 765.866667zM768 955.733333C768 955.733333 765.866667 955.733333 768 955.733333c-76.8 42.666667-164.266667 68.266667-256 68.266667s-179.2-25.6-253.866667-68.266667c0 0-2.133333 0-2.133333 0-21.333333-12.8-27.733333-38.4-14.933333-57.6 12.8-21.333333 38.4-27.733333 57.6-14.933333 0 0 0 0 2.133333 0l0 0C362.666667 917.333333 435.2 938.666667 512 938.666667s149.333333-21.333333 211.2-57.6l0 0c0 0 0 0 2.133333 0 21.333333-12.8 46.933333-4.266667 57.6 14.933333C795.733333 917.333333 789.333333 942.933333 768 955.733333zM727.466667 142.933333 727.466667 142.933333C663.466667 106.666667 590.933333 85.333333 512 85.333333s-151.466667 21.333333-213.333333 57.6l0 0c-19.2 10.666667-44.8 4.266667-57.6-17.066667C228.266667 106.666667 234.666667 81.066667 256 68.266667c0 0 2.133333 0 2.133333 0C332.8 25.6 420.266667 0 512 0s179.2 25.6 253.866667 68.266667c0 0 2.133333 0 2.133333 0 21.333333 12.8 27.733333 38.4 14.933333 57.6C772.266667 147.2 746.666667 153.6 727.466667 142.933333zM125.866667 782.933333C106.666667 795.733333 81.066667 789.333333 68.266667 768c0 0 0-2.133333 0-2.133333C25.6 691.2 0 603.733333 0 512s25.6-179.2 68.266667-253.866667c0 0 0-2.133333 0-2.133333 12.8-21.333333 38.4-27.733333 57.6-14.933333 21.333333 12.8 27.733333 38.4 14.933333 57.6 0 0 0 0 0 2.133333l0 0C106.666667 362.666667 85.333333 435.2 85.333333 512s21.333333 149.333333 57.6 211.2l0 0c0 0 0 0 0 2.133333C153.6 746.666667 147.2 772.266667 125.866667 782.933333z" p-id="2395"></path></svg>'
+	};
+	var A = {};
+	/*
+		初始化函数
+	*/
+	var mayiui={
+		name:'mayiui',
+		version:1.5,
+		loadCSS:function() {
+			if (!$('head')) {
+				document.appendChild(document.createElement('head'));
+			}
+			var nHead = document.getElementsByTagName('HEAD').item(0);
+			var linkCss = document.createElement('link');
+			linkCss.rel = 'stylesheet';
+			linkCss.href = path + 'mayiui.css';
+			nHead.appendChild(linkCss);
+		},
+		/*
+			基础运行函数，所有的操作最终都会调用该函数运行
+		*/
+		open:function(obj) {
+			A = {
+				type: 0,
+				style: 'default',
+				ico: '',
+				icoColor: '',
+				el: null,//tip对象
+				title: '消息',//用于弹出询问框的标题还有框架的标题
+				content: '',
+				button: null,//按钮
+				maximize: true,//最大化
+				minimize: true,//最小化
+				closeButton: true,//是否包含关闭铵钮
+				mask: null,
+				maskClickClose: false,
+				maskBg:'',//遮罩层背景
+				drag: true,//是否可拖动
+				from: null,
+				position: 0,
+				disappear: null,
+				triangle: 8,
+				deviation: 0,//距离偏移量
+				size: null,
+				mobile: false,//是否使用移动端布局
+				overflow: null,
+				scrolling: 'auto',
+				animate: 0,
+				animateTime: 300,
+				animateMs: 10,//缓动时针，毫秒
+				animateStep: 0.15,//缓动步长
+				pi:0,//程序智能化
+				time: 0,//-1不使用定时，0=自动
+				logo:'',//使用logo
+				zIndex: 0
+			};
+			if (varType(obj) == 'object') {
+				A = mergeObject(A, obj);
+				if (A['type'] != 6 && !A['content']) {
+					return;
+				}
+				if (A['type'] < 3 && A['type'] > 0) {
+					A['title'] = '';
+					A = mergeObject(A, obj);
+				}
+				if (varType(A['animate']) != 'number') {
+					A['animate'] = 0;
+				}
+				A['animate'] = limitNum(A['animate'], 0, 4);
+				A['from'] = limitNum(A['from'], 0, 12);
+				A['position'] = limitNum(A['position'], 0, 12);
+				A['disappear'] = limitNum(A['disappear'], 0, 12);
+				switch (A['type']) {
+				case 0:
+					return disAlert();
+					break;
+				case 1:
+					return disElement();
+					break;
+				case 2:
+					return disIframe();
+					break;
+				case 3:
+					return disMsg();
+					break;
+				case 4:
+					return disTip();
+					break;
+				case 5:
+					return disMark();
+					break;
+				case 6:
+					return disLoading();
+					break;
+				}
+			}
+		},
+		/*
+			构建简单应用
+		*/
+		alert:function(content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 0;
+			if (isUndefined(newObject['animate'])) {
+				newObject['animate'] = 2;
+			}
+			return this.open(newObject);
+		},
+		mobileAlert:function(content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 0;
+			newObject['title'] = false;
+			newObject['closeButton'] = false;
+			newObject['mobile'] = true;
+			if (isUndefined(newObject['animate'])) {
+				newObject['animate'] = 2;
+			}
+			if (isUndefined(newObject['size'])) {
+				newObject['size'] = ['100%'];
+			}
+			if (isUndefined(newObject['deviation'])) {
+				newObject['deviation'] = 0;
+			}
+			return this.open(newObject);
+		},
+		level:function(content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 1;
+			if (isUndefined(newObject['size'])) {
+				newObject['size'] = ['90%', '90%'];
+			}
+			if (isUndefined(newObject['animate'])) {
+				newObject['animate'] = 2;
+			}
+			if (isUndefined(newObject['drag'])) {
+				newObject['drag'] = false;
+			}
+			return this.open(newObject);
+		},
+		iframe:function(content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 2;
+			if (isUndefined(newObject['size'])) {
+				newObject['size'] = ['90%', '90%'];
+			}
+			return this.open(newObject);
+		},
+		msg:function(content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 3;
+			if (isUndefined(newObject['animate'])) {
+				newObject['animate'] = 2;
+			}
+			if (isUndefined(newObject['closeButton'])) {
+				newObject['closeButton'] = false;
+			}
+			this.close('msg');
+			return this.open(newObject);
+		},
+		tip:function(el, content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 4;
+			newObject['el'] = el;
+			if (isUndefined(newObject['animate'])) {
+				newObject['animate'] = 2;
+			}
+			if (isUndefined(newObject['deviation'])) {
+				newObject['deviation'] = 3;
+			}
+			this.close('tip');
+			return this.open(newObject);
+		},
+		mark:function(el, content, obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['content'] = content;
+			newObject['type'] = 5;
+			newObject['el'] = el;
+			if (isUndefined(newObject['animate'])) {
+				newObject['animate'] = 2;
+			}
+			if (isUndefined(newObject['deviation'])) {
+				newObject['deviation'] = 10;
+			}
+			return this.open(newObject);
+		},
+		loading:function(obj) {
+			var newObject = {};
+			if (obj) {
+				newObject = obj;
+			}
+			newObject['type'] = 6;
+			if (isUndefined(newObject['mask'])) {
+				newObject['mask'] = true;
+			}
+			if (isUndefined(newObject['maskBg'])) {
+				newObject['maskBg'] = 'rgba(0, 0, 0, .6)';
+			}
+			if (isUndefined(newObject['animateTime'])) {
+				newObject['animateTime'] = 1000;
+			}
+			return this.open(newObject);
+		},
+		/*
+			关闭
+		*/
+		close:function(obj) {
+			if (isUndefined(obj)) {
+				obj = 'all';
+			}
+			if (varType(obj) == 'object') {
+				removeChild(obj);
+			}
+			if (varType(obj) == 'string') {
+				var arr = checkElement(obj);
+				if (arr) {
+					for (var i = 0; i < arr.length; i++) {
+						var ele = arr[i];
+						if (!isUndefined(ele.A)) {
+							ele.remove();
+						} else {
+							removeChild(ele);
+						}
+					}
+				}
+			}
+		},
+		/*
+			判断页面加载完成
+		*/
+		ready :function(fn) {
+			var isReady = false;
+			var timer = null;
+			var doReady = function() {
+					if (timer) clearInterval(timer);
+					if (isReady) return;
+					isReady = true;
+					if(varType(fn)=='function'){
+						fn();
+					}
+				};
+			var bodyLoad = function() {
+					timer = setInterval(function() {
+						try {
+							if (!isUndefined(document.readyState) && document.readyState == 'complete') {
+								doReady();
+							}
+						} catch (event) {};
+					}, 10);
+				};
+			var w3c = function() {
+					if(varType(fn)=='function'){
+						fn();
+					}
+					window.removeEventListener('load', w3c)
+				};
+			try {
+				if (window.addEventListener) {
+					try {
+						window.addEventListener('load', w3c);
+					} catch (event) {
+						bodyLoad();
+					}
+				} else if (window.onload) {
+					try {
+						window.onload = fn;
+					} catch (event) {
+						bodyLoad();
+					}
+				} else {
+					bodyLoad();
+				}
+			} catch (event) {
+				bodyLoad();
+			}
+	
+		}
+	};
+		
+	/*
+		限制位置数字
+	*/
+	function limitNum(num, min, max) {
+		if (varType(num) == 'number') {
+			if (num > max) {
+				num = max;
+			}
+			if (num < min) {
+				num = min;
+			}
+		}
+		return num;
+	}
+	/*
+		显示询问层
+	*/
+	function disAlert() {
+		var i;
+		var ele = createlDiv(); //总体
+		A['from'] = limitNum(A['from'], 0, 8);
+		A['position'] = limitNum(A['position'], 0, 8);
+		A['disappear'] = limitNum(A['disappear'], 0, 8);
+		ele.A = A;
+		var cssName = '';
+		var closeFun = function() {
+				mayiui.close(ele);
+			};
+		var btn = [{
+			val: '确定',
+			style: A['style'] == 'default' ? 'blue' : 'white',
+			fun: closeFun
+		}
+
+		];
+		if (isUndefined(A['mask']) || A['mask']) {
+			disMask(ele, A['maskClickClose']); //显示遮罩层
+		}
+		if (A['button'] && varType(A['button']) == 'array') {
+			var arr = A['button'];
+			btn = [];
+			for (i = 0; i < arr.length; i++) {
+				var obj = {};
+				if (varType(arr[i]) == 'string') {
+					obj = {
+						val: arr[i],
+						fun: closeFun
+					};
+					if (i == 0) {
+						obj['style'] = 'blue';
+					} else {
+						obj['style'] = 'darkgrey';
+					}
+				} else {
+					if (!isUndefined(arr[i]['val'])) {
+						obj['val'] = arr[i]['val'];
+						if (!isUndefined(arr[i]['style'])) {
+							obj['style'] = arr[i]['style'];
+						} else {
+							if (i == 0) {
+								obj['style'] = A['style'] == 'default' ? 'blue' : 'white';
+							} else {
+								obj['style'] = 'darkgrey';
+							}
+
+						}
+						if (!isUndefined(arr[i]['fun'])) {
+							obj['fun'] = arr[i]['fun'];
+						} else {
+							obj['fun'] = closeFun;
+						}
+					}
+				}
+				if (!isUndefined(obj['val'])) {
+					btn.push(obj);
+				}
+			}
+		}
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					cssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					cssName += ' mayiui-alert mayiui-bg-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object') {
+				ele.css(A['style']);
+			}
+		}
+		if (A['animate'] && A['animate'] > 1) {
+			cssName += getAnimateClass(A);
+		}
+		ele.className = 'mayiui mayiui-alert-dis' + cssName;
+		$('body').appendChild(ele);
+
+		var title = A['title'];
+		var content = A['content'];
+		if (title || A['closeButton']) {
+			var topEle = createlDiv('mayiui-alert-top');
+			ele.appendChild(topEle);
+			if (title) {
+				var titleEle = createlDiv('mayiui-alert-title');
+				titleEle.innerHTML = title;
+				topEle.appendChild(titleEle);
+			}
+			if (A['closeButton']) {
+				var closeEle = createlDiv('mayiui-alert-close');
+				closeEle.innerHTML = ICO['x'];
+				topEle.appendChild(closeEle);
+				closeEle.addListener('click', closeFun);
+			}
+		}
+		var ico = A['ico'];
+		var contentHtml = content;
+		if (ico && ICO[ico]) {
+			ico = ICO[ico];
+		}
+		if (ico) {
+			var icoStyle = '';
+			if (A['icoColor']) {
+				icoStyle = ' style="color:' + A['icoColor'] + '"';
+			}
+			contentHtml = '<div class="mayiui-alert-ico"' + icoStyle + '>' + ico + '</div>' + content;
+		}
+		var contentEle = createlDiv('mayiui-alert-content');
+		contentEle.innerHTML = contentHtml;
+		ele.appendChild(contentEle);
+		var btnArr = [];
+		if (btn.length > 0) {
+			var buttonEle = createlDiv('mayiui-alert-button');
+			ele.appendChild(buttonEle);
+			for (i = btn.length - 1; i > -1; i--) {
+				var btnDiv = createlDiv();
+				var btnTemp = null;
+				if (!A['mobile']) {
+					btnTemp = createlButton(btn[i]['val'], 'mayiui-btn mayiui-btn-', btn[i]['style'], btn[i]['fun']);
+					btnDiv.className = 'mayiui-float-right mayiui-padding-right-10';
+				} else {
+					btnTemp = createlButton(btn[i]['val'], 'mayiui-btn mayiui-btn-lg mayiui-btn-block mayiui-btn-noradius mayiui-btn-', btn[i]['style'], btn[i]['fun']);
+					btnDiv.className = 'mayiui-float-right';
+				}
+				btnDiv.appendChild(btnTemp);
+				buttonEle.appendChild(btnDiv);
+				btnArr.push(btnDiv);
+			}
+		}
+		var elB = getBodySize();
+		var eleW = contentEle.getWidth(),
+			minHeight = 100;
+		var topW = 0;
+		if (titleEle) {
+			topW = titleEle.getWidth();
+		}
+		if (closeEle) {
+			topW += closeEle.getWidth();
+		}
+		if (eleW < topW) {
+			eleW = topW;
+		}
+		if (eleW < 360) {
+			eleW = 360;
+		}
+		if (elB['width'] < 360) {
+			eleW = elB['width'];
+		}
+		if (btn.length > 0) {
+			if (eleW < buttonEle.getWidth() + 50) {
+				eleW = buttonEle.getWidth() + 50;
+			}
+		}
+		if (minHeight > elB['height']) {
+			minHeight = elB['height'];
+		}
+		var zIndex = A['zIndex'];
+		if (!zIndex) {
+			zIndex = getMaxZIndex() + 99;
+		};
+		ele.css({
+			'z-index': zIndex,
+			'width': eleW + 'px'
+		});
+		buttonEle.css('width', '100%');
+		if (A['size'] && varType(A['size']) == 'array') {
+			arr = formatSize(A['size']);
+			if (arr.length > 0) {
+				ele.css('width', arr[0]);
+			}
+			if (arr.length > 1) {
+				ele.css('height', arr[1]);
+			}
+		}
+		contentEle.css({
+			'min-height': minHeight + 'px'
+		});
+		eleW = contentEle.getWidth();
+		var reg = /<[^>]+>/g;
+		if (eleW < ele.getWidth() - 10 && !reg.test(content)) {
+			contentEle.css({
+				'width': '100%',
+				'float': 'left',
+				'text-align': 'center',
+				'line-height': ico != '' ? '' : minHeight + 'px',
+				'padding-left': '0px',
+				'padding-right': '0px'
+			});
+		}
+		//兼容移动端
+		if (A['mobile']) {
+			for (i = 0; i < btnArr.length; i++) {
+				btnArr[i].css({
+					'width': parseInt(100 / btnArr.length) + '%'
+				});
+			}
+			if (btn.length > 0) {
+				buttonEle.css('padding', '0px')
+			}
+		}
+		//兼容移动端结束
+		eleShowAnimate(ele);
+		setTimeOutClose(ele);
+		return ele;
+	}
+	/*
+		弹出框架内容
+	*/
+	function disIframe() {
+		var ele = createlDiv('mayiui mayiui-iframe'); //总体
+		ele.A = A;
+		var cssName = '';
+		var closeFun = function() {
+			mayiui.close(ele);
+		};
+		var arr = [];
+		if (!isUndefined(A['mask']) || A['mask']) {
+			disMask(ele, A['maskClickClose']); //显示遮罩层
+		}
+		var content = A['content'];
+		$('body').appendChild(ele);
+
+		var title = A['title'];
+		var conHeight = 0;
+		var box = createlDiv('mayiui-iframe-box');
+		ele.appendChild(box);
+		if (title || A['closeButton'] || A['minimize'] || A['maximize']) {
+			var topEle = createlDiv('');
+			topEle.className = 'mayiui-iframe-top';
+			box.appendChild(topEle);
+			ele.topEle = topEle;
+			if (title) {
+				var titleEle = createlDiv('mayiui-iframe-title');
+				if (title != 'auto') {
+					titleEle.innerHTML = title;
+				}
+				topEle.appendChild(titleEle);
+				ele.titleEle = titleEle;
+			}
+			//maximize:true,//最大化
+			if (A['closeButton']) {
+				var closeEle = createlDiv('mayiui-iframe-close');
+				closeEle.innerHTML = ICO['x'];
+				topEle.appendChild(closeEle);
+				ele.closeEle = closeEle;
+				closeEle.addListener('click', function() {
+					mayiui.close(ele);
+				});
+			}
+			if (A['maximize']) {
+				var maxZEle = createlDiv('mayiui-iframe-maximizebutton');
+				maxZEle.innerHTML = ICO['maximize'];
+				topEle.appendChild(maxZEle);
+				ele.maxZEle = maxZEle;
+				maxZEle.addListener('click', function() {
+					ele.maximize();
+				});
+				var redTEle = createlDiv('mayiui-iframe-reductionbutton');
+				redTEle.innerHTML = ICO['reduction'];
+				topEle.appendChild(redTEle);
+				ele.redTEle = redTEle;
+				redTEle.css('display', 'none');
+				redTEle.addListener('click', function() {
+					ele.resetAttribute();
+				});
+			}
+			if (A['minimize']) {
+				var minZEle = createlDiv('mayiui-iframe-minimizebutton');
+				minZEle.innerHTML = ICO['minimize'];
+				topEle.appendChild(minZEle);
+				ele.minZEle = minZEle;
+				minZEle.addListener('click', function() {
+					ele.minimize();
+				});
+			}
+		}
+
+		var contentEle = createlDiv('mayiui-iframe-content');
+		box.appendChild(contentEle);
+		ele.contentEle = contentEle;
+		ele.content = contentEle;
+		if (A['drag'] && !isUndefined(ele.topEle)) {
+			ele.topEle.css('cursor', 'move');
+			ele.topEle.drag(ele);
+		}
+		var iframeStyle = {};
+		if (!isUndefined(A['overflow'])) {
+			arr = A['overflow'];
+			if (arr.length > 0) {
+				iframeStyle['overflow-x'] = arr[0];
+			}
+			if (arr.length > 1) {
+				iframeStyle['overflow-y'] = arr[1];
+			}
+		}
+		var iframe = createlIframe('mayiui-iframe-iframe', {
+			width: '100%',
+			height: '100%'
+		}, {
+			scrolling: A['scrolling']
+		}, iframeStyle);
+		iframe.src = content;
+		ele.iframe = iframe;
+		contentEle.appendChild(iframe);
+		iframe.addListener('load', function() {
+			if (!isUndefined(A['loadedHandler'])) {
+				A['loadedHandler']();
+			}
+			var iframeTitle = '';
+			if (title == 'auto') {
+				try {
+					if (!isUndefined(iframe.contentWindow.document.title)) {
+						iframeTitle = iframe.contentWindow.document.title;
+					}
+				} catch (event) {
+					console.log(event)
+				}
+				ele.titleEle.innerHTML = iframeTitle;
+			}
+		});
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					cssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					cssName += ' mayiui-iframe mayiui-bg-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object') {
+				ele.css(A['style']);
+			}
+		}
+		if (A['animate'] && A['animate'] > 1) {
+			cssName += getAnimateClass(A);
+		}
+		ele.className = 'mayiui mayiui-iframe-dis' + cssName;
+		if (A['size'] && varType(A['size']) == 'array') {
+			arr = formatSize(A['size']);
+			if (arr.length > 0) {
+				ele.css('width', arr[0]);
+			}
+			if (arr.length > 1) {
+				ele.css('height', arr[1]);
+			}
+		}
+		conHeight = ele.getHeight();
+		if (topEle) {
+			conHeight -= topEle.getHeight();
+		}
+		contentEle.css('height', conHeight + 'px');
+		var zIndex = A['zIndex'];
+		if (!zIndex) {
+			zIndex = getMaxZIndex() + 30;
+		};
+		ele.css({
+			'z-index': zIndex
+		});
+		eleShowAnimate(ele);
+		ele.defaultCss = ele.attr('style');
+		setTimeOutClose(ele);
+		return ele;
+	}
+	/*
+		弹出层内容
+	*/
+	function disElement() {
+		var ele = createlDiv(); //总体
+		ele.A = A;
+		var elC = null;
+		var capture = false; //是否是捕获的元件
+		$('body').appendChild(ele);
+		var content = A['content'];
+		if (!isUndefined(A['mask']) || A['mask']) {
+			disMask(ele, A['maskClickClose']); //显示遮罩层
+		}
+		switch (varType(content)) {
+		case 'object':
+			elC = $(content);
+			capture = true;
+			break;
+		case 'string':
+			if (content.substr(0, 1) == '.' || content.substr(0, 1) == '#') {
+				if ($(content)) {
+					elC = $(content).eq(0);
+					capture = true;
+				}
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+		if (capture && isUndefined(elC)) {
+			return;
+		}
+		if (capture && elC) {
+			if (!isUndefined(elC.upperEle)) {
+				elC.upperEle.A['animate'] = 0;
+				mayiui.close(elC.upperEle);
+			}
+			var elCWidth = elC.getWidth(),
+				elCHeight = elC.getHeight();
+			ele.capture = elC;
+			elC.upperEle = ele;
+			ele.captureParentNode = elC.parentNode;
+			if (!isUndefined(elC.prev())) {
+				ele.prevEle = elC.prev();
+			}
+			if (!isUndefined(elC.next())) {
+				ele.nextEle = elC.next();
+			}
+			ele.appendChild(elC);
+			var oldStyle = elC.attr('style');
+			if (oldStyle && isUndefined(elC.attr('data-oldstyle'))) {
+				elC.attr('data-oldstyle', oldStyle);
+			}
+			elC.css({
+				'margin': '0px',
+				'position': 'relative',
+				'margin': 'auto'
+			});
+			if (A['closeButton']) {
+				var eleCB = createlDiv('mayiui-closebutton');
+				eleCB.innerHTML = ICO['x'];
+				eleCB.addListener('click', function() {
+					mayiui.close(ele);
+				});
+				ele.appendChild(eleCB);
+			}
+
+			ele.css({
+				width: elCWidth + 'px',
+				height: elCHeight + 'px'
+			});
+			A['from'] = limitNum(A['from'], 0, 8);
+			A['position'] = limitNum(A['position'], 0, 8);
+			A['disappear'] = limitNum(A['disappear'], 0, 8);
+			if (A['drag']) {
+				ele.css('cursor', 'move');
+				ele.drag();
+			}
+		} else { //不是捕获的则开始构建
+			var title = A['title'];
+			var box = createlDiv('mayiui-element-box');
+			ele.appendChild(box);
+			if (title || A['closeButton']) {
+				var topEle = createlDiv('mayiui-element-top');
+				box.appendChild(topEle);
+			}
+			if (title) {
+				var titleEle = createlDiv('mayiui-element-title');
+				titleEle.innerHTML = title;
+				topEle.appendChild(titleEle);
+			}
+			if (A['closeButton']) {
+				var closeEle = createlDiv('mayiui-element-close');
+				closeEle.innerHTML = ICO['x'];
+				topEle.appendChild(closeEle);
+				closeEle.addListener('click', function() {
+					mayiui.close(ele);
+				});
+			}
+			var contentEle = createlDiv('mayiui-element-content');
+			contentEle.innerHTML = content;
+			box.appendChild(contentEle);
+			ele.content = contentEle;
+			if (A['drag']) {
+				if (topEle) {
+					topEle.css('cursor', 'move');
+					topEle.drag(ele);
+				} else {
+					ele.css('cursor', 'move');
+					ele.drag();
+				}
+			}
+		}
+		var cssName = '';
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					cssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					cssName += ' mayiui-element mayiui-bg-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object' && !elC) {
+				ele.css(A['style']);
+			}
+		}
+		if (A['animate'] && A['animate'] > 1) {
+			cssName += getAnimateClass(A);
+		}
+		ele.className = 'mayiui mayiui-element-dis' + cssName;
+		if (!elC && A['size'] && varType(A['size']) == 'array') {
+			var arr = formatSize(A['size']);
+			if (arr.length > 0) {
+				ele.css('width', arr[0]);
+			}
+			if (arr.length > 1) {
+				ele.css('height', arr[1]);
+			}
+		}
+		var zIndex = A['zIndex'];
+		if (!zIndex) {
+			zIndex = getMaxZIndex() + 10;
+		};
+		ele.css({
+			'z-index': zIndex
+		});
+		eleShowAnimate(ele);
+		setTimeOutClose(ele);
+		return ele;
+	}
+	/*
+		显示弹出信息
+	*/
+	function disMsg() {
+		var ele = createlDiv(); //总体
+		var cssName = '';
+		var i = 0;
+		var content = '';
+		var btn = [];
+		if(A['pi'] && varType(A['position'])=='number'){//程序智能化，则对偏移量进行自动排版
+			A['piEle']='msg';
+		}
+		else{
+			A['pi']=0;
+		}
+		ele.A = A;
+		if (!isUndefined(A['mask']) && A['mask']) {
+			disMask(ele, A['maskClickClose']); //显示遮罩层
+		}
+		if (A['button'] && varType(A['button']) == 'array') {
+			var arr = A['button'];
+			btn = [];
+			for (i = 0; i < arr.length; i++) {
+				var obj = {};
+				if (varType(arr[i]) == 'string') {
+					obj = {
+						val: arr[i],
+						fun: closeFun
+					};
+					if (i == 0) {
+						obj['style'] = 'blue';
+					} else {
+						obj['style'] = 'darkgrey';
+					}
+				} else {
+					if (!isUndefined(arr[i]['val'])) {
+						obj['val'] = arr[i]['val'];
+						if (!isUndefined(arr[i]['style'])) {
+							obj['style'] = arr[i]['style'];
+						} else {
+							if (parseInt(i) == 0) {
+								obj['style'] = 'blue';
+							} else {
+								obj['style'] = 'darkgrey';
+							}
+
+						}
+						if (!isUndefined(arr[i]['fun'])) {
+							obj['fun'] = arr[i]['fun'];
+						} else {
+							obj['fun'] = closeFun;
+						}
+					}
+				}
+				if (!isUndefined(obj['val'])) {
+					btn.push(obj);
+				}
+			}
+		}
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					cssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					cssName += ' mayiui-msg mayiui-bg-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object') {
+				ele.css(A['style']);
+			}
+		}
+		if (A['animate'] && A['animate'] > 1) {
+			cssName += getAnimateClass(A);
+		}
+		if(A['pi'] && varType(A['position'])=='number'){
+			cssName=' mayiui-msg-pi'+A['pi']+'-'+A['position']+cssName
+		}
+		ele.className = 'mayiui mayiui-msg-dis' + cssName;
+		if (A['ico']) {
+			var ico = A['ico'];
+			var icoDiv = createlDiv('mayiui-msg-ico');
+			if (ICO[ico]) {
+				icoDiv.innerHTML = ICO[ico];
+			} else {
+				icoDiv.innerHTML = A['ico'];
+			}
+			if (A['icoColor']) {
+				icoDiv.css('color', A['icoColor']);
+			}
+			ele.appendChild(icoDiv);
+		}
+		var contentDiv = createlDiv('mayiui-msg-content');
+		contentDiv.innerHTML = A['content'];
+		ele.appendChild(contentDiv);
+		
+		if (A['ico2']) {
+			var ico2 = A['ico2'];
+			var ico2Div = createlDiv('mayiui-msg-ico2');
+			if (ICO[ico2]) {
+				ico2Div.innerHTML = ICO[ico2];
+			} else {
+				ico2Div.innerHTML = A['ico2'];
+			}
+			if (A['ico2Color']) {
+				ico2Div.css('color', A['ico2Color']);
+			}
+			contentDiv.css({'margin-left':'1.5rem'});
+			ele.appendChild(ico2Div);
+		}
+		
+		if(A['closeButton']){
+			var closeDiv = createlDiv('mayiui-msg-close');
+			closeDiv.innerHTML = ICO['x'];
+			ele.appendChild(closeDiv);
+			contentDiv.css({'margin-right':'2rem'});
+			closeDiv.addListener('click',function(){ele.remove()});
+		}
+		if (btn.length > 0) {
+			var buttonEle = createlDiv('mayiui-msg-button');
+			ele.appendChild(buttonEle);
+			for (i = 0; i < btn.length; i++) {
+				var btnTemp = createlButton(btn[i]['val'], 'mayiui-btn mayiui-btn-sm mayiui-margin-left-right-5 mayiui-btn-', btn[i]['style'], btn[i]['fun']);
+				buttonEle.appendChild(btnTemp);
+			}
+		}
+		if (A['time'] === 0) {
+			A['time'] = byteLength(A['content']) * 80;
+		}
+		var zIndex = A['zIndex'];
+		if (!zIndex) {
+			zIndex = getMaxZIndex() + 10;
+		};
+		ele.css({
+			'z-index': zIndex
+		});
+		$('body').appendChild(ele);
+		eleShowAnimate(ele);
+		if (A['position'] == 10 || A['position'] == 12) {
+			ele.css('text-align', 'center');
+		}
+		setTimeOutClose(ele);
+		return ele;
+	};
+	/*
+		Tip功能
+	*/
+	function disTip(obj) {
+		if (!A['el']) {
+			return;
+		}
+		var el = null;
+		switch (varType(A['el'])) {
+		case 'array':
+			el = $(A['el'][0]);
+			break;
+		default:
+			el = $(A['el']);
+			if (varType(el) == 'array') {
+				el = el.eq(0);
+			}
+			break;
+		}
+		if (!el) {
+			return;
+		}
+		var ele = createlDiv(); //总体
+		A['position'] = limitNum(A['position'], 0, 8);
+		A['animate'] = limitNum(A['animate'], 0, 4);
+		if (A['animate'] == 1) {
+			A['animate'] = 0;
+		}
+		ele.A = A;
+		ele.el = el;
+		var cssName = '';
+		var content = A['content'];
+		if (A['animate'] && A['animate'] > 1) {
+			cssName += getAnimateClass(A);
+		}
+		ele.className = 'mayiui mayiui-tip-dis mayiui-tip' + cssName;
+		$('body').appendChild(ele);
+		var contentEle = createlDiv();
+		contentEle.innerHTML = A['content'];
+		var contentCssName = '';
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					contentCssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					contentCssName += ' mayiui-tip-content mayiui-bg-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object') {
+				contentEle.css(A['style']);
+			}
+		}
+		contentEle.className = contentCssName;
+		ele.appendChild(contentEle);
+		ele.content = contentEle;
+		checkTipAttribute(el, ele);
+		ele.resize(function() {
+			checkTipAttribute(el, ele);
+		});
+		if (A['time'] === 0) {
+			A['time'] = byteLength(A['content']) * 150;
+		}
+		setTimeOutClose(ele);
+		return ele;
+	};
+	/*
+		判断tip的位置和样式
+	*/
+	function checkTipAttribute(el, ele) {
+		var at = ele.A;
+		var pt = at['position'];
+		var elOffset = el.offset(); //绑定的节点属性
+		var winE = getWindowSize();
+		var tw = at['triangle'];
+		var twC = tw + 'px solid ';
+		var twB = tw * 0.5 + 'px solid ';
+		var triangle = null;
+		var elLeft = elOffset['left'],
+			elWidth = el.getWidth(),
+			elRight = winE['width'] - elLeft - elWidth;
+		var elTop = elOffset['top'],
+			elHeight = el.getHeight(),
+			elBottom = winE['height'] - elTop - elHeight;
+		var conWidth = ele.content.getWidth() + tw,
+			conHeight = ele.content.getHeight() + tw;
+		if (pt == 0) { //如果是自动，则进行判断
+			pt = 8;
+			if (conWidth < elRight) { //pt=4,5,6
+				if (elTop > conHeight) {
+					pt = 4;
+				} else if (elBottom > conHeight) {
+					pt = 6;
+				} else {
+					pt = 5;
+				}
+			} else if (conWidth < elLeft) { //pt=2,1,8
+				if (elTop > conHeight) {
+					pt = 2;
+				} else if (elBottom > conHeight) {
+					pt = 8;
+				} else {
+					pt = 1;
+				}
+			} else {
+				if (elTop > conHeight) {
+					pt = 3;
+				} else {
+					pt = 7;
+				}
+			}
+		}
+		if (ele.triangle && ele.position != pt) {
+			removeChild(ele.triangle);
+			ele.triangle = null;
+		}
+		ele.position = pt;
+		if (!ele.triangle) {
+			var triangle = createlDiv('mayiui-tip-triangle');;
+			ele.appendChild(triangle);
+			ele.triangle = triangle;
+			if (pt > 4 && pt < 8) {
+				ele.insertBefore(ele.triangle, ele.content);
+			}
+			//定义三角形形状
+			var tg = {};
+			var bC = ele.content.css('background-color');
+			var old = ele.content.attr('class');
+			var xzWidth = 0,
+				xzHeight = 0;
+			ele.content.attr('class', '');
+			ele.content.attr('style', '');
+			ele.attr('style', '');
+			ele.content.attr('class', old);
+			switch (pt) {
+			case 1:
+				//左
+				tg = {
+					'border-top': twC + 'transparent',
+					'border-left': twC + bC,
+					'border-bottom': twC + 'transparent',
+					'margin-top': (ele.content.getHeight() - tw * 2) * 0.5 + 'px'
+				};
+				xzWidth = tw + tw * 0.5;
+				break;
+			case 2:
+				//左上
+				tg = {
+					'border-top': twB + 'transparent',
+					'border-left': twC + bC,
+					'border-bottom': twB + 'transparent',
+					'transform': 'rotate(45deg)',
+					'position': 'relative',
+					'left': -(tw * 0.5) + 'px',
+					'top': (ele.content.getHeight() - tw * 0.5) + 'px'
+				};
+				xzWidth = tw + tw * 0.5;
+				xzHeight = tw * 0.5;
+				break;
+			case 3:
+				//上
+				tg = {
+					'border-left': twC + 'transparent',
+					'border-top': twC + bC,
+					'border-right': twC + 'transparent',
+					'margin-left': ((ele.content.getWidth() - tw * 2) * 0.5) + 'px'
+				};
+				ele.content.css({
+					'float': 'none'
+				});
+				xzHeight = tw;
+				break;
+			case 4:
+				//右上
+				tg = {
+					'border-top': twB + 'transparent',
+					'border-right': twC + bC,
+					'border-bottom': twB + 'transparent',
+					'transform': 'rotate(-45deg)',
+					'position': 'relative',
+					'top': -(tw * 0.5) + 'px'
+				};
+				ele.content.css({
+					'float': 'none',
+					'margin-left': (tw * 0.5) + 'px'
+				});
+				xzWidth = tw + tw * 0.5;
+				xzHeight = tw * 0.5;
+				break;
+			case 5:
+				//右
+				tg = {
+					'border-top': twC + 'transparent',
+					'border-right': twC + bC,
+					'border-bottom': twC + 'transparent',
+					'margin-top': (ele.content.getHeight() - tw * 2) * 0.5 + 'px'
+				};
+				xzWidth = tw + tw * 0.5;
+				break;
+			case 6:
+				//右下
+				tg = {
+					'border-top': twB + 'transparent',
+					'border-right': twC + bC,
+					'border-bottom': twB + 'transparent',
+					'transform': 'rotate(45deg)'
+				};
+				ele.content.css({
+					'position': 'relative',
+					'left': -(tw * 0.5) + 'px',
+					'top': tw * 0.5 + 'px'
+				});
+				xzWidth = tw + tw * 0.5;
+				xzHeight = tw * 0.5;
+				break;
+			case 7:
+				//下
+				tg = {
+					'border-left': twC + 'transparent',
+					'border-bottom': twC + bC,
+					'border-right': twC + 'transparent',
+					'float': 'none',
+					'margin-left': (ele.content.getWidth() - tw * 2) * 0.5 + 'px'
+				};
+				xzHeight = tw;
+				break;
+			case 8:
+				//左下
+				tg = {
+					'border-top': twB + 'transparent',
+					'border-left': twC + bC,
+					'border-bottom': twB + 'transparent',
+					'transform': 'rotate(-45deg)',
+					'margin-left': -(tw * 0.5) + 'px'
+				};
+				ele.content.css({
+					'position': 'relative',
+					'top': tw * 0.5 + 'px'
+				});
+				xzWidth = tw + tw * 0.5;
+				xzHeight = tw * 0.5;
+				break;
+			}
+			ele.triangle.attr('style', '');
+			ele.triangle.css(tg);
+			var position = 'absolute';
+			if (el.fixed()) {
+				position = 'fixed';
+			}
+			var zIndex = getMaxZIndex() + 1;
+			if (ele.css('z-index') && ele.css('z-index') != 'auto') {
+				zIndex = ele.css('z-index');
+			}
+			if (ele.A['zIndex']) {
+				zIndex = ele.A['zIndex'];
+			};
+			ele.css({
+				'position': position,
+				'width': ele.content.getWidth() + xzWidth + 'px',
+				'height': ele.content.getHeight() + xzHeight + 'px',
+				'z-index': zIndex
+			});
+		}
+		var eleOffset = ele.offset();
+		var left = 0,
+			top = 0,
+			deviation = at['deviation'];
+		switch (pt) {
+		case 1:
+			left = elLeft - ele.getWidth() - deviation;
+			top = elTop + (elHeight - ele.getHeight()) * 0.5;
+			break;
+		case 2:
+			left = elLeft - ele.getWidth() - (deviation * 0.5);
+			top = elTop - ele.getHeight() - (deviation * 0.5);
+			break;
+		case 3:
+			left = elLeft + (elWidth - ele.getWidth()) * 0.5;
+			top = elTop - ele.getHeight() - deviation;
+			break;
+		case 4:
+			left = elLeft + elWidth + (deviation * 0.5);
+			top = elTop - ele.getHeight() - (deviation * 0.5);
+			break;
+		case 5:
+			left = elLeft + elWidth + deviation;
+			top = elTop + (elHeight - ele.getHeight()) * 0.5;
+			break;
+		case 6:
+			left = elLeft + elWidth + (deviation * 0.5);
+			top = elTop + elHeight + (deviation * 0.5);
+			break;
+		case 7:
+			left = elLeft + (elWidth - ele.getWidth()) * 0.5;
+			top = elTop + elHeight + deviation;
+			break;
+		case 8:
+			left = elLeft - ele.getWidth() - (deviation * 0.5);
+			top = elTop + elHeight + (deviation * 0.5);
+			break;
+		}
+		ele.css({
+			'left': left + 'px',
+			'top': top + 'px'
+		});
+		if (at['animateTime']) {
+			if (!isUndefined(at['animateHandler'])) {
+				at['animateHandler'](ele, 'show.start');
+				setTimeout(function() {
+					at['animateHandler'](ele, 'show.ended');
+				}, at['animateTime']);
+			}
+			ele.css({
+				'-webkit-animation-duration': at['animateTime'] * 0.001 + 's',
+				'animation-duration': at['animateTime'] * 0.001 + 's'
+			});
+		}
+	};
+	/*
+		角标提示功能
+	*/
+	function disMark(obj) {
+		if (!A['el']) {
+			return;
+		}
+		var el = null;
+		switch (varType(A['el'])) {
+		case 'array':
+			el = $(A['el'][0]);
+			break;
+		default:
+			el = $(A['el']);
+			if (varType(el) == 'array') {
+				el = el.eq(0);
+			}
+			break;
+		}
+		if (!el) {
+			return;
+		}
+		if (isUndefined(A['style']) || A['style'] == 'default') {
+			A['style'] = 'darkgrey';
+		}
+		var ele = createlDiv(); //总体
+		A['position'] = limitNum(A['position'], 0, 8);
+		A['animate'] = limitNum(A['animate'], 0, 4);
+		if (A['animate'] == 1) {
+			A['animate'] = 0;
+		}
+		ele.A = A;
+		ele.el = el;
+		var cssName = '';
+		var content = A['content'];
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					cssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					cssName += ' mayiui-mark mayiui-bg-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object') {
+				ele.css(A['style']);
+			}
+		}
+		if (A['animate'] && A['animate'] > 1) {
+			cssName += getAnimateClass(A);
+		}
+		ele.className = 'mayiui mayiui-mark-dis' + cssName;
+		if (A['size'] && varType(A['size']) == 'array') {
+			arr = formatSize(A['size']);
+			if (arr.length > 0) {
+				ele.css('width', arr[0]);
+			}
+			if (arr.length > 1) {
+				ele.css('height', arr[1]);
+				ele.css('line-height', arr[1]);
+			}
+			if (arr.length > 2) {
+				ele.css('border-radius', arr[2]);
+			}
+		}
+		$('body').appendChild(ele);
+		ele.innerHTML = A['content'];
+		checkMarkAttribute(el, ele);
+		ele.resize(function() {
+			checkMarkAttribute(el, ele);
+		});
+		if (A['time'] === 0) {
+			A['time'] = -1;
+		}
+		setTimeOutClose(ele);
+		return ele;
+	};
+	/*
+		判断mask的位置和样式
+	*/
+	function checkMarkAttribute(el, ele) {
+		var at = ele.A;
+		var pt = at['position'];
+		var elOffset = el.offset(); //绑定的节点属性
+		var winE = getWindowSize();
+		var elLeft = elOffset['left'],
+			elWidth = el.getWidth(),
+			elRight = winE['width'] - elLeft - elWidth;
+		var elTop = elOffset['top'],
+			elHeight = el.getHeight(),
+			elBottom = winE['height'] - elTop - elHeight;
+		if (pt == 0) { //如果是自动，则进行判断
+			pt = 8;
+			if (ele.getWidth() < elRight) { //pt=4,5,6
+				if (elTop > ele.getHeight()) {
+					pt = 4;
+				} else if (elBottom > ele.getHeight()) {
+					pt = 6;
+				} else {
+					pt = 5;
+				}
+			} else if (ele.getWidth() < elLeft) { //pt=2,1,8
+				if (elTop > ele.getHeight()) {
+					pt = 2;
+				} else if (elBottom > ele.getHeight()) {
+					pt = 8;
+				} else {
+					pt = 1;
+				}
+			} else {
+				if (elTop > ele.getHeight()) {
+					pt = 3;
+				} else {
+					pt = 7;
+				}
+			}
+		}
+		var position = 'absolute';
+		if (el.fixed()) {
+			position = 'fixed';
+		}
+		var zIndex = getMaxZIndex() + 1;
+		if (ele.css('z-index') && ele.css('z-index') != 'auto') {
+			zIndex = ele.css('z-index');
+		}
+		var zIndex = ele.A['zIndex'];
+		if (A['zIndex']) {
+			zIndex = ele.A['zIndex'];
+		};
+		ele.css({
+			'position': position,
+			'z-index': zIndex
+		});
+		var eleOffset = ele.offset();
+		var left = 0,
+			top = 0,
+			deviation = at['deviation'];
+		switch (pt) {
+		case 1:
+			left = elLeft - ele.getWidth() + deviation;
+			top = elTop + (elHeight - ele.getHeight()) * 0.5;
+			break;
+		case 2:
+			left = elLeft - ele.getWidth() + deviation;
+			top = elTop - ele.getHeight() + deviation;
+			break;
+		case 3:
+			left = elLeft + (elWidth - ele.getWidth()) * 0.5;
+			top = elTop - ele.getHeight() + deviation;
+			break;
+		case 4:
+			left = elLeft + elWidth - deviation;
+			top = elTop - ele.getHeight() + deviation;
+			break;
+		case 5:
+			left = elLeft + elWidth - deviation;
+			top = elTop + (elHeight - ele.getHeight()) * 0.5;
+			break;
+		case 6:
+			left = elLeft + elWidth - deviation;
+			top = elTop + elHeight - deviation;
+			break;
+		case 7:
+			left = elLeft + (elWidth - ele.getWidth()) * 0.5;
+			top = elTop + elHeight - deviation;
+			break;
+		case 8:
+			left = elLeft - ele.getWidth() + deviation;
+			top = elTop + elHeight - deviation;
+			break;
+		}
+		ele.css({
+			'left': left + 'px',
+			'top': top + 'px'
+		});
+		if (at['animateTime']) {
+			if (!isUndefined(at['animateHandler'])) {
+				at['animateHandler'](ele, 'show.start');
+				setTimeout(function() {
+					at['animateHandler'](ele, 'show.ended');
+				}, at['animateTime']);
+			}
+			ele.css({
+				'-webkit-animation-duration': at['animateTime'] * 0.001 + 's',
+				'animation-duration': at['animateTime'] * 0.001 + 's'
+			});
+		}
+	}
+	/*
+		loading
+	*/
+	function disLoading() {
+		var ele = createlDiv(); //总体
+		ele.A = A;
+		var cssName = '';
+		A['animate'] = limitNum(A['animate'], 0, 4);
+		if (!isUndefined(A['mask']) && A['mask']) {
+			disMask(ele, A['maskClickClose']); //显示遮罩层
+		}
+		if (A['style']) {
+			if (varType(A['style']) == 'string') {
+				if (A['style'].substr(0, 1) == '.') {
+					cssName += ' ' + A['style'].substr(1, A['style'].length);
+				} else {
+					cssName += ' mayiui-loading mayiui-loading-' + A['style'];
+				}
+			} else if (varType(A['style']) == 'object') {
+				ele.css(A['style']);
+			}
+		}
+		ele.className = 'mayiui mayiui-loading-dis' + cssName;
+
+		var ico = createlDiv('mayiui-loading-ico');
+
+		if (isUndefined(A['ico']) || !A['ico']) {
+			A['ico'] = 'loading0'
+		}
+		if (!isUndefined(ICO[A['ico']])) {
+			ico.innerHTML = ICO[A['ico']];
+		} else {
+			ico.innerHTML = A['ico'];
+		}
+		ele.appendChild(ico);
+		if (!isUndefined(A['animate'])) {
+			switch (A['animate']) {
+			case 0:
+				ico.removeClass('mayiui-loading-ico');
+				ico.addClass('mayiui-loading-ico3');
+				var icoHtml = ico.innerHTML;
+				ico.innerHTML = '';
+				for (var i = 0; i < 3; i++) {
+					setTimeout(function() {
+						var icoContent = createlDiv('mayiui-loading-ico-con mayiui-animate-sizein');
+						icoContent.innerHTML = icoHtml;
+						ico.appendChild(icoContent);
+					}, i * 200)
+				}
+				break;
+			case 1:
+				ico.addClass('mayiui-animate-circle');
+				if(A['logo']){
+					var logo = createlDiv('mayiui-loading-logo');
+					logo.innerHTML='<img src="'+A['logo']+'">';
+					ele.appendChild(logo);
+				}
+				break;
+			}
+		}
+		ico.css({
+			'-webkit-animation-duration': A['animateTime'] * 0.001 + 's',
+			'animation-duration': A['animateTime'] * 0.001 + 's'
+		});
+		$('body').appendChild(ele);
+		if (A['content']) {
+			var content = createlDiv('mayiui-loading-content');
+			content.innerHTML = A['content'];
+			ele.appendChild(content);
+			var eleHeight = content.getHeight() + ico.getHeight();
+			ele.css({
+				'height': eleHeight + 'px',
+				'margin-top': -(eleHeight * 0.5) + 'px'
+			});
+		}
+		if (A['time'] === 0) {
+			A['time'] = -1;
+		}
+		var zIndex = A['zIndex'];
+		if (!zIndex) {
+			zIndex = getMaxZIndex() + 100;
+		};
+		ele.css({
+			'z-index': zIndex
+		});
+		ele.A['animate'] = 2;
+		ele.A['animateTime']=300;
+		setTimeOutClose(ele);
+		return ele;
+	}
+	/*
+		延时关闭
+	*/
+	function setTimeOutClose(ele) {
+		if (A['time'] > 0) {
+			if (A['animate'] > 0) {
+				removeChild(ele, A['time'] + A['animateTime']);
+			} else {
+				removeChild(ele, A['time']);
+			}
+		}
+	}
+	/*
+		判断动画效果
+	*/
+	function eleShowAnimate(ele) {
+		var at = ele.A;
+		if (at['animate'] == 1) {
+			//进行緩动
+			//第一步，配置初始样式
+			var eleAttr = {
+				width: ele.getWidth(),
+				height: ele.getHeight()
+			};
+			var fromStyle = {
+				eleAttr: eleAttr,
+				ption: at['from'],
+				deviation: at['deviation'],
+				inside: false
+			};
+			//如果最终状态值为数字
+			switch (varType(at['position'])) {
+			case 'number':
+				fromStyle['ption'] = at['position'];
+				break;
+			case 'array':
+				if (varType(at['from']) != 'array') {
+					fromStyle['ption'] = at['position'];
+				}
+				break;
+			default:
+				fromStyle = null;
+				break;
+			}
+			if (fromStyle) {
+				var defaultStyle = setUpElePosition(fromStyle);
+				var positionStyle = {
+					eleAttr: eleAttr,
+					ption: at['position'],
+					deviation: at['deviation'],
+					pi:at['pi'],
+					piEle:at['piEle']
+				};
+				defaultStyle['position'] = 'fixed';
+				ele.css(defaultStyle);
+				var newStyle = animationStyle(setUpElePosition(positionStyle), at['position']);
+				newStyle['position'] = 'fixed';
+				if (!isUndefined(at['animateHandler'])) {
+					at['animateHandler'](ele, 'show.start');
+				}
+				animate(ele, newStyle, at['animateMs'], at['animateStep'], function() {
+					if (!isUndefined(at['animateHandler'])) {
+						at['animateHandler'](ele, 'show.ended');
+					}
+					ele.defaultCss = ele.attr('style');
+				});
+			}
+		} else {
+			if (at['animateTime']) {
+				if (!isUndefined(at['animateHandler'])) {
+					at['animateHandler'](ele, 'show.start');
+					setTimeout(function() {
+						at['animateHandler'](ele, 'show.ended');
+					}, at['animateTime']);
+				}
+				ele.css({
+					'-webkit-animation-duration': at['animateTime'] * 0.001 + 's',
+					'animation-duration': at['animateTime'] * 0.001 + 's'
+				});
+			}
+			ele.css(setUpElePosition({
+				ele: ele,
+				ption: at['position'],
+				deviation: at['deviation'],
+				pi:at['pi'],
+				piEle:at['piEle']
+			}));
+			ele.defaultCss = ele.attr('style');
+		}
+	}
+	/*
+		显示遮罩层
+	*/
+	function disMask(bindingEle, clickClose) {
+		var at=bindingEle.A;
+		bindingEle.mask = true;
+		var ele = createlDiv('mayiui-mask', {
+			bindingEle: bindingEle
+		}); //总体
+		if(at['maskBg']){
+			ele.css('background',at['maskBg']);
+		}
+		$('body').appendChild(ele);
+		var height = '100%';
+		if (ele.getHeight() < 5) {
+			height = $('body').getHeight() + 'px';
+		}
+		ele.css({
+			'z-index': getMaxZIndex() + 20,
+			'height': height
+		});
+		if (!isUndefined(clickClose) && clickClose) {
+			ele.addListener('click', function() {
+				mayiui.close(ele.bindingEle);
+			})
+		}
+	};
+	function checkElement(obj) {
+		var arr = null;
+		var objArr = obj.split('-');
+		var all = false;
+		if (objArr.length == 2) {
+			obj = objArr[0];
+			all = true;
+		} else {
+			if (obj.substr(0, 1) == '.' || obj.substr(0, 1) == '#') {
+				arr = $(obj);
+				all = true;
+			}
+		}
+		if (obj == 'level') {
+			obj = 'element';
+		}
+		if (obj == 'level-all') {
+			obj = 'element-all';
+			all = true;
+		}
+		if (arraySearch(['alert', 'element', 'iframe', 'msg', 'tip', 'mark', 'loading'], obj)) {
+			arr = $('.mayiui-' + obj + '-dis');
+		}
+		if (obj == 'all' || !obj) {
+			arr = $('.mayiui');
+			all = true;
+		}
+		if (!arr) return arr;
+		var newArr = [];
+		arr.each(function(index, ele) {
+			if (!isUndefined(ele.A)) {
+				if ((!all && ele.A['time'] != -1) || all) {
+					newArr.push(ele);
+				}
+			} else {
+				newArr.push(ele);
+			}
+		});
+		if (newArr.length == 0) return null;
+		return newArr;
+	};
+	
+	/*
+		刪除节点
+	*/
+	function removeChild(ele, time) {
+		var at = ele.A;
+		function remove() {
+			try {
+				if (ele.state == 'delete') {
+					return;
+				}
+				if (ele.mask && $('.mayiui-mask')) {
+					$('body').removeChild($('.mayiui-mask').eq(0));
+				}
+				if (at && !isUndefined(at['closeHandler'])) {
+					at['closeHandler'](ele);
+				}
+				if (ele.searchClass('mayiui-animate-')) {
+					ele.removeClass(ele.searchClass('mayiui-animate-'));
+					ele.removeClass('mayiui-animate');
+				}
+				if (!isUndefined(ele.capture)) {
+					var elC = ele.capture;
+					var elP = ele.captureParentNode;
+					if (isUndefined(elC.upperEle)) {
+						return;
+					}
+					if (!isUndefined(elC.attr('data-oldstyle'))) {
+						var str = elC.attr('data-oldstyle');
+						if (str) {
+							var style = styleToObject(str);
+							elC.attr('style', '');
+							if (style) {
+								elC.css(style);
+							}
+						} else {
+							elC.attr('style', '');
+						}
+					} else {
+						elC.attr('style', '');
+					}
+					elC.upperEle = null;
+					if (ele.nextEle) {
+						try {
+							elP.insertBefore(elC, ele.nextEle);
+						} catch (event) {
+							elP.appendChild(elC);
+						}
+					} else if (ele.prevEle) {
+						try {
+							elP.insertAfter(elC, ele.prevEle);
+						} catch (event) {
+							elP.appendChild(elC);
+						}
+					} else {
+						elP.appendChild(elC);
+					}
+					if (ele) {
+						if (!isUndefined(ele.state)) {
+							if (ele.state != 'delete') {
+								ele.state = 'delete';
+								ele.parentNode.removeChild(ele);
+							}
+						} else {
+							ele.state = 'delete';
+							ele.parentNode.removeChild(ele);
+						}
+					}
+				} else {
+					if (ele) {
+						if (!isUndefined(ele.state)) {
+							if (ele.state != 'delete') {
+								ele.state = 'delete';
+								ele.parentNode.removeChild(ele);
+							}
+						} else {
+							ele.state = 'delete';
+							ele.parentNode.removeChild(ele);
+						}
+					}
+				}
+			} catch (event) {
+				console.log(event)
+			}
+		}
+
+		function fn() {
+			if (ele.state == 'delete') {
+				return;
+			}
+			if (at && ele && ele.parentNode) {
+				if (at['animate'] == 1) {
+					//进行緩动
+					var eleAttr = {
+						width: ele.getWidth(),
+						height: ele.getHeight()
+					};
+					var disappearStyle = {
+						eleAttr: eleAttr,
+						ption: at['disappear'],
+						deviation: at['deviation'],
+						inside: false
+					};
+					//如果最终状态值为数字
+					switch (varType(at['position'])) {
+					case 'number':
+						if (varType(at['disappear']) != 'number') {
+							disappearStyle['ption'] = at['position'];
+						}
+						break;
+					case 'array':
+						if (varType(at['disappear']) != 'array') {
+							disappearStyle['ption'] = at['position'];
+						}
+						break;
+					default:
+						disappearStyle = null;
+						break;
+					}
+					if (!disappearStyle['ption']) {
+						disappearStyle['ption'] = at['position'];
+					}
+					if (disappearStyle) {
+						var newStyle = animationStyle(setUpElePosition(disappearStyle), at['position']);
+						newStyle['position'] = 'fixed';
+						if (!isUndefined(at['animateHandler'])) {
+							at['animateHandler'](ele, 'hide.start');
+						}
+						animate(ele, newStyle, at['animateMs'], at['animateStep'], function() {
+							if (!isUndefined(at['animateHandler'])) {
+								at['animateHandler'](ele, 'hide.ended');
+							}
+							remove();
+						});
+					}
+				} else if (at['animate'] > 1) {
+					if (at['animateTime']) {
+						if (!isUndefined(at['animateHandler'])) {
+							at['animateHandler'](ele, 'hide.start');
+							setTimeout(function() {
+								at['animateHandler'](ele, 'hide.ended');
+								remove();
+							}, at['animateTime']);
+						} else {
+							setTimeout(function() {
+								remove();
+							}, at['animateTime']);
+						}
+						ele.removeClass(ele.searchClass('mayiui-animate-'));
+						ele.addClass('mayiui-animate');
+						ele.addClass(getAnimateOutClass(at));
+						ele.css({
+							'-webkit-animation-duration': at['animateTime'] * 0.001 + 's',
+							'animation-duration': at['animateTime'] * 0.001 + 's'
+						});
+					} else {
+						remove();
+					}
+				} else {
+					remove();
+				}
+			} else {
+				remove();
+			}
+		}
+		if (time) {
+			setTimeout(function() {
+				fn();
+			}, time);
+		} else {
+			fn();
+		}
+	}
+	/*
+		初始设置元件显示位置
+		ption设置成数字时0=居中，1=左，2=左上，3=上，4=右上，5=右，6=右下，7=下，8=左下,9=左,10=上，11=右，12=下
+		deviation=偏移量
+		pi=智能化
+		inside=是否在内部，默认是内部
+	*/
+	function setUpElePosition(obj) {
+		var attribute = {
+			ele: null,
+			eleAttr: null,
+			ption: 0,
+			deviation: 0,
+			pi:0,
+			piEle:'',
+			inside: true
+		};
+		attribute = mergeObject(attribute, obj);
+		var cEA = {
+			'width': 0,
+			'height': 0
+		};
+		if (!isUndefined(attribute['ele'])) {
+			cEA = {
+				'width': attribute['ele'].getWidth(),
+				'height': attribute['ele'].getHeight()
+			};
+		}
+		if (!isUndefined(attribute['eleAttr'])) {
+			cEA = attribute['eleAttr']; //内容节点属性
+		}
+		var ption = attribute['ption'];
+		var deviation = attribute['deviation'];
+		var inside = attribute['inside'];
+		var style = {}; //普通样式
+		if (varType(ption) == 'array') {
+			if (ption.length > 0) {
+				style['left'] = ption[0];
+			}
+			if (ption.length > 1) {
+				style['top'] = ption[1];
+			}
+			if (ption.length > 2) {
+				style['opacity'] = parseFloat(ption[2]);
+			}
+			return style;
+		}
+		//ption=0，中间对齐，1=左，2=左上，3=上，4=右上，5=右，6=右下，7=下，8=左下，9=下，10=左
+		var maxTop=0,maxBottom=0,maxLeft=0,maxRight=0,piMTop=0;
+		var eleNum=0,eleLength=0;
+		var windowWH=getWindowSize();
+		if(attribute['pi'] && attribute['piEle'] && inside){
+			if($('.mayiui-'+attribute['piEle']+'-pi'+attribute['pi']+'-'+ption)){
+				eleLength=$('.mayiui-'+attribute['piEle']+'-pi'+attribute['pi']+'-'+ption).length;
+				$('.mayiui-'+attribute['piEle']+'-pi'+attribute['pi']+'-'+ption).each(function(index,eleObj){
+					if(index<eleLength-1){
+						var offset=eleObj.offset();
+						if(maxBottom<parseInt(eleObj.css('bottom'))+eleObj.getHeight()){
+							maxBottom=parseInt(eleObj.css('bottom'))+eleObj.getHeight();
+						}
+						if(maxBottom>windowWH['height']-eleObj.getHeight()){
+							maxBottom=0
+						}
+						
+						if(maxTop<offset['top']+eleObj.getHeight()){
+							maxTop=offset['top']+eleObj.getHeight();
+						}
+						if(maxTop>windowWH['height']-eleObj.getHeight()){
+							maxTop=0
+						}
+						if(maxLeft<offset['left']+eleObj.getWidth()){
+							maxLeft=offset['left']+eleObj.getWidth();
+						}
+						if(maxLeft>windowWH['width']-eleObj.getWidth()){
+							maxLeft=0
+						}
+						if(maxRight<parseInt(eleObj.css('right'))+eleObj.getWidth()){
+							maxRight=parseInt(eleObj.css('right'))+eleObj.getWidth();
+						}
+						if(maxRight>windowWH['width']-eleObj.getWidth()){
+							maxRight=0
+						}
+						piMTop+=cEA['height']+deviation;
+						if(piMTop>windowWH['height']*0.5){
+							piMTop=0;
+						}
+						var marginTop=0,marginLeft=0,left=0,top=0,right=0,bottom=0;
+						var newStyle=styleToObject(eleObj.attr('style'));
+						if(attribute['pi']==2){
+							switch (ption) {
+								case 0:
+									marginTop=parseInt(newStyle['margin-top']);
+									if(marginTop>(deviation+eleObj.getHeight())-windowWH['height']*0.5){
+										marginTop-=deviation;
+										marginTop-=eleObj.getHeight();
+									}
+									newStyle['margin-top']=marginTop+'px';
+									break;
+								case 1:
+								case 9:
+									left=parseInt(newStyle['left']);
+									if(left<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										left+=deviation;
+										left+=eleObj.getWidth();
+									}
+									newStyle['left']=left+'px';
+									break;
+								case 2:
+									left=parseInt(newStyle['left']);
+									if(left<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										left+=deviation;
+									}
+									newStyle['left']=left+'px';
+									top=parseInt(newStyle['top']);
+									if(top<windowWH['height']-deviation-eleObj.getHeight()){
+										top+=deviation;
+										top+=eleObj.getHeight();
+									}
+									newStyle['top']=top+'px';
+									break;
+								case 3:
+								case 10:
+									top=parseInt(newStyle['top']);
+									if(top<windowWH['height']-deviation-eleObj.getHeight()){
+										top+=deviation;
+										top+=eleObj.getHeight();
+									}
+									newStyle['top']=top+'px';
+									break;
+								case 4:
+									right=parseInt(newStyle['right']);
+									if(right<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										right+=deviation;
+									}
+									newStyle['right']=right+'px';
+									top=parseInt(newStyle['top']);
+									if(top<windowWH['height']-deviation-eleObj.getHeight()){
+										top+=deviation;
+										top+=eleObj.getHeight();
+									}
+									newStyle['top']=top+'px';
+									break;
+								case 5:
+								case 11:
+									right=parseInt(newStyle['right']);
+									if(right<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										right+=deviation;
+										right+=eleObj.getWidth();
+									}
+									newStyle['right']=right+'px';
+									break;
+								case 6:
+									right=parseInt(newStyle['right']);
+									if(right<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										right+=deviation;
+									}
+									newStyle['right']=right+'px';
+									bottom=parseInt(newStyle['bottom']);
+									if(bottom<windowWH['height']-deviation-eleObj.getHeight()){
+										bottom+=deviation;
+										bottom+=eleObj.getHeight();
+									}
+									newStyle['bottom']=bottom+'px';
+									break;
+								case 7:
+								case 12:
+									bottom=parseInt(newStyle['bottom']);
+									if(bottom<windowWH['height']-deviation-eleObj.getHeight()){
+										bottom+=deviation;
+										bottom+=eleObj.getHeight();
+									}
+									newStyle['bottom']=bottom+'px';
+									break;
+								case 8:
+									left=parseInt(newStyle['left']);
+									if(left<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										left+=deviation;
+									}
+									newStyle['left']=left+'px';
+									bottom=parseInt(newStyle['bottom']);
+									if(bottom<windowWH['height']-deviation-eleObj.getHeight()){
+										bottom+=deviation;
+										bottom+=eleObj.getHeight();
+									}
+									newStyle['bottom']=bottom+'px';
+									break;
+							}
+							animate(eleObj, animationStyle(newStyle,ption), eleObj.A['animateMs'], eleObj.A['animateStep'], function() {});
+						}
+						if(attribute['pi']==3){
+							var ptionTemp=ption;
+							switch (ption) {
+								case 0:
+								case 1:
+								case 5:
+									ptionTemp=0;
+									marginTop=parseInt(newStyle['margin-top']);
+									if(marginTop<windowWH['height']*0.5-deviation-eleObj.getHeight()){
+										marginTop+=deviation;
+										marginTop+=eleObj.getHeight();
+									}
+									newStyle['margin-top']=marginTop+'px';
+									break;
+								case 2:
+								case 3:
+								case 4:
+								case 10:
+									ptionTemp=3;
+									top=parseInt(newStyle['top']);
+									if(top<windowWH['height']-deviation-eleObj.getHeight()){
+										top+=deviation;
+										top+=eleObj.getHeight();
+									}
+									newStyle['top']=top+'px';
+									break;
+								case 6:
+								case 7:
+								case 8:
+								case 12:
+									ptionTemp=7;
+									bottom=parseInt(newStyle['bottom']);
+									if(bottom<windowWH['height']-deviation-eleObj.getHeight()){
+										bottom+=deviation;
+										bottom+=eleObj.getHeight();
+									}
+									newStyle['bottom']=bottom+'px';
+									break;
+								case 9:
+									left=parseInt(newStyle['left']);
+									if(left<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										left+=deviation;
+										left+=eleObj.getWidth();
+									}
+									newStyle['left']=left+'px';
+									break;
+								case 11:
+									right=parseInt(newStyle['right']);
+									if(right<windowWH['width']-(deviation+eleObj.getWidth())*2){
+										right+=deviation;
+										right+=eleObj.getWidth();
+									}
+									newStyle['right']=right+'px';
+									break;
+							}
+							animate(eleObj, animationStyle(newStyle,ptionTemp), eleObj.A['animateMs'], eleObj.A['animateStep'], function() {});
+						}
+						marginTop=marginLeft=left=top=right=bottom=0;
+					}
+					
+				});
+			}
+		}
+		eleNum=eleLength-1;
+		if(eleNum==0 || attribute['pi']>1){
+			eleNum=0;
+			maxTop=maxBottom=maxLeft=maxRight=piMTop=0;
+		}
+		switch (ption) {
+			case 0:
+				style = {
+					'left': '50%',
+					'top': '50%',
+					'margin-left': -(cEA['width'] * 0.5) + 'px',
+					'margin-top': -(cEA['height'] * 0.5+piMTop)  + 'px'
+				};
+				break;
+			case 1:
+				style = {
+					'left': deviation +maxLeft + 'px',
+					'top': '50%',
+					'margin-top': -cEA['height'] * 0.5 + 'px'
+				};
+				break;
+			case 2:
+				style = {
+					'left': deviation +(deviation*eleNum)+ 'px',
+					'top': deviation+maxTop + 'px'
+				};
+				break;
+			case 3:
+				style = {
+					'left': '50%',
+					'top': deviation+maxTop + 'px',
+					'margin-left': -cEA['width'] * 0.5 + 'px'
+				};
+				break;
+			case 4:
+				style = {
+					'right': deviation +(deviation*eleNum)+ 'px',
+					'top': deviation+maxTop + 'px'
+				};
+				break;
+			case 5:
+				style = {
+					'right': deviation+maxRight + 'px',
+					'top': '50%',
+					'margin-top': -cEA['height'] * 0.5 + 'px'
+				};
+				break;
+			case 6:
+				style = {
+					'right': deviation +(deviation*eleNum) + 'px',
+					'bottom': deviation+maxBottom + 'px'
+				};
+				break;
+			case 7:
+				style = {
+					'left': '50%',
+					'margin-left': -cEA['width'] * 0.5 + 'px',
+					'bottom': deviation+maxBottom + 'px'
+				};
+				break;
+			case 8:
+				style = {
+					'left': deviation +(deviation*eleNum)+ 'px',
+					'bottom': deviation+maxBottom + 'px'
+				};
+				break;
+			case 9:
+				style = {
+					'left': deviation +maxLeft+ 'px',
+					'top': deviation + 'px',
+					'bottom': deviation + 'px'
+				};
+				break;
+			case 10:
+				style = {
+					'left': deviation + 'px',
+					'top': deviation+maxTop + 'px',
+					'right': deviation + 'px'
+				};
+				break;
+			case 11:
+				style = {
+					'top': deviation + 'px',
+					'bottom': deviation + 'px',
+					'right': deviation+maxRight + 'px'
+				};
+				break;
+			case 12:
+				style = {
+					'left': deviation + 'px',
+					'right': deviation + 'px',
+					'bottom': deviation+maxBottom + 'px'
+				};
+				break;
+			default:
+				break;
+		}
+		if (ption == 10 || ption == 12) {
+			style['width'] = 'inherit';
+			style['max-height'] = '100%';
+		}
+		if (ption == 9 || ption == 11) {
+			style['height'] = 'inherit';
+			style['max-width'] = '100%';
+		}
+		if (!inside) {
+			if (ption == 1 || ption == 2 || ption == 8 || ption == 9) {
+				style['left'] = -cEA['width'] + 'px';
+			}
+			if (ption == 4 || ption == 5 || ption == 6 || ption == 11) {
+				style['right'] = -cEA['width'] + 'px';
+			}
+			if (ption == 2 || ption == 3 || ption == 4 || ption == 10) {
+				style['top'] = -cEA['height'] + 'px';
+			}
+			if (ption == 6 || ption == 7 || ption == 8 || ption == 12) {
+				style['bottom'] = -cEA['height'] + 'px';
+			}
+			if (ption == 0) {
+				style['margin-top'] = '0px';
+			}
+		}
+		return style;
+	}
+	/*
+		缓动效果
+	*/
+	function animate(ele, style, interval, sp, fn) {
+		clearInterval(ele.timer);
+		var elW = getWindowSize();
+		if (!isUndefined(style['width']) && style['width'].toString().substr(style['width'].toString().length - 1, 1) == '%') {
+			style['width'] = elW['width'] * parseInt(style['width']) * 0.01;
+		}
+		if (!isUndefined(style['height']) && style['height'].toString().substr(style['height'].toString().length - 1, 1) == '%') {
+			style['height'] = elW['height'] * parseInt(style['height']) * 0.01;
+		}
+		if (!isUndefined(style['top']) && style['top'].toString().substr(style['top'].toString().length - 1, 1) == '%') {
+			style['top'] = elW['height'] * parseInt(style['top']) * 0.01;
+		}
+		if (!isUndefined(style['left']) && style['left'].toString().substr(style['left'].toString().length - 1, 1) == '%') {
+			style['left'] = elW['width'] * parseInt(style['left']) * 0.01;
+		}
+		if (!isUndefined(style['right']) && style['right'].toString().substr(style['right'].toString().length - 1, 1) == '%') {
+			style['right'] = elW['width'] * parseInt(style['right']) * 0.01;
+		}
+		if (!isUndefined(style['bottom']) && style['bottom'].toString().substr(style['bottom'].toString().length - 1, 1) == '%') {
+			style['bottom'] = elW['height'] * parseInt(style['bottom']) * 0.01;
+		}
+		var keyArr = ['width', 'height', 'top', 'right', 'bottom', 'left', 'opacity', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left'];
+		ele.timer = setInterval(function() {
+			var flag = true;
+			for (var key in style) {
+				if (arraySearch(keyArr, key)) {
+					var icur = 0;
+					var val = style[key];
+					if (key == 'opacity') {
+						icur = Math.round(parseFloat(ele.css('opacity')) * 100);
+						val = Math.round(parseFloat(style[key])) * 100;
+					} else {
+						icur = parseInt(ele.css(key));
+						val = parseInt(style[key]);
+					}
+					var speed = (val - icur) * sp;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					if (!isUndefined(icur) && !isUndefined(val) && icur !== val) {
+						flag = false;
+					}
+					if (key == 'opacity') {
+						ele.css({
+							'filter': 'alpha(opacity : \'' + ((icur + speed) * 0.01) + '\' )',
+							'opacity': (icur + speed) * 0.01
+						});
+					} else {
+						ele.css(key, icur + speed + 'px')
+					}
+				}
+
+			}
+			if (flag) {
+				clearInterval(ele.timer);
+				ele.timer = null;
+				if (fn) {
+					fn();
+				}
+			}
+		}, interval);
+	}
+	/*
+		重新排序最小化的窗口
+	*/
+	function minWinSort() {
+		var winWH = getWindowSize();
+		var list = $('.mayiui-iframe-minimize');
+		if (!list) return;
+		var bottom = 1,
+			left = 0;
+		var w = 205,
+			h = 45;
+		var maxBottomHeight = Math.ceil(list.length / parseInt(winWH['width'] / w)) * h;
+		for (var i = 0; i < list.length; i++) {
+			if (parseInt(list[i].css('bottom')) < maxBottomHeight) {
+				list[i].css({
+					'bottom': bottom + 'px',
+					'left': left + 'px',
+					'top': '',
+					'right': ''
+				});
+				left += w;
+				if (left + w > winWH['width']) {
+					left = 0;
+					bottom += h;
+				}
+			}
+		}
+	}
+	/*
+		使用缓动时需要保留的信息 
+	*/
+	function animationStyle(style, ption) {
+		var newStyle = {};
+		if (varType(ption) == 'array') {
+			if (ption.length > 2) {
+				newStyle['opacity'] = ption[2];
+			}
+			ption = 2;
+		}
+		if (ption == 1 || ption == 2 || ption == 8 || ption == 9) {
+			newStyle['left'] = style['left'];
+		}
+		if (ption == 4 || ption == 5 || ption == 6 || ption == 11) {
+			newStyle['right'] = style['right'];
+		}
+		if (ption == 2 || ption == 3 || ption == 4 || ption == 10) {
+			newStyle['top'] = style['top'];
+		}
+		if (ption == 6 || ption == 7 || ption == 8 || ption == 12) {
+			newStyle['bottom'] = style['bottom'];
+		}
+		if (ption == 0) {
+			newStyle['margin-top'] = style['margin-top'];
+		}
+		return newStyle;
+	}
+	/*
+		获取缓动效果样式
+	*/
+	function getAnimateClass(at) {
+		var cssName = ' mayiui-animate';
+		switch (at['animate']) {
+		case 2:
+			cssName += ' mayiui-animate-bouncein';
+			break;
+		case 3:
+			cssName += ' mayiui-animate-somersaultin';
+			break;
+		case 4:
+			cssName += ' mayiui-animate-badgein';
+			break;
+		}
+		return cssName;
+	}
+	/*
+		获取消失缓动效果样式
+	*/
+	function getAnimateOutClass(at) {
+		var cssName = '';
+		switch (at['animate']) {
+		case 2:
+			cssName = 'mayiui-animate-bounceout';
+			break;
+		case 3:
+			cssName = 'mayiui-animate-somersaultout';
+			break;
+		case 4:
+			cssName = 'mayiui-animate-badgeout';
+			break;
+		}
+		return cssName;
+	}
+	/*
+		在新建一个DIV节点
+	*/
+	function createlDiv(className, obj, attr, style) {
+		var ele = document.createElement('div'); //总体
+		var eleObject = $(ele);
+		var key = '';
+		if (className) {
+			ele.className = className;
+		}
+		if (style) {
+			eleObject.css(style);
+		}
+		if (obj) {
+			for (key in obj) {
+				ele[key] = obj[key];
+			}
+		}
+		if (attr) {
+			for (key in attr) {
+				eleObject.attr(key, attr[key]);
+			}
+		}
+		return eleObject;
+	}
+	function createlIframe(className, obj, attr, style) {
+		var ele = document.createElement('iframe'); //总体
+		var eleObject = $(ele);
+		var key = '';
+		if (className) {
+			ele.className = className;
+		}
+		if (style) {
+			eleObject.css(style);
+		}
+		if (obj != null) {
+			for (key in obj) {
+				ele[key] = obj[key];
+			}
+		}
+		if (attr) {
+			for (key in attr) {
+				eleObject.attr(key, attr[key]);
+			}
+		}
+		return eleObject;
+	};
+	/*
+		在新建一个button节点
+	*/
+	function createlButton(html, className, style, clickFun) {
+		var btn = document.createElement('button');
+		var cssName = className;
+		var eleObject = $(btn);
+		btn.innerHTML = html;
+		if (!style) {
+			style = 'default';
+		}
+		if (style.substr(0, 1) == '.') {
+			cssName = ' ' + style.substr(1, style.length);
+		} else {
+			cssName += style;
+		}
+		btn.className = cssName;
+		eleObject.addListener('click', clickFun);
+		return eleObject;
+	};
+
+	/*
+		根据ID或className或元素节点名称获取对象
+	*/
+	function $(obj, eL) {
+		var parent = null;
+		if (document) {
+			parent = document;
+		}
+		if (!isUndefined(eL)) {
+			parent = eL;
+		}
+		var res = [];
+		if (obj) {
+			if (varType(obj) == 'object') {
+				res = obj;
+				if (!isUndefined(res.aboutme)) {
+					return res;
+				}
+			} else if (varType(obj) == 'string') {
+				switch (obj.substr(0, 1)) {
+				case '.':
+					obj = obj.substr(1, obj.length);
+					if (parent.getElementsByClassName) {
+						res = parent.getElementsByClassName(obj);
+						if (!res.length) {
+							return null;
+						}
+					} else if (!parent && document.getElementsByClassName) {
+						res = document.getElementsByClassName(obj);
+						if (!res.length) {
+							return null;
+						}
+					} else {
+						var reg = new RegExp(' ' + obj + ' ', 'i');
+						var ele = null;
+						if (parent.getElementsByTagName) {
+							ele = parent.getElementsByTagName('*');
+						} else {
+							ele = document.getElementsByTagName('*');
+						}
+						for (var i = 0; i < ele.length; i++) {
+							if (reg.test(' ' + ele[i].className + ' ')) {
+								res.push(ele[i]);
+							}
+						}
+					}
+					if (res) {
+						if (res.length === 0) {
+							res = null;
+						}
+					}
+					break;
+				case '#':
+					obj = obj.substr(1, obj.length);
+					if (parent.getElementById) {
+						res = parent.getElementById(obj);
+					} else {
+						document.getElementById(obj);
+					}
+					break;
+				default:
+					var reg = new RegExp(' ' + obj + ' ', 'i');
+					if (parent.getElementsByTagName) {
+						res = parent.getElementsByTagName(obj);
+					} else {
+						res = document.getElementsByTagName(obj);
+					}
+					if (res) {
+						if (obj == 'body' || obj == 'document' || obj == 'html') {
+							res = res[0];
+						} else if (res.length === 0) {
+							res = null;
+						}
+					} else {
+						res = null;
+					}
+					break;
+				}
+			} else {
+				res = obj;
+			}
+		} else {
+			res = document;
+		}
+		if (res) {
+			if (varType(res) == 'object') {
+				res.state = 'loaded';
+				res.aboutme = function() {
+					return 'mayiui,ver:1.2';
+				};
+				res.me = function() {
+					return res;
+				};
+				res.find = function(value) {
+					return $(value, this);
+				};
+				res.attr = function(key, value) {
+					if (varType(this) != 'object') {
+						return this;
+					}
+					if (value === undefined) {
+						return this.getAttribute(key);
+					} else {
+						this.setAttribute(key, value);
+						return this;
+					}
+				};
+				res.css = function(key, value) {
+					// 拆解字符串并将第二单词首字母大写
+					var keyNew = function(str) {
+						// 当属性名有横杠时
+						if (str.indexOf('-') != -1) {
+							var arr = str.split('-');
+							var a = arr[0];
+							var b = '',
+								c = '';
+							if (arr.length > 1) {
+								b = arr[1].substr(0, 1).toLocaleUpperCase() + arr[1].substr(1, arr[1].length - 1);
+							}
+							if (arr.length > 2) {
+								b = arr[2].substr(0, 1).toLocaleUpperCase() + arr[2].substr(1, arr[2].length - 1);
+							}
+							return a + b + c;
+						}
+						// 没有横杠就不进行字符串拆解
+						return str;
+					};
+					if (!value && !isUndefined(key) && varType(key) == 'string') {
+						if (this.currentStyle) {
+							return this.currentStyle[key];
+						} else {
+							return document.defaultView.getComputedStyle(this, null)[key];
+						}
+					}
+					if (!value && !key) {
+						if (this.currentStyle) {
+							return this.currentStyle;
+						} else {
+							return document.defaultView.getComputedStyle(this, null);
+						}
+					}
+					// 当传进来的参数key不是一个对象，给元素添加css样式
+					if (varType(key) != 'object') {
+						var newKey = keyNew(key);
+						if (this.length > 1) {
+							// 如果this有多个值，那给每个元素都添加样式
+							for (var i = 0; i < this.length; i++) {
+								this[i].style[newKey] = value;
+							}
+						} else {
+							this.style[newKey] = value;
+						}
+					} else {
+						//如果第一个值是一个对象，遍历这个对象，并将属性名传进函数进行拆解
+						for (var item in key) {
+							var objKey = keyNew(item);
+							if (varType(this) == 'array') {
+								for (var i = 0; i < this.length; i++) {
+									this[i].style[objKey] = key[item];
+								}
+							} else {
+								this.style[objKey] = key[item];
+							}
+						}
+					}
+					return this;
+				};
+				res.hasClass = function(cName) {
+					if (isUndefined(cName)) return false;
+					var reg = new RegExp('(\\s|^)' + cName + '(\\s|$)');
+					if (this.className && this.className.match(reg)) {
+						return true;
+					}
+					return false;
+				};
+				res.addClass = function(cName) {
+					if (!this.hasClass(cName)) {
+						if (this.className && this.className.substr(this.className.length - 1, 1) != ' ') {
+							this.className += ' ';
+						}
+						this.className += cName;
+					};
+					return this;
+				};
+				res.removeClass = function(cName) {
+					if (this.hasClass(cName)) {
+						this.className = this.className.replace(new RegExp('(\\s|^)' + cName + '(\\s|$)'), ' ');
+						if (this.className.substr(this.className.length - 1, 1) == ' ') {
+							this.className = this.className.substr(0, this.className.length - 1);
+						}
+						if (!this.className) {
+							this.removeAttribute('class');
+						}
+					};
+					return this;
+				};
+				res.searchClass = function(cName) {
+					var arr = this.className.split(' ');
+					for (var i = 0; i < arr.length; i++) {
+						if (arr[i].substr(0, cName.length) == cName) {
+							return arr[i];
+						}
+					}
+					return this;
+				};
+				res.addListener = function(e, f, t) {
+					return addListener(this, e, f, t);
+				};
+				res.removeListener = function(e, f, t) {
+					return removeListener(this, e, f, t);
+				};
+				res.prev = function() {
+					return prev(this);
+				};
+				res.next = function() {
+					return next(this);
+				};
+				res.remove = function() {
+					return removeChild(this);
+				};
+				/*
+					获取元件的绝对坐标
+				*/
+				res.offset = function() {
+					var left = this.offsetLeft,
+						top = this.offsetTop;
+					var windowWH=getWindowSize();
+					if (!isUndefined(this.offsetParent)) {
+						var offsetParent = $(this.offsetParent).offset();
+						if (!isUndefined(offsetParent['left'])) {
+							left += offsetParent['left'];
+						}
+						if (!isUndefined(offsetParent['top'])) {
+							top += offsetParent['top'];
+						}
+					}
+					return {
+						left: left,
+						top: top
+					};
+				};
+				/*
+					判断元素是否悬浮于页面
+				*/
+				res.fixed = function() {
+					if (this.css('position') == 'fixed') {
+						return true;
+					}
+					if (!isUndefined(this.offsetParent)) {
+						return $(this.offsetParent).fixed();
+					}
+					return false;
+				};
+				/*
+					获取元件的宽
+				*/
+				res.getWidth = function() {
+					return this.offsetWidth;
+				};
+				/*
+					获取元件的高
+				*/
+				res.getHeight = function() {
+					return this.offsetHeight;
+				};
+				/*
+					制作可拖动 
+				*/
+				res.drag = function(ele) {
+					var pos1 = 0,
+						pos2 = 0,
+						pos3 = 0,
+						pos4 = 0;
+					var zIndex = 0;
+					if (isUndefined(ele)) {
+						ele = this;
+					}
+					var dragMouseDown = function(e) {
+							e = e || window.event;
+							var client = getClient(e);
+							pos3 = client['x'];
+							pos4 = client['y'];
+							$(document).addListener('mousemove', elementDrag);
+							$(document).addListener('mouseup', closeDragElement);
+							zIndex = getMaxZIndex() + 1;
+							ele.css('z-index', zIndex);
+						};
+					var eleMouseDown = function(e) {
+							zIndex = getMaxZIndex() + 1;
+							ele.css('z-index', zIndex);
+						};
+					var elementDrag = function(e) {
+							e = e || window.event;
+							var client = getClient(e);
+							var eleOffset = ele.offset();
+							pos1 = pos3 - client['x'];
+							pos2 = pos4 - client['y'];
+							pos3 = client['x'];
+							pos4 = client['y'];
+							var left = eleOffset['left'] - pos1;
+							var top = eleOffset['top'] - pos2;
+							ele.css({
+								'position': 'fixed',
+								'top': top + 'px',
+								'left': left + 'px',
+								'margin': '',
+								'bottom': '',
+								'right': ''
+							});
+						};
+
+					var closeDragElement = function() {
+						$(document).removeListener('mousemove', elementDrag);
+						$(document).removeListener('mouseup', closeDragElement);
+					};
+					this.addListener('mousedown', dragMouseDown);
+					if (!isUndefined(ele.iframe)) {
+						ele.iframe.addListener('mousedown', eleMouseDown);
+					} else if (!isUndefined(ele.content)) {
+						ele.content.addListener('mousedown', eleMouseDown);
+					}
+				};
+				/*
+					最大化
+				*/
+				res.maximize = function() {
+					if (this.hasClass('mayiui-iframe-minimize')) {
+						this.resetAttribute();
+						minWinSort();
+						return;
+					}
+					this.defaultCss = this.attr('style');
+					this.resetAttribute();
+					this.css({
+						'width': '100%',
+						'height': '100%',
+						'margin': '',
+						'top': '0px',
+						'right': '',
+						'bottom': '',
+						'left': '0px'
+					});
+					this.addClass('mayiui-iframe-maximize');
+					this.resetSize();
+					this.minZEle.css('display', 'block');
+					this.redTEle.css('display', 'block');
+					this.maxZEle.css('display', 'none');
+				};
+				/*
+					最小化
+				*/
+				res.minimize = function() {
+					if (!this.hasClass('mayiui-iframe-maximize')) {
+						this.defaultCss = this.attr('style');
+					}
+					this.resetAttribute();
+					var w = 200,
+						h = 40;
+					this.css({
+						'width': w + 'px',
+						'height': h + 'px',
+						'margin': '',
+						'top': '',
+						'right': '',
+						'bottom': h + 'px',
+						'left': '0px'
+					});
+					this.addClass('mayiui-iframe-minimize');
+					this.minZEle.css('display', 'none');
+					this.redTEle.css('display', 'none');
+					this.maxZEle.css('display', 'block');
+					minWinSort();
+				};
+				/*
+					重置框架层的位置大小
+				*/
+				res.resetAttribute = function() {
+					var thisA = A;
+					if (thisA['size'] && varType(thisA['size']) == 'array') {
+						arr = formatSize(thisA['size']);
+						if (arr.length > 0) {
+							this.css('width', arr[0]);
+						}
+						if (arr.length > 1) {
+							this.css('height', arr[1]);
+						}
+					}
+					var style = this.defaultCss;
+					var styleObj = {};
+					if (style) {
+						styleObj=styleToObject(style);
+						this.attr('style', '');
+						this.css(styleObj);
+					}
+
+					this.removeClass('mayiui-iframe-minimize');
+					this.removeClass('mayiui-iframe-maximize');
+					this.resetSize();
+					this.minZEle.css('display', 'block');
+					this.redTEle.css('display', 'none');
+					this.maxZEle.css('display', 'block');
+				};
+				/*
+					重置框架层的大小
+				*/
+				res.resetSize = function() {
+					var conHeight = this.getHeight();
+					if (!isUndefined(this.topEle)) {
+						conHeight -= this.topEle.getHeight();
+					}
+					this.contentEle.css('height', conHeight + 'px');
+				};
+				res.resize = function(fn) {
+					addListener(window, 'resize', fn);
+				};
+				try {
+					res.scroll = function(fn) {
+						addListener(this, 'scroll', fn);
+					};
+				} catch (event) {}
+
+			} else {
+				res.each = function(fn) {
+					for (var i in this) {
+						if (this.hasOwnProperty(i)) {
+							if (typeof(this[i]) == 'object') {
+								fn(i, this[i]);
+							} else {
+								try {
+									if (!this[0].nodeName) fn(i, this[i]);
+								} catch (e) {
+									fn(i, this[i]);
+								}
+							}
+						}
+					}
+				};
+				res.eq = function(m) {
+					if (varType(this) == 'array') {
+						if (this.length >= m + 1) {
+							return this[m];
+						}
+						return null;
+					}
+					return null;
+				};
+				for (var i = 0; i < res.length; i++) {
+					if (varType($)=='function') {
+						try {
+							res[i] = $(res[i]);
+						} catch (event) {}
+					}
+				}
+			}
+
+		}
+		return res;
+	};
+	/*
+		将样式变成对象
+	*/
+	function styleToObject(str){
+		var styleObj={};
+		var arr=str.split(';');
+		for (var i = 0; i < arr.length; i++) {
+			var temp = arr[i].split(':');
+			if (temp.length == 2) {
+				styleObj[temp[0].trim()] = temp[1].trim();
+			}
+		}
+		return styleObj;
+	};
+	/*
+		判断变量类型
+	*/
+	function varType(val) {
+		if (val === null) {
+			return null;
+		}
+		var type = typeof(val);
+		switch (type) {
+		case 'string':
+			return 'string';
+			break;
+		case 'number':
+			return 'number';
+			break;
+		case 'boolean':
+			return 'boolean';
+			break;
+		case 'function':
+			return 'function';
+			break;
+		case 'symbol':
+			return 'symbol';
+			break;
+		case 'object':
+			if (!isUndefined(typeof(val.length))) {
+				return 'array';
+			}
+			return 'object';
+			break;
+		case 'undefined':
+			return 'undefined';
+			break;
+		default:
+			return typeof(val);
+			break;
+		}
+	};
+	/*
+		判断变量是否存在或值是否为undefined
+	*/
+	function isUndefined(value) {
+		try {
+			if (value === 'undefined' || value === undefined || value === null || value === 'NaN' || value === NaN) {
+				return true;
+			}
+		} catch (event) {
+			return true;
+		}
+		return false;
+	}
+	/*
+		将对象Object标准化
+	*/
+	function mergeObject(o, n) { //n替换进o
+		var h = {};
+		var k;
+		for (k in o) {
+			h[k] = o[k];
+		}
+		for (k in n) {
+			h[k] = n[k];
+		}
+		return h;
+	}
+	/*
+		获取字符串的字节数，一个汉字为两个字节
+	*/
+	function byteLength(s) {
+		var b = 0;
+		l = s.length; //初始化字节数递加变量并获取字符串参数的字符个数
+		if (l) { //如果存在字符串，则执行计划
+			for (var i = 0; i < l; i++) { //遍历字符串，枚举每个字符
+				if (s.charCodeAt(i) > 255) { //字符编码大于255，说明是双字节字符
+					b += 2; //则累加2个
+				} else {
+					b++; //否则递加一次
+				}
+			}
+			return b; //返回字节数
+		}
+		return 0; //如果参数为空，则返回0个
+	}
+	/*
+		数组搜索
+	*/
+	function arraySearch(arr, val) {
+		try {
+			return arr.includes(val);
+		} catch (event) {
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] == val) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	/*
+		获取clientX和clientY
+	*/
+	function getClient(event) {
+		var eve = event || window.event;
+		if (isUndefined(eve)) {
+			eve = {
+				clientX: 0,
+				clientY: 0
+			};
+		}
+		return {
+			x: eve.clientX + (document.documentElement.scrollLeft || $('body').scrollLeft),
+			y: eve.clientY + (document.documentElement.scrollTop || $('body').scrollTop)
+		}
+	}
+	/*
+		获取当前页面最大的层深度
+	*/
+	function getMaxZIndex() {
+		var arr = document.all || document.querySelectorAll('*');
+		var maxZ = -1;
+		for (var i = 0; i < arr.length; i++) {
+			var temp = null;
+			try {
+				temp = window.getComputedStyle(arr[i], null).zIndex;
+			} catch (event) {
+				if (arr[i].style) {
+					temp = arr[i].style.zIndex;
+				}
+			}
+			if (temp != 'auto' && parseInt(temp) > maxZ) {
+				maxZ = parseInt(temp);
+			}
+		}
+		return maxZ;
+	}
+	/*
+		获取window的宽和高
+	*/
+	function getWindowSize() {
+		return {
+			width: window.innerWidth,
+			height: window.innerHeight
+		};
+	}
+	/*
+		获取body的宽和高
+	*/
+	function getBodySize() {
+		var g = document,
+			a = g.body,
+			f = g.documentElement,
+			d = g.compatMode == 'BackCompat' ? a : g.documentElement;
+		return {
+			width: Math.max(f.scrollWidth, a.scrollWidth, d.clientWidth),
+			height: Math.max(f.scrollHeight, a.scrollHeight, d.clientHeight)
+		};
+	}
+	/*
+		格式化宽高
+	*/
+	function formatSize(arr) {
+		var win = getWindowSize();
+		if (arr.length > 1) {
+			if (arr[1].substr(arr[1].length - 1, 1) == '%') {
+				arr[1] = win['height'] * parseInt(arr[1]) * 0.01 + 'px';
+			}
+		}
+		return arr;
+	}
+	function prev(ele) {
+		var e = ele.previousSibling;
+		if (e == null) { //测试同胞节点是否存在，否则返回空
+			return null;
+		}
+		if (e.nodeType == 3) { //如果同胞元素为文本节点
+			var t = prev(e);
+			if (t && t.nodeType == 1) {
+				return t;
+			}
+		} else {
+			if (e.nodeType == 1) { //确认节点为元素节点才返回
+				return e;
+			} else {
+				return false;
+			}
+		}
+	}
+	function next(ele) {
+		var e = ele.nextSibling;
+		if (e == null) { //测试同胞节点是否存在，否则返回空
+			return null;
+		}
+		if (e.nodeType == 3) { //如果同胞元素为文本节点
+			var t = next(e);
+			if (t && t.nodeType == 1) {
+				return t;
+			}
+		} else {
+			if (e.nodeType == 1) { //确认节点为元素节点才返回
+				return e;
+			} else {
+				return false;
+			}
+		}
+	}
+	function addListener(ele, e, f, t) {
+		if (isUndefined(t)) {
+			t = false;
+		}
+		if (ele.addEventListener) {
+			try {
+				ele.addEventListener(e, f, t);
+			} catch (event) {}
+		} else if (ele.attachEvent) {
+			try {
+				ele.attachEvent('on' + e, f);
+			} catch (event) {}
+		} else {
+			ele['on' + e] = f;
+		}
+		return ele;
+	}
+	function removeListener(ele, e, f, t) {
+		if (isUndefined(t)) {
+			t = false;
+		}
+		if (ele.removeEventListener) {
+			try {
+				ele.removeEventListener(e, f, t);
+			} catch (e) {}
+		} else if (ele.detachEvent) {
+			try {
+				ele.detachEvent('on' + e, f);
+			} catch (e) {}
+		} else {
+			ele['on' + e] = null;
+		}
+		return ele;
+	}
+	function getScroll() {
+		return document.body.scrollTop ? {
+			left: document.body.scrollLeft,
+			top: document.body.scrollTop
+		} : {
+			left: document.documentElement.scrollLeft,
+			top: document.documentElement.scrollTop
+		};
+	}
+	/*
+		获取本js文件所在路径
+	*/
+	function getPath() {
+		var scriptList = document.scripts,
+			thisPath = scriptList[scriptList.length - 1].src;
+		for (var i = 0; i < scriptList.length; i++) {
+			var scriptName = scriptList[i].getAttribute('name') || scriptList[i].getAttribute('data-name');
+			var src = scriptList[i].src.slice(scriptList[i].src.lastIndexOf('/') + 1, scriptList[i].src.lastIndexOf('.'));
+			if ((scriptName && (scriptName == 'mayiui' || scriptName == 'mayiui.min')) || (scriptList[i].src && (src == 'mayiui' || src == 'mayiui.min'))) {
+				thisPath = scriptList[i].src;
+				break;
+			}
+		}
+		return thisPath.substring(0, thisPath.lastIndexOf('/') + 1);
+	}
+	mayiui.loadCSS();
+    return mayiui;
+}))

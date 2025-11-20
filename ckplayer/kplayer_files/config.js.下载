@@ -1,0 +1,209 @@
+var cbody;
+var layindex=null;
+var thisName='';
+var lock=false;//用于锁定相关操作
+var initNum=0;//初始化数字
+function jsnull(){return;}
+$(document).ready(function($) {
+	cbody=(window.opera) ? (document.compatMode == 'CSS1Compat' ? $('html') : $('body')) : $('html,body');
+	layerPrompt();//统一的注册提示语
+	//注册统一的添加信息动作
+	if($('.formpost').length > 0) {
+		$('.formpost').ajaxForm({
+			success: formSuccess,
+			beforeSubmit: formBeforeSubmit
+		});
+	}
+	if($('pre').length>0){//文章详情页调用代码块
+		$('pre').addClass('prettyprint lang-html linenums');
+		try{PR.prettyPrint();}catch(error){}
+	}
+});
+//统一的注册提示语
+function layerPrompt(){
+	if($('.layer-prompt').length>0){
+		$('.layer-prompt').unbind('hover');
+		$('.layer-prompt').hover(function(){
+				layer.tips($(this).attr('alt'), $(this),{time:50000});
+			},
+			function(){
+				layer.closeAll('tips');
+			}
+		);
+	}
+	
+}
+//统一的添加前判断
+function formBeforeSubmit() {
+	if(thisName != '') {
+		return eval('check' + thisName + '()');
+	}
+	var formCheck=$('.formpost').attr('data-check');
+	if(formCheck != '') {
+		return eval('check' + formCheck + '()');
+	}
+}
+//统一的添加完成后调用
+function formSuccess(data,success) {
+	//console.log(data,success)
+	if(data) {
+		if(data['data'] && success && success!='success'){//有返回数据//如果没有指定js，则将数据返回给请求本身进行处理
+			success(data['data']);
+		}
+		if(data['javascript']){//如果指定了js则调用指定的js
+			window.dataTemp=data;
+			eval(data['javascript'] + '()');
+		}
+		if(data['message']){//有提示语
+			if(data['url']){//有跳转地址，则进行跳转
+				showMessage(data['message'],null,data['url'],data['message'].length*200);
+			}
+			else{//没有跳转地址，则只弹出提示语
+				showMessage(data['message']);
+			}
+		}
+	} else {
+		showMessage('未知错误，请稍后再试');
+	}
+}
+function ajax(url,data,success){
+	if(lock){
+		return;
+	}
+	lock=true;
+	$.ajax({
+		url: url,
+		type:'post',
+		dataType: 'json',
+		data:data,
+		success: function(data){
+			lock=false;
+			formSuccess(data,success);
+		},
+		complete:function(data){lock=false;},
+		error:function(){lock=false;}
+	});
+}
+//弹出窗口
+function openWindows(url,title,w,h){
+	//console.log(w,typeof(h));
+	if(typeof(w)=='undefined'){
+		w=$(window).width()*0.9;
+	}
+	if(typeof(h)=='undefined'){
+		h=$(window).height()*0.9;
+	}
+	layindex=layer.open({
+		type: 2,
+		title: title,
+		shadeClose: true,
+		shade: false,
+     	maxmin: true, //开启最大化最小化按钮
+		area: [w+'px', h+'px'],
+		fix:false,
+		content: [url, 'yes']//iframe的url，no代表不显示滚动条
+	});
+}
+function showMessage(message,obj,url,time){
+	if(obj){
+		cbody.animate({scrollTop: obj.offset().top}, 1000);
+	}
+	if(message){
+		layerClose();
+		layer.msg(message);
+	}
+	if(url){
+		if(!time){
+			time=0;
+		}
+		if(time>0){
+			setTimeout(function(){
+				window.location.href=decodeURIComponent(url);	
+			},time)
+		}
+		else{
+			window.location.href=decodeURIComponent(url);	
+		}
+	}
+}
+function loading(){
+	layerClose();
+	layer.open({
+	  type: 1,
+	  title: false,
+	  closeBtn: 0,
+	  shadeClose: false,
+	  skin: 'loading',
+	  content: '<p class="ico"><i class="fa fa-cog fa-spin"></i></p><p class="title">数据处理中...</p>'
+	});
+}
+function layerClose(){
+	if(layindex){
+		layer.close(layindex);
+		layindex=null;
+	}
+	else{
+		layer.closeAll();
+	}
+}
+function checkMobile(s){
+	var isMobile=/^(?:13\d|15\d|17\d|18\d)\d{5}(\d{3}|\*{3})$/; //手机号码验证规则
+	if(!isMobile.test(s)){ //如果用户输入的值不同时满足手机号和座机号的正则
+		return false; //返回一个错误，不向下执行
+	}
+	return true;
+}
+function isMobile() {//是否是移动端
+	if (navigator.userAgent.toLowerCase().match(/(iphone|ipad|ipod|android|ios|midp|windows mobile|windows ce|rv:1.2.3.4|ucweb)/i)) {
+		return true;
+	}
+	return false;
+}
+function checkNum(t) {
+	if(!isNaN(t)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+function checkIdCode(code){  
+    //身份证号合法性验证  
+    //支持15位和18位身份证号  
+    //支持地址编码、出生日期、校验位验证  
+    var city={11:'北京',12:'天津',13:'河北',14:'山西',15:'内蒙古',21:'辽宁',22:'吉林',23:'黑龙江 ',31:'上海',32:'江苏',33:'浙江',34:'安徽',35:'福建',36:'江西',37:'山东',41:'河南',42:'湖北 ',43:'湖南',44:'广东',45:'广西',46:'海南',50:'重庆',51:'四川',52:'贵州',53:'云南',54:'西藏 ',61:'陕西',62:'甘肃',63:'青海',64:'宁夏',65:'新疆',71:'台湾',81:'香港',82:'澳门',91:'国外 '};  
+    var row = true;
+    var msg = '验证成功';
+    if(!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|[xX])$/.test(code)){  
+        row=false,  
+       msg = '被保人身份证号格式错误'; 
+    }
+    else if(!city[code.substr(0,2)]){
+         row=false,  
+       msg = '被保人身份证号地址编码错误';
+    }
+    else{
+        //18位身份证需要验证最后一位校验位  
+        if(code.length == 18){  
+            code = code.split('');  
+            //∑(ai×Wi)(mod 11)  
+            //加权因子  
+            var factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];  
+            //校验位  
+            var parity = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];  
+            var sum = 0;  
+            var ai = 0;  
+            var wi = 0;  
+            for (var i = 0; i < 17; i++){  
+                ai = code[i];  
+                wi = factor[i];  
+                sum += ai * wi;  
+            }  
+            if(parity[sum % 11] != code[17].toUpperCase()){  
+                 row=false,  
+       			msg = '被保人身份证号校验位错误';
+            }  
+        }  
+    }  
+    return row;  
+}  
