@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>璟荷四季 · 导航到永安里地铁站</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #8b0000 0%, #500000 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%238b0000"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23500000" stroke-width="1"/></svg>');
+            background-size: 40px 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+            border: 2px solid #ffd700;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff9800 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: #8b0000;
+        }
+
+        .title-group {
+            text-align: left;
+        }
+
+        .main-title {
+            color: #ffd700;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .sub-title {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .location-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .location-title {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .info-item i {
+            color: #ffd700;
+            margin-top: 4px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .map-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ff9800 100%);
+            color: #8b0000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin: 10px 0;
+        }
+
+        .map-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-btn:active {
+            transform: translateY(1px);
+        }
+
+        .instructions {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .instructions h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .instructions li {
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .decoration {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .decoration i {
+            font-size: 2rem;
+            color: #ffd700;
+            animation: swing 3s infinite ease-in-out;
+        }
+
+        .decoration i:nth-child(2) {
+            animation-delay: 0.5s;
+            color: #ff6b6b;
+        }
+
+        .decoration i:nth-child(3) {
+            animation-delay: 1s;
+            color: #4ecdc4;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .back-btn {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .title-group {
+                text-align: center;
+            }
+            
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .sub-title {
+                font-size: 1rem;
+            }
+            
+            .map-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> 返回
+        </button>
+        
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-dragon"></i>
+            </div>
+            <div class="title-group">
+                <h1 class="main-title">璟荷四季 · 年味盛宴</h1>
+                <p class="sub-title">导航到永安里地铁站 · 节日饭局专家</p>
+            </div>
+        </div>
+        
+        <div class="decoration">
+            <i class="fas fa-drumstick-bite"></i>
+            <i class="fas fa-utensils"></i>
+            <i class="fas fa-glass-cheers"></i>
+        </div>
+        
+        <p style="font-size: 1.1rem; margin-bottom: 20px; color: rgba(255, 255, 255, 0.9);">
+            点击下方按钮，在手机或电脑上使用高德地图导航到北京永安里地铁站
+        </p>
+        
+        <div class="location-card">
+            <h2 class="location-title"><i class="fas fa-map-marker-alt"></i> 目的地信息</h2>
+            <div class="location-info">
+                <div class="info-item">
+                    <i class="fas fa-subway"></i>
+                    <div>
+                        <strong>永安里地铁站</strong>
+                        <p>北京地铁1号线车站</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-pin"></i>
+                    <div>
+                        <strong>地址</strong>
+                        <p>北京市朝阳区建国门外大街永安里路口</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-compass"></i>
+                    <div>
+                        <strong>位置</strong>
+                        <p>北纬39.908692°, 东经116.457058°</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-store"></i>
+                    <div>
+                        <strong>餐厅位置</strong>
+                        <p>秀水街大厦六层璟荷四季烤鸭店</p>
+                        <p>距地铁站步行约5分钟</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="map-btn" onclick="openGaodeMap()">
+                <i class="fas fa-directions"></i> 打开高德地图导航
+            </button>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> 使用说明</h3>
+            <ol>
+                <li>点击上方按钮打开高德地图导航</li>
+                <li>在手机上会自动打开高德地图APP（如果已安装）</li>
+                <li>在电脑上会打开高德地图网页版</li>
+                <li>系统会自动规划最佳路线（驾车/公交/步行）</li>
+                <li>跟随导航提示前往永安里地铁站</li>
+                <li>从A1出口出站，步行5分钟到达餐厅</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2024 璟荷四季 · 传承百年宫廷御膳 | 京ICP备465871369号</p>
+        <p>预订热线：136-6357-2129（芦经理） | 营业时间：11:00-21:00</p>
+    </div>
+
+    <script>
+        // 返回按钮功能实现
+        function goBack() {
+            // 这里预留了接口，您可以自定义返回逻辑
+            // 默认行为是返回上一页
+            if (window.customReturnUrl) {
+                // 如果设置了自定义返回URL，则跳转到该URL
+                window.location.href = window.customReturnUrl;
+            } else if (window.returnFunction) {
+                // 如果设置了自定义返回函数，则调用该函数
+                window.returnFunction();
+            } else {
+                // 默认行为：返回上一页
+                window.history.back();
+            }
+        }
+        
+        // 导航功能实现
+        function openGaodeMap() {
+            // 永安里地铁站的坐标
+            const longitude = 116.457058;
+            const latitude = 39.908692;
+            
+            // 高德地图URI Scheme（适用于手机APP）
+            const appUrl = `amapuri://route/plan/?dlat=${latitude}&dlon=${longitude}&dname=永安里地铁站&dev=0&t=0`;
+            
+            // 高德地图网页版URL（适用于电脑浏览器）
+            const webUrl = `https://uri.amap.com/navigation?to=${longitude},${latitude},永安里地铁站&mode=car&src=myapp`;
+            
+            // 尝试打开APP，如果失败则打开网页版
+            window.location.href = appUrl;
+            
+            // 设置超时检测是否成功打开APP
+            setTimeout(function() {
+                // 如果页面仍然可见，说明APP打开失败
+                if (!document.hidden) {
+                    window.open(webUrl, '_blank');
+                }
+            }, 500);
+        }
+        
+        // 示例：如何设置自定义返回URL
+        // window.customReturnUrl = "https://example.com/home";
+        
+        // 示例：如何设置自定义返回函数
+        /*
+        window.returnFunction = function() {
+            alert("执行自定义返回操作");
+            // 这里可以添加您的自定义逻辑
+            // 例如：window.location.href = "your-custom-url";
+        };
+        */
+    </script>
+</body>
+</html>
