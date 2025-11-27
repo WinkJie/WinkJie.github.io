@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>璟荷四季 · 导航到永安里地铁站</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
+    <title>璟荷四季 · 导航到餐厅</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦆</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦆</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -49,8 +49,8 @@
         }
 
         .logo {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, #ffd700 0%, #ff9800 100%);
             border-radius: 50%;
             display: flex;
@@ -61,7 +61,7 @@
         }
 
         .logo i {
-            font-size: 28px;
+            font-size: 32px;
             color: #8b0000;
         }
 
@@ -228,6 +228,63 @@
             color: #4ecdc4;
         }
 
+        .restaurant-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23333"/><text x="400" y="200" font-family="Arial" font-size="24" fill="white" text-anchor="middle">璟荷四季餐厅实景图</text></svg>');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .restaurant-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #8b0000, #500000);
+            opacity: 0.7;
+        }
+
+        .restaurant-image span {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .feature {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .feature i {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
         @keyframes swing {
             0%, 100% { transform: translateY(0) rotate(-5deg); }
             50% { transform: translateY(-10px) rotate(5deg); }
@@ -271,6 +328,10 @@
                 padding: 12px 25px;
                 font-size: 1rem;
             }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -282,54 +343,87 @@
         
         <div class="header">
             <div class="logo">
-                <i class="fas fa-dragon"></i>
+                <i class="fas fa-utensils"></i>
             </div>
             <div class="title-group">
-                <h1 class="main-title">璟荷四季 · 年味盛宴</h1>
-                <p class="sub-title">导航到永安里地铁站 · 节日饭局专家</p>
+                <h1 class="main-title">璟荷四季餐厅</h1>
+                <p class="sub-title">导航到秀水街大厦 · 宫廷御膳传承者</p>
             </div>
         </div>
         
         <div class="decoration">
             <i class="fas fa-drumstick-bite"></i>
-            <i class="fas fa-utensils"></i>
-            <i class="fas fa-glass-cheers"></i>
+            <i class="fas fa-fish"></i>
+            <i class="fas fa-pepper-hot"></i>
+        </div>
+        
+        <div class="restaurant-image">
+            <span>金碧辉煌的用餐大厅 · 传统与现代的完美融合</span>
         </div>
         
         <p style="font-size: 1.1rem; margin-bottom: 20px; color: rgba(255, 255, 255, 0.9);">
-            点击下方按钮，在手机或电脑上使用高德地图导航到北京永安里地铁站
+            点击下方按钮，在手机或电脑上使用高德地图导航到北京秀水街大厦璟荷四季餐厅
         </p>
         
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-crown"></i>
+                <h3>宫廷御膳</h3>
+                <p>百年传承秘方</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>黄金地段</h3>
+                <p>秀水街大厦六层</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <h3>私密包间</h3>
+                <p>20+主题宴会厅</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-parking"></i>
+                <h3>代客泊车</h3>
+                <p>尊享停车服务</p>
+            </div>
+        </div>
+        
         <div class="location-card">
-            <h2 class="location-title"><i class="fas fa-map-marker-alt"></i> 目的地信息</h2>
+            <h2 class="location-title"><i class="fas fa-store"></i> 餐厅信息</h2>
             <div class="location-info">
                 <div class="info-item">
-                    <i class="fas fa-subway"></i>
+                    <i class="fas fa-signature"></i>
                     <div>
-                        <strong>永安里地铁站</strong>
-                        <p>北京地铁1号线车站</p>
+                        <strong>璟荷四季烤鸭店</strong>
+                        <p>宫廷御膳传承者 · 节日饭局专家</p>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-map-pin"></i>
                     <div>
                         <strong>地址</strong>
-                        <p>北京市朝阳区建国门外大街永安里路口</p>
+                        <p>北京市朝阳区秀水街大厦六层</p>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-compass"></i>
                     <div>
                         <strong>位置</strong>
-                        <p>北纬39.908692°, 东经116.457058°</p>
+                        <p>北纬39.909604°, 东经116.447128°</p>
                     </div>
                 </div>
                 <div class="info-item">
-                    <i class="fas fa-store"></i>
+                    <i class="fas fa-phone-alt"></i>
                     <div>
-                        <strong>餐厅位置</strong>
-                        <p>秀水街大厦六层璟荷四季烤鸭店</p>
-                        <p>距地铁站步行约5分钟</p>
+                        <strong>预订热线</strong>
+                        <p>136-6357-2129（芦经理）</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>营业时间</strong>
+                        <p>每日 11:00-21:00（除夕至22:00）</p>
                     </div>
                 </div>
             </div>
@@ -340,21 +434,22 @@
         </div>
         
         <div class="instructions">
-            <h3><i class="fas fa-info-circle"></i> 使用说明</h3>
+            <h3><i class="fas fa-info-circle"></i> 导航指南</h3>
             <ol>
                 <li>点击上方按钮打开高德地图导航</li>
                 <li>在手机上会自动打开高德地图APP（如果已安装）</li>
                 <li>在电脑上会打开高德地图网页版</li>
                 <li>系统会自动规划最佳路线（驾车/公交/步行）</li>
-                <li>跟随导航提示前往永安里地铁站</li>
-                <li>从A1出口出站，步行5分钟到达餐厅</li>
+                <li>导航终点为秀水街大厦，餐厅位于六层</li>
+                <li>大厦提供电梯直达六层餐厅</li>
+                <li>如需帮助可致电：136-6357-2129</li>
             </ol>
         </div>
     </div>
     
     <div class="footer">
         <p>© 2024 璟荷四季 · 传承百年宫廷御膳 | 京ICP备465871369号</p>
-        <p>预订热线：136-6357-2129（芦经理） | 营业时间：11:00-21:00</p>
+        <p>地铁1号线永安里站A1口步行5分钟 | 提供代客泊车服务</p>
     </div>
 
     <script>
@@ -374,17 +469,19 @@
             }
         }
         
-        // 导航功能实现
+        // 导航功能实现 - 修改为餐厅位置
         function openGaodeMap() {
-            // 永安里地铁站的坐标
-            const longitude = 116.457058;
-            const latitude = 39.908692;
+            // 秀水街大厦璟荷四季餐厅的坐标
+            const longitude = 116.447128;
+            const latitude = 39.909604;
+            const restaurantName = "璟荷四季烤鸭店";
+            const restaurantAddress = "北京市朝阳区秀水街大厦六层";
             
             // 高德地图URI Scheme（适用于手机APP）
-            const appUrl = `amapuri://route/plan/?dlat=${latitude}&dlon=${longitude}&dname=永安里地铁站&dev=0&t=0`;
+            const appUrl = `amapuri://route/plan/?dlat=${latitude}&dlon=${longitude}&dname=${encodeURIComponent(restaurantName)}&daddr=${encodeURIComponent(restaurantAddress)}&dev=0&t=0`;
             
             // 高德地图网页版URL（适用于电脑浏览器）
-            const webUrl = `https://uri.amap.com/navigation?to=${longitude},${latitude},永安里地铁站&mode=car&src=myapp`;
+            const webUrl = `https://uri.amap.com/navigation?to=${longitude},${latitude},${encodeURIComponent(restaurantName)}&name=${encodeURIComponent(restaurantAddress)}&mode=car&src=myapp`;
             
             // 尝试打开APP，如果失败则打开网页版
             window.location.href = appUrl;
