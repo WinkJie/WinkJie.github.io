@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>璟荷四季 · 年味盛宴 | 节日饭局专家</title>
+    <title>璟荷四季 · 年味盛宴 | 节日饭局专家</title>  
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦆</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦆</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -327,6 +327,7 @@
             color: var(--primary);
             font-size: 1.5rem;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .social-links a:hover {
@@ -423,8 +424,8 @@
             <h2 class="main-title" style="text-align: center; margin: 40px 0 20px;">年夜饭套餐</h2>
             <div class="gallery-grid">
                 <!-- 年夜饭1 -->
-                <div class="gallery-item" onclick="openModal('https://gitee.com/WinkJie/WinkJie/raw/master/jinghesiji/pic/caidan1.jpg')">
-                    <img src="https://gitee.com/WinkJie/WinkJie/raw/master/jinghesiji/pic/caidan1.jpg" alt="中端型  四季珍馐 1958 6 人餐" class="gallery-img">
+                <div class="gallery-item" onclick="openModal('./pic/caidan1.jpg')">
+                    <img src="./pic/caidan1.jpg" alt="中端型  四季珍馐 1958 6 人餐" class="gallery-img">
                     <div class="gallery-info">
                         <h3 class="gallery-title">中端型  四季珍馐 1958 6 人餐</h3>
                         <p class="gallery-desc">金玉满堂宴/龙凤呈祥宴/鸿运当头宴，10-15道珍馐，寓意吉祥团圆</p>
@@ -621,10 +622,10 @@
             <div class="footer-section">
                 <h3>关注我们</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-weixin"></i></a>
-                    <a href="#"><i class="fab fa-weibo"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a onclick="showSocialImage('wechat')"><i class="fab fa-weixin"></i></a>
+                    <a onclick="showSocialImage('weibo')"><i class="fab fa-weibo"></i></a>
+                    <a onclick="showSocialImage('tiktok')"><i class="fab fa-tiktok"></i></a>
+                    <a onclick="showSocialImage('instagram')"><i class="fab fa-instagram"></i></a>
                 </div>
                 <p style="margin-top: 15px; color: rgba(255,255,255,0.7);">每日分享美食资讯与优惠活动</p>
             </div>
@@ -657,86 +658,92 @@
             if (e.target === modal) closeModal();
         });
         
-        // // 背景音乐控制
-        // const bgMusic = document.getElementById('bgMusic');
-        // const musicControl = document.getElementById('musicControl');
-        // let isPlaying = true;
+        // 社交媒体图标点击显示大图功能
+        function showSocialImage(platform) {
+            let imageUrl = '';
+            let title = '';
+            
+            switch(platform) {
+                case 'wechat':
+                    imageUrl = 'data:image/svg+xml;utf8,<svg xmlns="./pic/huanjing1.jpg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23f5f5f5"/><text x="150" y="150" font-family="Arial" font-size="20" fill="black" text-anchor="middle">微信公众号二维码</text></svg>';
+                    title = '微信公众号';
+                    break;
+                case 'weibo':
+                    imageUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23f5f5f5"/><text x="150" y="150" font-family="Arial" font-size="20" fill="black" text-anchor="middle">新浪微博二维码</text></svg>';
+                    title = '新浪微博';
+                    break;
+                case 'tiktok':
+                    imageUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23f5f5f5"/><text x="150" y="150" font-family="Arial" font-size="20" fill="black" text-anchor="middle">抖音二维码</text></svg>';
+                    title = '抖音';
+                    break;
+                case 'instagram':
+                    imageUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23f5f5f5"/><text x="150" y="150" font-family="Arial" font-size="20" fill="black" text-anchor="middle">Instagram二维码</text></svg>';
+                    title = 'Instagram';
+                    break;
+            }
+            
+            // 使用现有的图片模态框显示大图
+            modal.style.display = 'flex';
+            modalImg.src = imageUrl;
+            modalImg.alt = title;
+            document.body.style.overflow = 'hidden';
+            
+            // 添加标题
+            const titleElement = document.createElement('div');
+            titleElement.id = 'socialImageTitle';
+            titleElement.style.position = 'absolute';
+            titleElement.style.top = '20px';
+            titleElement.style.left = '0';
+            titleElement.style.width = '100%';
+            titleElement.style.textAlign = 'center';
+            titleElement.style.color = 'var(--primary)';
+            titleElement.style.fontSize = '2rem';
+            titleElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+            titleElement.textContent = title;
+            modal.appendChild(titleElement);
+        }
         
-        // musicControl.addEventListener('click', () => {
-        //     if (isPlaying) {
-        //         bgMusic.pause();
-        //         musicControl.innerHTML = '<i class="fas fa-music music-icon"></i>';
-        //     } else {
-        //         bgMusic.play().catch(e => console.log("播放需要用户交互"));
-        //         musicControl.innerHTML = '<i class="fas fa-pause music-icon"></i>';
-        //     }
-        //     isPlaying = !isPlaying;
-        // });
-        // 页面加载时尝试自动播放
-// window.addEventListener('load', () => {
-//     const bgMusic = document.getElementById('bgMusic');
-//     const musicControl = document.getElementById('musicControl');
+        // 背景音乐控制
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
 
-//     // 尝试自动播放
-//     try {
-//         bgMusic.play();
-//         musicControl.innerHTML = '<i class="fas fa-pause music-icon"></i>';
-//     } catch (error) {
-//         console.log('自动播放被阻止:', error);
-//         // 用户点击后播放
-//         musicControl.addEventListener('click', () => {
-//             if (bgMusic.paused) {
-//                 bgMusic.play();
-//                 musicControl.innerHTML = '<i class="fas fa-pause music-icon"></i>';
-//             } else {
-//                 bgMusic.pause();
-//                 musicControl.innerHTML = '<i class="fas fa-music music-icon"></i>';
-//             }
-//         });
-//     }
-// });
+        // 初始化状态（根据音乐当前状态设置）
+        let isPlaying = !bgMusic.paused;
 
-// 获取元素
-const bgMusic = document.getElementById('bgMusic');
-const musicControl = document.getElementById('musicControl');
+        // 更新按钮状态
+        function updateButton() {
+            musicControl.innerHTML = isPlaying 
+                ? '<i class="fas fa-pause music-icon"></i>'
+                : '<i class="fas fa-music music-icon"></i>';
+        }
 
-// 初始化状态（根据音乐当前状态设置）
-let isPlaying = !bgMusic.paused;
-
-// 更新按钮状态
-function updateButton() {
-    musicControl.innerHTML = isPlaying 
-        ? '<i class="fas fa-pause music-icon"></i>'
-        : '<i class="fas fa-music music-icon"></i>';
-}
-
-// 点击事件处理
-musicControl.addEventListener('click', () => {
-    if (isPlaying) {
-        bgMusic.pause();
-    } else {
-        bgMusic.play().catch(e => {
-            console.error('播放失败:', e);
-            alert('请手动点击播放按钮');
+        // 点击事件处理
+        musicControl.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+            } else {
+                bgMusic.play().catch(e => {
+                    console.error('播放失败:', e);
+                    alert('请手动点击播放按钮');
+                });
+            }
+            isPlaying = !isPlaying;
+            updateButton();
         });
-    }
-    isPlaying = !isPlaying;
-    updateButton();
-});
 
-// 页面加载时初始化按钮状态
-updateButton();
-
-// 自动播放尝试（仅用于演示，实际可能被浏览器阻止）
-window.addEventListener('load', () => {
-    try {
-        bgMusic.play();
-        isPlaying = true;
+        // 页面加载时初始化按钮状态
         updateButton();
-    } catch (error) {
-        console.log('自动播放被阻止:', error);
-    }
-});
+
+        // 自动播放尝试（仅用于演示，实际可能被浏览器阻止）
+        window.addEventListener('load', () => {
+            try {
+                bgMusic.play();
+                isPlaying = true;
+                updateButton();
+            } catch (error) {
+                console.log('自动播放被阻止:', error);
+            }
+        });
         
         // 页面滚动时文字动画
         window.addEventListener('scroll', () => {
