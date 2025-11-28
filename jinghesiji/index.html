@@ -653,11 +653,18 @@
 
         // 添加标题
         const titleElement = document.createElement('div');
-        
+        // 修正后的标题管理
+        let currentTitleElement = null; // 新增全局变量跟踪当前标题
+
         // 创建专门的标题移除函数
         function removeAllTitles() {
             const titles = document.querySelectorAll('.social-title, #socialImageTitle');
             titles.forEach(title => title.remove());
+             // 直接操作全局变量更可靠
+            if (currentTitleElement) {
+                 currentTitleElement.remove();
+                 currentTitleElement = null;
+                }            
         }
         
         function openModal(imgSrc) {
@@ -724,17 +731,30 @@
 
               // 添加标题
             // const titleElement = document.createElement('div');
-            titleElement.id = 'social-title';//'socialImageTitle';
-            titleElement.style.position = 'absolute';
-            titleElement.style.top = '20px';
-            titleElement.style.left = '0';
-            titleElement.style.width = '100%';
-            titleElement.style.textAlign = 'center';
-            titleElement.style.color = 'var(--primary)';
-            titleElement.style.fontSize = '2rem';
-            titleElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
-            titleElement.textContent = title;
-            modal.appendChild(titleElement);
+            // titleElement.id = 'social-title';//'socialImageTitle';
+            // titleElement.style.position = 'absolute';
+            // titleElement.style.top = '20px';
+            // titleElement.style.left = '0';
+            // titleElement.style.width = '100%';
+            // titleElement.style.textAlign = 'center';
+            // titleElement.style.color = 'var(--primary)';
+            // titleElement.style.fontSize = '2rem';
+            // titleElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+            // titleElement.textContent = title;
+
+              // 创建新标题时使用唯一标识
+            currentTitleElement = document.createElement('div');
+            currentTitleElement.id = 'socialImageTitle'; // 修改为唯一ID
+            currentTitleElement.style.position = 'absolute';
+            currentTitleElement.style.top = '20px';
+            currentTitleElement.style.left = '0';
+            currentTitleElement.style.width = '100%';
+            currentTitleElement.style.textAlign = 'center';
+            currentTitleElement.style.color = 'var(--primary)';
+            currentTitleElement.style.fontSize = '2rem';
+            currentTitleElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+            currentTitleElement.textContent = title;
+            modal.appendChild(currentTitleElement);
         }
         
         // 点击模态框外部关闭
