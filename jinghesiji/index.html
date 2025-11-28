@@ -607,7 +607,7 @@
                         <div>预订热线：</div>
                         <a>芦滢:</a><a href="tel:18310303360" class="phone-link">18310303360</a> 
                         <br>
-                        <a>芦滢</a><a href="tel:13663572129" class="phone-link">13663572129</a> 
+                        <a>芦滢:</a><a href="tel:13663572129" class="phone-link">13663572129</a> 
                     </div>
                     </li>
                     <li><i class="fas fa-clock"></i> 营业时间：</li>
@@ -649,6 +649,9 @@
        // 图片模态框控制
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
+
+        // 添加标题
+        const titleElement = document.createElement('div');
         
         // 创建专门的标题移除函数
         function removeAllTitles() {
@@ -712,8 +715,22 @@
             document.body.style.overflow = 'hidden';
             
             // 添加标题（使用class代替id）
-            const titleElement = document.createElement('div');
-            titleElement.className = 'social-title'; // 使用class而不是id
+            // const titleElement = document.createElement('div');
+            // titleElement.className = 'social-title'; // 使用class而不是id
+            // titleElement.textContent = title;
+            // modal.appendChild(titleElement);
+
+              // 添加标题
+            // const titleElement = document.createElement('div');
+            titleElement.id = 'social-title';//'socialImageTitle';
+            titleElement.style.position = 'absolute';
+            titleElement.style.top = '20px';
+            titleElement.style.left = '0';
+            titleElement.style.width = '100%';
+            titleElement.style.textAlign = 'center';
+            titleElement.style.color = 'var(--primary)';
+            titleElement.style.fontSize = '2rem';
+            titleElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
             titleElement.textContent = title;
             modal.appendChild(titleElement);
         }
